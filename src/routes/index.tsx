@@ -107,10 +107,9 @@ function Marquee() {
       <div className="flex whitespace-nowrap gap-16 text-sm md:text-base font-devnagri" style={{ animation: "marquee 30s linear infinite" }}>
         {Array.from({ length: 4 }).map((_, i) => (
           <span key={i} className="flex items-center gap-16 shrink-0">
-            <span>॥ हारे का सहारा, बाबा श्याम हमारा ॥</span>
-            <span>॥ खाटू श्याम बाबा की जय ॥</span>
             <span>॥ जय माता दी ॥</span>
-            <span>॥ श्री श्याम शरणम् मम ॥</span>
+            <span>॥ जय श्री श्याम ॥</span>
+            <span>॥ जय माता दी ॥</span>
           </span>
         ))}
       </div>
