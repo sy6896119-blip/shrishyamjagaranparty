@@ -78,16 +78,20 @@ function Header() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-screen flex items-center justify-center pt-16">
-      <img src={heroBanner} alt="Shree Shyam Jagran Party stage with Khatu Shyam Baba" width={1920} height={1088} className="absolute inset-0 w-full h-full object-cover" />
+      <img src={heroBanner} alt="Shri Shyam Jagaran Party stage with Khatu Shyam Baba" width={1920} height={1088} className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "var(--gradient-overlay)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up">
-        <p className="font-devnagri text-2xl md:text-4xl text-gold mb-4 animate-flicker">॥ जय श्री श्याम ॥</p>
+        <div className="flex items-center justify-center gap-2 md:gap-4 mb-4 text-gold">
+          <span className="font-devnagri text-lg md:text-2xl animate-flicker">॥ जय माता दी ॥</span>
+          <span className="font-devnagri text-2xl md:text-4xl animate-flicker">॥ जय श्री श्याम ॥</span>
+          <span className="font-devnagri text-lg md:text-2xl animate-flicker">॥ जय माता दी ॥</span>
+        </div>
         <h1 className="font-display text-4xl md:text-7xl font-bold text-cream leading-tight">
-          Shree Shyam <span className="text-gradient-gold">Jagran Party</span>
+          Shri Shyam <span className="text-gradient-gold">Jagaran Party</span>
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-cream/90 font-light">Ghaziabad · Delhi NCR</p>
+        <p className="mt-4 text-lg md:text-xl text-cream/90 font-light">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
         <p className="mt-6 text-cream/85 text-base md:text-lg max-w-2xl mx-auto">
-          Devotional Khatu Shyam Jagran, Mata Ki Chowki & Bhajan Sandhya —
+          Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Bhajan Sandhya —
           soulful voices, sacred nights, unforgettable darbar.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -96,7 +100,7 @@ function Hero() {
             <MessageCircle className="w-5 h-5" /> WhatsApp Now
           </a>
           <a href="#booking" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cream/40 text-cream hover:bg-cream/10 transition">
-            Book Your Jagran <Send className="w-4 h-4" />
+            Book Your Jagaran <Send className="w-4 h-4" />
           </a>
         </div>
       </div>
