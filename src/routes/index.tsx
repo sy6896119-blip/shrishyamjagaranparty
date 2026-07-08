@@ -329,11 +329,11 @@ function BookingForm() {
   );
 }
 
-function Field({ label, name, type = "text", required }: { label: string; name: string; type?: string; required?: boolean }) {
+function Field({ label, name, type = "text", required, pattern, minLength, maxLength }: { label: string; name: string; type?: string; required?: boolean; pattern?: string; minLength?: number; maxLength?: number }) {
   return (
     <div>
-      <label className="text-sm font-medium mb-2 block">{label}</label>
-      <input name={name} type={type} required={required} maxLength={200}
+      <label className="text-sm font-medium mb-2 block">{label}{required && <span className="text-saffron ml-1">*</span>}</label>
+      <input name={name} type={type} required={required} pattern={pattern} minLength={minLength} maxLength={maxLength}
         className="w-full px-4 py-3 rounded-lg bg-background border border-input focus:border-ring outline-none" />
     </div>
   );
