@@ -116,7 +116,7 @@ function Marquee() {
           <span key={i} className="flex items-center gap-16 shrink-0">
             <span>॥ जय माता दी ॥</span>
             <span>॥ जय श्री श्याम ॥</span>
-            <span>॥ जय माता दी ॥</span>
+            <span>॥ जय श्री राम ॥</span>
           </span>
         ))}
       </div>
