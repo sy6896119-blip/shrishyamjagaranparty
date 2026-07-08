@@ -131,7 +131,7 @@ function About() {
       <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">About Us</p>
       <h2 className="text-3xl md:text-5xl font-bold mb-6">A Devotional Legacy in Every Bhajan</h2>
       <p className="text-muted-foreground text-lg leading-relaxed">
-        Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shree Shyam Jagran Party has been
+        Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shri Shyam Jagaran Party has been
         organising soul-stirring jagrans for years across Delhi NCR — Ghaziabad, Noida, Delhi, Gurugram and beyond.
         From intimate home chowkis to grand society jagrans, our mandali brings professional singers,
         harmonium, tabla, sound system and complete darbar decoration to create an atmosphere of pure devotion.
