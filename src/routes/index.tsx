@@ -364,7 +364,7 @@ function Footer() {
         </div>
       </div>
       <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-cream/10 text-center text-xs text-cream/50">
-        © {new Date().getFullYear()} Shree Shyam Jagran Party · जय श्री श्याम
+        © {new Date().getFullYear()} Shree Shyam Jagran Party. All Rights Reserved. · जय श्री श्याम
       </div>
     </footer>
   );
