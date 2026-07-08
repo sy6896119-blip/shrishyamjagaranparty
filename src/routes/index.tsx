@@ -54,10 +54,12 @@ function Index() {
 function Header() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+        <a href="#top" className="flex items-center gap-1 md:gap-2">
+          <span className="font-devnagri text-[10px] md:text-xs text-gold hidden sm:block leading-none">॥ जय माता दी ॥</span>
           <span className="w-9 h-9 rounded-full bg-gradient-royal grid place-items-center text-cream font-display font-bold">श्री</span>
-          <span className="font-display font-semibold tracking-wide text-sm md:text-base">Shree Shyam Jagran Party</span>
+          <span className="font-display font-semibold tracking-wide text-sm md:text-base leading-tight">Shri Shyam Jagaran Party</span>
+          <span className="font-devnagri text-[10px] md:text-xs text-gold hidden sm:block leading-none">॥ जय माता दी ॥</span>
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           <a href="#services" className="hover:text-saffron transition">Services</a>
@@ -76,16 +78,20 @@ function Header() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-screen flex items-center justify-center pt-16">
-      <img src={heroBanner} alt="Shree Shyam Jagran Party stage with Khatu Shyam Baba" width={1920} height={1088} className="absolute inset-0 w-full h-full object-cover" />
+      <img src={heroBanner} alt="Shri Shyam Jagaran Party stage with Khatu Shyam Baba" width={1920} height={1088} className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "var(--gradient-overlay)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up">
-        <p className="font-devnagri text-2xl md:text-4xl text-gold mb-4 animate-flicker">॥ जय श्री श्याम ॥</p>
+        <div className="flex items-center justify-center gap-2 md:gap-4 mb-4 text-gold">
+          <span className="font-devnagri text-lg md:text-2xl animate-flicker">॥ जय माता दी ॥</span>
+          <span className="font-devnagri text-2xl md:text-4xl animate-flicker">॥ जय श्री श्याम ॥</span>
+          <span className="font-devnagri text-lg md:text-2xl animate-flicker">॥ जय माता दी ॥</span>
+        </div>
         <h1 className="font-display text-4xl md:text-7xl font-bold text-cream leading-tight">
-          Shree Shyam <span className="text-gradient-gold">Jagran Party</span>
+          Shri Shyam <span className="text-gradient-gold">Jagaran Party</span>
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-cream/90 font-light">Ghaziabad · Delhi NCR</p>
+        <p className="mt-4 text-lg md:text-xl text-cream/90 font-light">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
         <p className="mt-6 text-cream/85 text-base md:text-lg max-w-2xl mx-auto">
-          Devotional Khatu Shyam Jagran, Mata Ki Chowki & Bhajan Sandhya —
+          Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Bhajan Sandhya —
           soulful voices, sacred nights, unforgettable darbar.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -94,7 +100,7 @@ function Hero() {
             <MessageCircle className="w-5 h-5" /> WhatsApp Now
           </a>
           <a href="#booking" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cream/40 text-cream hover:bg-cream/10 transition">
-            Book Your Jagran <Send className="w-4 h-4" />
+            Book Your Jagaran <Send className="w-4 h-4" />
           </a>
         </div>
       </div>
@@ -110,7 +116,7 @@ function Marquee() {
           <span key={i} className="flex items-center gap-16 shrink-0">
             <span>॥ जय माता दी ॥</span>
             <span>॥ जय श्री श्याम ॥</span>
-            <span>॥ जय माता दी ॥</span>
+            <span>॥ जय श्री राम ॥</span>
           </span>
         ))}
       </div>
@@ -125,7 +131,7 @@ function About() {
       <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">About Us</p>
       <h2 className="text-3xl md:text-5xl font-bold mb-6">A Devotional Legacy in Every Bhajan</h2>
       <p className="text-muted-foreground text-lg leading-relaxed">
-        Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shree Shyam Jagran Party has been
+        Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shri Shyam Jagaran Party has been
         organising soul-stirring jagrans for years across Delhi NCR — Ghaziabad, Noida, Delhi, Gurugram and beyond.
         From intimate home chowkis to grand society jagrans, our mandali brings professional singers,
         harmonium, tabla, sound system and complete darbar decoration to create an atmosphere of pure devotion.
@@ -346,9 +352,9 @@ function Footer() {
     <footer className="text-cream py-14 px-6" style={{ background: "var(--maroon-deep)" }}>
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
         <div>
-          <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shree Shyam Jagran Party</h3>
+          <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shri Shyam Jagaran Party</h3>
           <p className="text-sm text-cream/70 leading-relaxed">
-            Ghaziabad-based devotional group spreading faith through soulful jagrans across Delhi NCR.
+            Ghaziabad-based devotional group spreading faith through soulful jagrans across Delhi NCR and all over India.
           </p>
         </div>
         <div>
@@ -366,7 +372,7 @@ function Footer() {
         </div>
       </div>
       <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-cream/10 text-center text-xs text-cream/50">
-        © {new Date().getFullYear()} Shree Shyam Jagran Party. All Rights Reserved. · जय श्री श्याम
+        © {new Date().getFullYear()} Shri Shyam Jagaran Party. All Rights Reserved. · जय श्री श्याम
       </div>
     </footer>
   );
