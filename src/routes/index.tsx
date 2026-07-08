@@ -12,6 +12,7 @@ export const Route = createFileRoute("/")({
 
 const PHONE = "+917982956590";
 const WHATSAPP = "917982956590";
+const WHATSAPP_TEXT = encodeURIComponent("JAI MATA DI\nI Want to enquiry for organinzinag a devotional Programm");
 const YOUTUBE = "https://www.youtube.com/@ShriShyamJagranPartyGzb";
 const INSTAGRAM = "https://www.instagram.com/shankar98yadav/";
 
@@ -88,7 +89,7 @@ function Hero() {
           soulful voices, sacred nights, unforgettable darbar.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <a href={`https://wa.me/${WHATSAPP}?text=Jai%20Shree%20Shyam!%20I%20would%20like%20to%20book%20a%20jagran.`} target="_blank" rel="noreferrer"
+          <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer"
              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-maroon-deep font-medium shadow-divine hover:scale-105 transition">
             <MessageCircle className="w-5 h-5" /> WhatsApp Now
           </a>
@@ -262,7 +263,7 @@ function ContactSection() {
             <p className="text-2xl font-display text-gradient-gold">+91 79829 56590</p>
             <p className="text-xs text-muted-foreground mt-2">Available 24×7</p>
           </a>
-          <a href={`https://wa.me/${WHATSAPP}?text=Jai%20Shree%20Shyam!%20I%20am%20interested%20in%20booking%20a%20jagran.`} target="_blank" rel="noreferrer"
+          <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer"
              className="group p-8 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition hover:-translate-y-1">
             <MessageCircle className="w-10 h-10 mx-auto text-saffron mb-4 group-hover:scale-110 transition" />
             <h3 className="text-xl font-semibold mb-2">WhatsApp Chat</h3>
@@ -360,7 +361,7 @@ function Footer() {
           <div className="flex gap-3">
             <a href={YOUTUBE} target="_blank" rel="noreferrer" aria-label="YouTube" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Youtube className="w-5 h-5" /></a>
             <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Instagram className="w-5 h-5" /></a>
-            <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><MessageCircle className="w-5 h-5" /></a>
+            <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><MessageCircle className="w-5 h-5" /></a>
           </div>
         </div>
       </div>
@@ -374,7 +375,7 @@ function Footer() {
 function FloatingContact() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-      <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer" aria-label="WhatsApp"
+      <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer" aria-label="WhatsApp"
         className="w-14 h-14 rounded-full bg-[#25D366] text-white grid place-items-center shadow-divine hover:scale-110 transition animate-flicker">
         <MessageCircle className="w-6 h-6" />
       </a>
