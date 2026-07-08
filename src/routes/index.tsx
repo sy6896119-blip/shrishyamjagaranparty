@@ -299,7 +299,7 @@ function BookingForm() {
         <form onSubmit={onSubmit} className="p-8 md:p-10 rounded-3xl bg-card border border-border shadow-divine space-y-5">
           <div className="grid md:grid-cols-2 gap-5">
             <Field label="Your Name" name="name" required />
-            <Field label="Phone Number" name="phone" type="tel" required />
+            <Field label="Phone Number" name="phone" type="tel" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
           </div>
           <div className="grid md:grid-cols-2 gap-5">
             <div>
