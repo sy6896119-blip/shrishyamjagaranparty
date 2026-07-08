@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { Phone, MessageCircle, MapPin, Youtube, Instagram, Star, Sparkles, Music, Flame, Send, Calendar } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Youtube, Instagram, Star, Sparkles, Music, Flame, Send, Calendar, BookOpen } from "lucide-react";
 import heroBanner from "@/assets/hero-banner.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
@@ -16,10 +16,12 @@ const YOUTUBE = "https://www.youtube.com/@ShriShyamJagranPartyGzb";
 const INSTAGRAM = "https://www.instagram.com/shankar98yadav/";
 
 const services = [
-  { icon: Flame, title: "Khatu Shyam Jagran", desc: "Night-long soulful bhajans & kirtan dedicated to Shyam Baba." },
-  { icon: Sparkles, title: "Mata Ki Chowki", desc: "Devotional evening in honour of Mata Rani with full darbar decor." },
-  { icon: Music, title: "Bhajan Sandhya", desc: "Live singers, harmonium, tabla & complete sound arrangement." },
-  { icon: Calendar, title: "Private & Society Events", desc: "Home functions, society jagrans & corporate spiritual events." },
+  { icon: Sparkles, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
+  { icon: Flame, title: "Khatu Shyam Kirtan", desc: "Night-long kirtan & bhajans dedicated to Shyam Baba, filled with faith and divine energy." },
+  { icon: Music, title: "Bhajan Sandhya", desc: "Live singers, harmonium, tabla & complete sound arrangement for an evening of devotion." },
+  { icon: BookOpen, title: "Sundar Kand Path Katha", desc: "Sacred recitation of Hanuman Chalisa & Sundar Kand with experienced pandits and vedic rituals." },
+  { icon: Calendar, title: "Private & Society Events", desc: "Home functions, society jagrans, colony events & corporate spiritual gatherings." },
+  { icon: Star, title: "Other Devotional Events", desc: "Kirtan, bhajan, jagran, satsang & any special devotional programme tailored to your needs." },
 ];
 
 const reviews = [
@@ -152,7 +154,7 @@ function Services() {
           <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Our Seva</p>
           <h2 className="text-3xl md:text-5xl font-bold">Divine Services We Offer</h2>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map(({ icon: Icon, title, desc }) => (
             <div key={title} className="group relative p-8 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition-all hover:-translate-y-1">
               <div className="w-14 h-14 rounded-xl bg-gradient-gold grid place-items-center mb-5 shadow-soft">
