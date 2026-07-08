@@ -352,9 +352,9 @@ function Footer() {
     <footer className="text-cream py-14 px-6" style={{ background: "var(--maroon-deep)" }}>
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
         <div>
-          <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shree Shyam Jagran Party</h3>
+          <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shri Shyam Jagaran Party</h3>
           <p className="text-sm text-cream/70 leading-relaxed">
-            Ghaziabad-based devotional group spreading faith through soulful jagrans across Delhi NCR.
+            Ghaziabad-based devotional group spreading faith through soulful jagrans across Delhi NCR and all over India.
           </p>
         </div>
         <div>
@@ -372,7 +372,7 @@ function Footer() {
         </div>
       </div>
       <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-cream/10 text-center text-xs text-cream/50">
-        © {new Date().getFullYear()} Shree Shyam Jagran Party. All Rights Reserved. · जय श्री श्याम
+        © {new Date().getFullYear()} Shri Shyam Jagaran Party. All Rights Reserved. · जय श्री श्याम
       </div>
     </footer>
   );
