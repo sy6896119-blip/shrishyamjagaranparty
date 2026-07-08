@@ -54,10 +54,12 @@ function Index() {
 function Header() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+        <a href="#top" className="flex items-center gap-1 md:gap-2">
+          <span className="font-devnagri text-[10px] md:text-xs text-gold hidden sm:block leading-none">॥ जय माता दी ॥</span>
           <span className="w-9 h-9 rounded-full bg-gradient-royal grid place-items-center text-cream font-display font-bold">श्री</span>
-          <span className="font-display font-semibold tracking-wide text-sm md:text-base">Shree Shyam Jagran Party</span>
+          <span className="font-display font-semibold tracking-wide text-sm md:text-base leading-tight">Shri Shyam Jagaran Party</span>
+          <span className="font-devnagri text-[10px] md:text-xs text-gold hidden sm:block leading-none">॥ जय माता दी ॥</span>
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           <a href="#services" className="hover:text-saffron transition">Services</a>
