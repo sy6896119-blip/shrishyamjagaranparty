@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
-import { Phone, MessageCircle, MapPin, Youtube, Instagram, Star, Sparkles, Music, Flame, Send, Calendar, BookOpen } from "lucide-react";
+import { useState, useEffect, type FormEvent } from "react";
+import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Sparkles, Music, Flame, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Mic2 } from "lucide-react";
 import heroBanner from "@/assets/hero-banner.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
@@ -12,9 +12,14 @@ export const Route = createFileRoute("/")({
 
 const PHONE = "+917982956590";
 const WHATSAPP = "917982956590";
-const WHATSAPP_TEXT = encodeURIComponent("JAI MATA DI\nI Want to enquiry for organinzinag a devotional Programm");
+const WHATSAPP_TEXT = encodeURIComponent(
+  `*"Jai Mata Di"*\n\nI came across your website.\nI want to enquiry for organizing a devotional Programm`
+);
 const YOUTUBE = "https://www.youtube.com/@ShriShyamJagranPartyGzb";
 const INSTAGRAM = "https://www.instagram.com/shankar98yadav/";
+const FACEBOOK = "https://www.facebook.com/";
+const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
+const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party#lrd=0x0:0x0,1";
 
 const services = [
   { icon: Sparkles, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
@@ -30,6 +35,10 @@ const reviews = [
   { name: "Meena Gupta", place: "Indirapuram", rating: 5, text: "Best Mata Ki Chowki experience. Sound, decoration and singing — everything was perfect and truly divine. Highly recommended." },
   { name: "Amit Yadav", place: "Vaishali, Ghaziabad", rating: 5, text: "Professional team, punctual and very devoted singers. Har bhajan dil ko chhoo gaya. Jai Shree Shyam!" },
   { name: "Pooja Verma", place: "Noida", rating: 5, text: "Amazing Khatu Shyam jagran arranged in our society. Everyone appreciated the arrangements and soulful voice." },
+  { name: "Sunil Aggarwal", place: "Delhi", rating: 5, text: "Sundar Kand Path at our home was so peaceful. The whole atmosphere turned divine. Thank you Shankar ji." },
+  { name: "Neha Singh", place: "Gurugram", rating: 5, text: "Booked them for Bhajan Sandhya — the singers are extremely talented and humble. Truly blessed evening." },
+  { name: "Ravi Chauhan", place: "Vasundhara", rating: 5, text: "Khatu Shyam jagaran was memorable for our entire family. Baba ki kripa aur mandali ki mehnat dono dikhti hai." },
+  { name: "Anjali Mehta", place: "Faridabad", rating: 5, text: "Complete darbar setup, punctual team and heart touching bhajans. Definitely booking again next year." },
 ];
 
 function Index() {
@@ -38,10 +47,12 @@ function Index() {
       <Header />
       <Hero />
       <Marquee />
+      <ScamWarning />
       <About />
       <Services />
       <Gallery />
       <Videos />
+      <Compositions />
       <Reviews />
       <ContactSection />
       <BookingForm />
@@ -55,11 +66,9 @@ function Header() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
       <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-1 md:gap-2">
-          <span className="font-devnagri text-[10px] md:text-xs text-gold hidden sm:block leading-none">॥ जय माता दी ॥</span>
+        <a href="#top" className="flex items-center gap-2">
           <span className="w-9 h-9 rounded-full bg-gradient-royal grid place-items-center text-cream font-display font-bold">श्री</span>
           <span className="font-display font-semibold tracking-wide text-sm md:text-base leading-tight">Shri Shyam Jagaran Party</span>
-          <span className="font-devnagri text-[10px] md:text-xs text-gold hidden sm:block leading-none">॥ जय माता दी ॥</span>
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           <a href="#services" className="hover:text-saffron transition">Services</a>
@@ -78,7 +87,7 @@ function Header() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-screen flex items-center justify-center pt-16">
-      <img src={heroBanner} alt="Shri Shyam Jagaran Party stage with Khatu Shyam Baba" width={1920} height={1088} className="absolute inset-0 w-full h-full object-cover" />
+      <img src={heroBanner} alt="Shri Shyam Jagaran Party stage" width={1920} height={1088} className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "var(--gradient-overlay)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up">
         <div className="flex items-center justify-center gap-2 md:gap-4 mb-4 text-gold">
@@ -91,8 +100,8 @@ function Hero() {
         </h1>
         <p className="mt-4 text-lg md:text-xl text-cream/90 font-light">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
         <p className="mt-6 text-cream/85 text-base md:text-lg max-w-2xl mx-auto">
-          Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Bhajan Sandhya —
-          soulful voices, sacred nights, unforgettable darbar.
+          Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Jagaran & Bhajan Sandhya —
+          soulful voices, sacred nights, unforgettable Moments.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer"
@@ -125,21 +134,37 @@ function Marquee() {
   );
 }
 
+function ScamWarning() {
+  return (
+    <div className="bg-destructive/10 border-y-2 border-destructive/40 py-4 px-6">
+      <div className="max-w-5xl mx-auto flex items-center justify-center gap-3 text-center">
+        <AlertTriangle className="w-5 h-5 md:w-6 md:h-6 text-destructive shrink-0 animate-flicker" />
+        <p className="text-sm md:text-base font-semibold text-destructive">
+          ⚠️ Beware of Scams! Fake groups may copy our name & branding. Always verify by calling directly on{" "}
+          <a href={`tel:${PHONE}`} className="underline">+91 79829 56590</a>. This is our ONLY official website.
+        </p>
+        <AlertTriangle className="w-5 h-5 md:w-6 md:h-6 text-destructive shrink-0 animate-flicker" />
+      </div>
+    </div>
+  );
+}
+
 function About() {
   return (
-    <section className="py-24 px-6 max-w-5xl mx-auto text-center">
+    <section className="py-24 px-6 max-w-6xl mx-auto text-center">
       <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">About Us</p>
       <h2 className="text-3xl md:text-5xl font-bold mb-6">A Devotional Legacy in Every Bhajan</h2>
-      <p className="text-muted-foreground text-lg leading-relaxed">
+      <p className="text-muted-foreground text-lg leading-relaxed max-w-5xl mx-auto">
         Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shri Shyam Jagaran Party has been
-        organising soul-stirring jagrans for years across Delhi NCR — Ghaziabad, Noida, Delhi, Gurugram and beyond.
+        organising soul-stirring jagrans & Kirtans for years across Delhi NCR — Ghaziabad, Noida, Delhi, Gurugram and beyond.
         From intimate home chowkis to grand society jagrans, our mandali brings professional singers,
         harmonium, tabla, sound system and complete darbar decoration to create an atmosphere of pure devotion.
       </p>
-      <div className="grid grid-cols-3 gap-6 mt-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12">
         {[
           { n: "500+", l: "Jagrans Organised" },
-          { n: "15+", l: "Years of Seva" },
+          { n: "300+", l: "Shyam Kirtan & Other Devotional Events" },
+          { n: "13+", l: "Years of Seva" },
           { n: "100%", l: "Devotees Blessed" },
         ].map((s) => (
           <div key={s.l} className="p-6 rounded-2xl bg-card shadow-soft border border-border">
@@ -184,6 +209,7 @@ function Gallery() {
         <div className="text-center mb-16">
           <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Gallery</p>
           <h2 className="text-3xl md:text-5xl font-bold">Moments from Our Darbar</h2>
+          <p className="mt-3 text-muted-foreground text-sm">More photos on our <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="text-saffron underline">Instagram</a> & <a href={GOOGLE_MAPS} target="_blank" rel="noreferrer" className="text-saffron underline">Google page</a>.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-4">
           {imgs.map((src, i) => (
@@ -199,26 +225,30 @@ function Gallery() {
 }
 
 function Videos() {
+  const videoIds = ["videoseries?list=UULFShriShyamJagranPartyGzb"];
   return (
     <section className="py-24 px-6 bg-gradient-royal text-cream">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <p className="uppercase tracking-[0.3em] text-gold text-xs mb-4">Watch & Listen</p>
           <h2 className="text-3xl md:text-5xl font-bold">Live from Our Jagrans</h2>
-          <p className="mt-4 text-cream/80">Subscribe to our YouTube channel for the latest bhajans & kirtan.</p>
+          <p className="mt-4 text-cream/80">Singers, jhanki, darbar decoration & soulful bhajans — straight from our stage.</p>
         </div>
-        <div className="rounded-2xl overflow-hidden shadow-divine aspect-video max-w-4xl mx-auto border border-gold/30 bg-maroon-deep">
+        <div className="rounded-2xl overflow-hidden shadow-divine aspect-video max-w-4xl mx-auto border border-gold/30 bg-maroon-deep mb-8">
           <iframe
-            src="https://www.youtube.com/embed?listType=user_uploads&list=ShriShyamJagranPartyGzb"
-            title="Shree Shyam Jagran Party YouTube"
+            src={`https://www.youtube.com/embed/${videoIds[0]}`}
+            title="Shri Shyam Jagaran Party YouTube"
             className="w-full h-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
         </div>
-        <div className="text-center mt-8">
+        <div className="text-center flex flex-wrap justify-center gap-4">
           <a href={YOUTUBE} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-maroon-deep font-medium hover:scale-105 transition">
             <Youtube className="w-5 h-5" /> Visit YouTube Channel
+          </a>
+          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cream/40 text-cream hover:bg-cream/10 transition">
+            <Instagram className="w-5 h-5" /> Instagram Reels
           </a>
         </div>
       </div>
@@ -226,17 +256,57 @@ function Videos() {
   );
 }
 
-function Reviews() {
+function Compositions() {
   return (
-    <section id="reviews" className="py-24 px-6">
+    <section className="py-24 px-6">
+      <div className="max-w-5xl mx-auto text-center">
+        <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Original Bhajans</p>
+        <h2 className="text-3xl md:text-5xl font-bold mb-4 inline-flex items-center gap-3 justify-center">
+          <Mic2 className="w-8 h-8 text-saffron" /> My Own Composed Songs
+        </h2>
+        <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl mx-auto mb-10">
+          A collection of original bhajans and devotional songs composed and sung by <strong className="text-foreground">Shri Shankar Yadav ji</strong> —
+          straight from the heart, dedicated to Mata Rani and Shyam Baba.
+        </p>
+        <div className="rounded-2xl overflow-hidden shadow-divine aspect-video border border-border bg-card">
+          <iframe
+            src="https://www.youtube.com/embed/videoseries?list=UULFShriShyamJagranPartyGzb"
+            title="Original composed songs"
+            className="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+        <a href={YOUTUBE} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-maroon-deep font-medium hover:scale-105 transition">
+          <Youtube className="w-5 h-5" /> Listen to All Compositions
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function Reviews() {
+  const [index, setIndex] = useState(0);
+  const perPage = 2;
+  const pages = Math.ceil(reviews.length / perPage);
+
+  useEffect(() => {
+    const t = setInterval(() => setIndex((i) => (i + 1) % pages), 5000);
+    return () => clearInterval(t);
+  }, [pages]);
+
+  const visible = reviews.slice(index * perPage, index * perPage + perPage);
+
+  return (
+    <section id="reviews" className="py-24 px-6 bg-secondary/40">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Blessings from Devotees</p>
           <h2 className="text-3xl md:text-5xl font-bold">What Our Devotees Say</h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
-          {reviews.map((r) => (
-            <div key={r.name} className="p-8 rounded-2xl bg-card border border-border shadow-soft">
+        <div className="grid md:grid-cols-2 gap-6 transition-opacity duration-500" key={index}>
+          {visible.map((r) => (
+            <div key={r.name} className="p-8 rounded-2xl bg-card border border-border shadow-soft animate-float-up">
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: r.rating }).map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-gold text-gold" />
@@ -250,6 +320,21 @@ function Reviews() {
             </div>
           ))}
         </div>
+        <div className="flex justify-center gap-2 mt-8">
+          {Array.from({ length: pages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Show review page ${i + 1}`}
+              className={`w-2.5 h-2.5 rounded-full transition ${i === index ? "bg-saffron w-8" : "bg-border"}`}
+            />
+          ))}
+        </div>
+        <div className="text-center mt-10">
+          <a href={GOOGLE_REVIEWS} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-royal text-cream font-medium shadow-soft hover:scale-105 transition">
+            <Star className="w-4 h-4 fill-gold text-gold" /> View More Reviews on Google <ExternalLink className="w-4 h-4" />
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -260,8 +345,8 @@ function ContactSection() {
     <section id="contact" className="py-24 px-6 bg-secondary/60">
       <div className="max-w-5xl mx-auto text-center">
         <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Get in Touch</p>
-        <h2 className="text-3xl md:text-5xl font-bold mb-4">Bulao Baba Ko Apne Aangan</h2>
-        <p className="text-muted-foreground mb-12">Direct call or WhatsApp — we respond promptly.</p>
+        <h2 className="text-3xl md:text-5xl font-bold mb-4">Bulao Mata Rani & Baba Shyam Ko Aapne Ghar</h2>
+        <p className="text-muted-foreground mb-12">We respond quickly — call or WhatsApp us anytime.</p>
         <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           <a href={`tel:${PHONE}`} className="group p-8 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition hover:-translate-y-1">
             <Phone className="w-10 h-10 mx-auto text-saffron mb-4 group-hover:scale-110 transition" />
@@ -354,7 +439,7 @@ function Footer() {
         <div>
           <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shri Shyam Jagaran Party</h3>
           <p className="text-sm text-cream/70 leading-relaxed">
-            Ghaziabad-based devotional group spreading faith through soulful jagrans across Delhi NCR and all over India.
+            Ghaziabad-based devotional group spreading faith through soulful Jagrans, Shyam Kirtan, Kirtan, Bhajan Sandhya, Sundar Kand Path Katha & Other Devotional Events across Delhi NCR and All Over India.
           </p>
         </div>
         <div>
@@ -364,10 +449,12 @@ function Footer() {
         </div>
         <div>
           <h4 className="font-display text-lg mb-3">Follow</h4>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             <a href={YOUTUBE} target="_blank" rel="noreferrer" aria-label="YouTube" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Youtube className="w-5 h-5" /></a>
             <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Instagram className="w-5 h-5" /></a>
             <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><MessageCircle className="w-5 h-5" /></a>
+            <a href={GOOGLE_MAPS} target="_blank" rel="noreferrer" aria-label="Google Maps Location" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><MapPin className="w-5 h-5" /></a>
+            <a href={FACEBOOK} target="_blank" rel="noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Facebook className="w-5 h-5" /></a>
           </div>
         </div>
       </div>
