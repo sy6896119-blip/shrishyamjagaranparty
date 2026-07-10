@@ -19,7 +19,7 @@ const YOUTUBE = "https://www.youtube.com/@ShriShyamJagranPartyGzb";
 const INSTAGRAM = "https://www.instagram.com/shankar98yadav/";
 const FACEBOOK = "https://www.facebook.com/";
 const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
-const GOOGLE_REVIEWS = "https://www.google.com/maps/place/Shree+Shyam+Jagaran+Party/@28.6692,77.4538,15z/data=!4m6!3m5!1s0x390cf1c37f0e2c8b:0x0!8m2!3d28.6692!4d77.4538!16s%2Fg%2F11c5q7z9zk";
+const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
 
 const services = [
   { icon: Sparkles, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
