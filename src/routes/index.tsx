@@ -95,6 +95,14 @@ function Hero() {
           <span className="font-devnagri text-2xl md:text-4xl animate-flicker">॥ जय श्री श्याम ॥</span>
           <span className="font-devnagri text-lg md:text-2xl animate-flicker">॥ जय माता दी ॥</span>
         </div>
+        <div className="mb-6 inline-block px-6 py-3 rounded-2xl border border-gold/50 bg-maroon-deep/40 backdrop-blur-sm shadow-divine">
+          <p className="font-devnagri text-xl md:text-3xl text-gold leading-snug animate-flicker">
+            ॥ हारे का सहारा बाबा श्याम हमारा ॥
+          </p>
+          <p className="font-devnagri text-base md:text-xl text-cream/95 mt-1">
+            ॥ हारे के सहारे की जय ॥
+          </p>
+        </div>
         <h1 className="font-display text-4xl md:text-7xl font-bold text-cream leading-tight">
           Shri Shyam <span className="text-gradient-gold">Jagaran Party</span>
         </h1>
