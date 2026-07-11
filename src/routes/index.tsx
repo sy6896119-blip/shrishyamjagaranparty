@@ -100,7 +100,7 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="relative min-h-screen flex items-center justify-center pt-20">
+    <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-20">
       <img src={HERO_POSTER} alt="Shri Shyam Jagaran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "var(--gradient-overlay)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
