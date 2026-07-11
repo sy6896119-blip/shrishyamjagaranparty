@@ -296,7 +296,7 @@ function Jhanki() {
             crafted with love and devotion for every event.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
           {JHANKI_VIDEOS.map((id) => (
             <div key={id} className="rounded-2xl overflow-hidden shadow-divine aspect-[9/16] bg-maroon-deep border border-gold/30">
               <iframe
