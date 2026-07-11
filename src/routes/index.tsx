@@ -390,31 +390,13 @@ function Compositions() {
   }, []);
 
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-5xl mx-auto text-center">
-        <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Original Bhajans</p>
-        <h2 className="text-3xl md:text-5xl font-bold mb-4 inline-flex items-center gap-3 justify-center">
-          <Mic2 className="w-8 h-8 text-saffron" /> My Own Composed Songs
-        </h2>
-        <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl mx-auto mb-6">
-          Original bhajans composed and sung by <strong className="text-foreground">Shri Shankar Yadav ji</strong>.
-          Tracks auto-switch every minute and resume from where each one left off.
-        </p>
-        <div className="flex justify-center gap-2 mb-6">
-          {COMPOSITIONS.map((_, i) => (
-            <span key={i} className={`px-3 py-1 rounded-full text-xs font-medium transition ${i === displayIndex ? "bg-gradient-gold text-maroon-deep" : "bg-secondary text-muted-foreground"}`}>
-              Bhajan {i + 1}
-            </span>
-          ))}
-        </div>
-        <div className="rounded-2xl overflow-hidden shadow-divine aspect-video border border-border bg-card">
-          <div ref={containerRef} className="w-full h-full" />
-        </div>
-        <a href={YOUTUBE} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-maroon-deep font-medium hover:scale-105 transition">
-          <Youtube className="w-5 h-5" /> Listen to All Compositions
-        </a>
-      </div>
-    </section>
+    <div
+      aria-hidden="true"
+      style={{ position: "fixed", width: 1, height: 1, left: -9999, top: -9999, overflow: "hidden", opacity: 0, pointerEvents: "none" }}
+    >
+      <div ref={containerRef} />
+      <span>{displayIndex}</span>
+    </div>
   );
 }
 
