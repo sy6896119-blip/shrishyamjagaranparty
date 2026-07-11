@@ -23,23 +23,20 @@ const WHATSAPP_TEXT = encodeURIComponent(
 );
 const YOUTUBE = "https://www.youtube.com/@ShriShyamJagranPartyGzb";
 const INSTAGRAM = "https://www.instagram.com/shankar98yadav/";
-const FACEBOOK = "https://www.facebook.com/";
+const FACEBOOK = "https://www.facebook.com/share/17zJ3mMxrm/";
 const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
 
-// Top Shorts from the channel — rotated in the Live from Our Jagrans section
-const SHORTS_IDS = ["4EdyS_wfuaE", "62sBhsIIoK0", "7vYlZ55GXeI", "8JwQAzNIctQ", "8XTKVrJTEmU", "DD3jnotB9VE", "bq8pH6GJxF0", "gyq_ccoDa-4", "o8g--734_sc", "xnOOdPJl3wI"];
-
 // Own composed songs
-const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs"];
+const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "iDFuOJ28J-c"];
 
 // Sample darbar videos (from channel shorts) for gallery video half & jhanki
 const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0", "7vYlZ55GXeI"];
 const JHANKI_VIDEOS = ["8JwQAzNIctQ", "8XTKVrJTEmU", "DD3jnotB9VE"];
 
 const services = [
-  { icon: Sparkles, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
-  { icon: Flame, title: "Khatu Shyam Kirtan", desc: "Night-long kirtan & bhajans dedicated to Shyam Baba, filled with faith and divine energy." },
+  { icon: Crown, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
+  { icon: Feather, title: "Khatu Shyam Kirtan", desc: "Night-long kirtan & bhajans dedicated to Shyam Baba, filled with faith and divine energy." },
   { icon: Music, title: "Bhajan Sandhya", desc: "Live singers, harmonium, tabla & complete sound arrangement for an evening of devotion." },
   { icon: BookOpen, title: "Sundar Kand Path Katha", desc: "Sacred recitation of Hanuman Chalisa & Sundar Kand with experienced pandits and vedic rituals." },
   { icon: Calendar, title: "Private & Society Events", desc: "Home functions, society jagrans, colony events & corporate spiritual gatherings." },
