@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef, type FormEvent } from "react";
-import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Sparkles, Music, Flame, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Mic2, Camera, Video, Crown } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Mic2, Camera, Video, Crown, Feather } from "lucide-react";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
