@@ -321,49 +321,8 @@ function Jhanki() {
   );
 }
 
-function Videos() {
-  const [current, setCurrent] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setCurrent((i) => (i + 1) % SHORTS_IDS.length), 21000);
-    return () => clearInterval(t);
-  }, []);
-  const id = SHORTS_IDS[current];
 
-  return (
-    <section className="py-24 px-6 bg-gradient-royal text-cream">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="uppercase tracking-[0.3em] text-gold text-xs mb-4">Watch & Listen</p>
-          <h2 className="text-3xl md:text-5xl font-bold">Live from Our Jagrans</h2>
-          <p className="mt-4 text-cream/80">Top Shorts from our channel — auto-changing every 21 seconds.</p>
-        </div>
-        <div className="rounded-2xl overflow-hidden shadow-divine aspect-[9/16] max-w-sm mx-auto border border-gold/30 bg-maroon-deep mb-8">
-          <iframe
-            key={id}
-            src={`https://www.youtube.com/embed/${id}?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1`}
-            title={`Short ${id}`}
-            className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-        <div className="flex justify-center gap-1.5 mb-8">
-          {SHORTS_IDS.map((_, i) => (
-            <span key={i} className={`h-1.5 rounded-full transition-all ${i === current ? "w-8 bg-gold" : "w-4 bg-cream/30"}`} />
-          ))}
-        </div>
-        <div className="text-center flex flex-wrap justify-center gap-4">
-          <a href={YOUTUBE} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-maroon-deep font-medium hover:scale-105 transition">
-            <Youtube className="w-5 h-5" /> Visit YouTube Channel
-          </a>
-          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cream/40 text-cream hover:bg-cream/10 transition">
-            <Instagram className="w-5 h-5" /> Instagram Reels
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
+
 
 // Composed songs player — switches every 60s and resumes where it left off
 declare global {
