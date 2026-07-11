@@ -103,30 +103,23 @@ function Hero() {
     <section id="top" className="relative min-h-screen flex items-center justify-center pt-20">
       <img src={HERO_POSTER} alt="Shri Shyam Jagaran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "var(--gradient-overlay)" }} />
-      <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up">
-        <div className="flex items-center justify-center gap-2 md:gap-4 mb-4 text-gold">
-          <span className="font-devnagri text-lg md:text-2xl animate-flicker">॥ जय माता दी ॥</span>
-          <span className="font-devnagri text-2xl md:text-4xl animate-flicker">॥ जय श्री श्याम ॥</span>
-          <span className="font-devnagri text-lg md:text-2xl animate-flicker">॥ जय माता दी ॥</span>
-        </div>
-        <h1 className="font-display text-4xl md:text-7xl font-bold text-cream leading-tight">
-          Shri Shyam <span className="text-gradient-gold">Jagaran Party</span>
-        </h1>
-        <p className="mt-4 text-lg md:text-xl text-cream/90 font-light">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
-        <p className="mt-6 text-cream/85 text-base md:text-lg max-w-2xl mx-auto">
+      <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
+        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
+        <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
           Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Jagaran & Bhajan Sandhya —
           soulful voices, sacred nights, unforgettable Moments.
         </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer"
-             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-maroon-deep font-medium shadow-divine hover:scale-105 transition">
-            <MessageCircle className="w-5 h-5" /> WhatsApp Now
+             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-gold text-maroon-deep font-medium shadow-divine hover:scale-105 transition text-sm md:text-base">
+            <MessageCircle className="w-4 h-4 md:w-5 md:h-5" /> WhatsApp Now
           </a>
-          <a href="#booking" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cream/40 text-cream hover:bg-cream/10 transition">
+          <a href="#booking" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cream/50 bg-maroon-deep/40 backdrop-blur text-cream hover:bg-cream/10 transition text-sm md:text-base">
             Book Your Jagaran <Send className="w-4 h-4" />
           </a>
         </div>
       </div>
+
     </section>
   );
 }
