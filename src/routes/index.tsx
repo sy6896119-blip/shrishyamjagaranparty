@@ -263,7 +263,7 @@ function Gallery() {
             <Video className="w-6 h-6 text-saffron" />
             <h3 className="text-2xl font-display font-semibold">Darbar Videos</h3>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {DARBAR_VIDEOS.map((id) => (
               <div key={id} className="rounded-2xl overflow-hidden shadow-soft aspect-[9/16] bg-maroon-deep border border-border">
                 <iframe
