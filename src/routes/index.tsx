@@ -242,7 +242,7 @@ function Gallery() {
         </div>
 
         {/* Photos */}
-        <div className="mb-16">
+        <div className="mb-16 hidden md:block">
           <div className="flex items-center gap-3 mb-6">
             <Camera className="w-6 h-6 text-saffron" />
             <h3 className="text-2xl font-display font-semibold">Darbar Photos</h3>
