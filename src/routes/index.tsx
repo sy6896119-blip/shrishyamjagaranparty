@@ -31,8 +31,8 @@ const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+part
 const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "iDFuOJ28J-c"];
 
 // Sample darbar videos (from channel shorts) for gallery video half & jhanki
-const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0", "7vYlZ55GXeI"];
-const JHANKI_VIDEOS = ["8JwQAzNIctQ", "8XTKVrJTEmU", "DD3jnotB9VE"];
+const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
+const JHANKI_VIDEOS = ["8JwQAzNIctQ", "8XTKVrJTEmU"];
 
 const services = [
   { icon: Crown, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
