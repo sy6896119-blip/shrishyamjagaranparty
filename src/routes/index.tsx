@@ -66,7 +66,7 @@ function Index() {
       <Services />
       <Gallery />
       <Jhanki />
-      <Videos />
+
       <Compositions />
       <Reviews />
       <ContactSection />
