@@ -31,8 +31,8 @@ const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+part
 const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "iDFuOJ28J-c"];
 
 // Sample darbar videos (from channel shorts) for gallery video half & jhanki
-const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0", "7vYlZ55GXeI"];
-const JHANKI_VIDEOS = ["8JwQAzNIctQ", "8XTKVrJTEmU", "DD3jnotB9VE"];
+const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
+const JHANKI_VIDEOS = ["8JwQAzNIctQ", "8XTKVrJTEmU"];
 
 const services = [
   { icon: Crown, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
@@ -102,7 +102,7 @@ function Hero() {
   return (
     <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-20">
       <img src={HERO_POSTER} alt="Shri Shyam Jagaran Party banner" className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0" style={{ background: "var(--gradient-overlay)" }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(30,0,0,0.55) 80%, rgba(30,0,0,0.85) 100%)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
         <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
         <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
@@ -263,7 +263,7 @@ function Gallery() {
             <Video className="w-6 h-6 text-saffron" />
             <h3 className="text-2xl font-display font-semibold">Darbar Videos</h3>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {DARBAR_VIDEOS.map((id) => (
               <div key={id} className="rounded-2xl overflow-hidden shadow-soft aspect-[9/16] bg-maroon-deep border border-border">
                 <iframe
@@ -296,7 +296,7 @@ function Jhanki() {
             crafted with love and devotion for every event.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
           {JHANKI_VIDEOS.map((id) => (
             <div key={id} className="rounded-2xl overflow-hidden shadow-divine aspect-[9/16] bg-maroon-deep border border-gold/30">
               <iframe
@@ -390,31 +390,13 @@ function Compositions() {
   }, []);
 
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-5xl mx-auto text-center">
-        <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Original Bhajans</p>
-        <h2 className="text-3xl md:text-5xl font-bold mb-4 inline-flex items-center gap-3 justify-center">
-          <Mic2 className="w-8 h-8 text-saffron" /> My Own Composed Songs
-        </h2>
-        <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl mx-auto mb-6">
-          Original bhajans composed and sung by <strong className="text-foreground">Shri Shankar Yadav ji</strong>.
-          Tracks auto-switch every minute and resume from where each one left off.
-        </p>
-        <div className="flex justify-center gap-2 mb-6">
-          {COMPOSITIONS.map((_, i) => (
-            <span key={i} className={`px-3 py-1 rounded-full text-xs font-medium transition ${i === displayIndex ? "bg-gradient-gold text-maroon-deep" : "bg-secondary text-muted-foreground"}`}>
-              Bhajan {i + 1}
-            </span>
-          ))}
-        </div>
-        <div className="rounded-2xl overflow-hidden shadow-divine aspect-video border border-border bg-card">
-          <div ref={containerRef} className="w-full h-full" />
-        </div>
-        <a href={YOUTUBE} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-maroon-deep font-medium hover:scale-105 transition">
-          <Youtube className="w-5 h-5" /> Listen to All Compositions
-        </a>
-      </div>
-    </section>
+    <div
+      aria-hidden="true"
+      style={{ position: "fixed", width: 1, height: 1, left: -9999, top: -9999, overflow: "hidden", opacity: 0, pointerEvents: "none" }}
+    >
+      <div ref={containerRef} />
+      <span>{displayIndex}</span>
+    </div>
   );
 }
 
