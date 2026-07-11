@@ -568,9 +568,11 @@ function Field({ label, name, type = "text", required, pattern, minLength, maxLe
 function Footer() {
   return (
     <footer className="text-cream py-14 px-6" style={{ background: "var(--maroon-deep)" }}>
+      <div className="max-w-6xl mx-auto flex justify-center mb-10">
+        <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="w-56 md:w-72 drop-shadow-2xl" />
+      </div>
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
         <div>
-          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="w-56 md:w-64 mb-4 drop-shadow-2xl" />
           <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shri Shyam Jagaran Party</h3>
           <p className="text-sm text-cream/70 leading-relaxed">
             Ghaziabad-based devotional group spreading faith through soulful Jagrans, Shyam Kirtan, Kirtan, Bhajan Sandhya, Sundar Kand Path Katha & Other Devotional Events across Delhi NCR and All Over India.
@@ -583,15 +585,16 @@ function Footer() {
         </div>
         <div>
           <h4 className="font-display text-lg mb-3">Follow</h4>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-nowrap gap-3">
             <a href={YOUTUBE} target="_blank" rel="noreferrer" aria-label="YouTube" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Youtube className="w-5 h-5" /></a>
+            <a href={FACEBOOK} target="_blank" rel="noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Facebook className="w-5 h-5" /></a>
             <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Instagram className="w-5 h-5" /></a>
             <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><MessageCircle className="w-5 h-5" /></a>
             <a href={GOOGLE_MAPS} target="_blank" rel="noreferrer" aria-label="Google Maps Location" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><MapPin className="w-5 h-5" /></a>
-            <a href={FACEBOOK} target="_blank" rel="noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Facebook className="w-5 h-5" /></a>
           </div>
         </div>
       </div>
+
       <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-cream/10 text-center text-xs text-cream/50">
         © {new Date().getFullYear()} Shri Shyam Jagaran Party. All Rights Reserved. · जय श्री श्याम
       </div>
