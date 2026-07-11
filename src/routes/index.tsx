@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef, type FormEvent } from "react";
-import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Sparkles, Music, Flame, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Mic2, Camera, Video, Crown } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Mic2, Camera, Video, Crown, Feather } from "lucide-react";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -23,23 +23,20 @@ const WHATSAPP_TEXT = encodeURIComponent(
 );
 const YOUTUBE = "https://www.youtube.com/@ShriShyamJagranPartyGzb";
 const INSTAGRAM = "https://www.instagram.com/shankar98yadav/";
-const FACEBOOK = "https://www.facebook.com/";
+const FACEBOOK = "https://www.facebook.com/share/17zJ3mMxrm/";
 const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
 
-// Top Shorts from the channel — rotated in the Live from Our Jagrans section
-const SHORTS_IDS = ["4EdyS_wfuaE", "62sBhsIIoK0", "7vYlZ55GXeI", "8JwQAzNIctQ", "8XTKVrJTEmU", "DD3jnotB9VE", "bq8pH6GJxF0", "gyq_ccoDa-4", "o8g--734_sc", "xnOOdPJl3wI"];
-
 // Own composed songs
-const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs"];
+const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "iDFuOJ28J-c"];
 
 // Sample darbar videos (from channel shorts) for gallery video half & jhanki
 const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0", "7vYlZ55GXeI"];
 const JHANKI_VIDEOS = ["8JwQAzNIctQ", "8XTKVrJTEmU", "DD3jnotB9VE"];
 
 const services = [
-  { icon: Sparkles, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
-  { icon: Flame, title: "Khatu Shyam Kirtan", desc: "Night-long kirtan & bhajans dedicated to Shyam Baba, filled with faith and divine energy." },
+  { icon: Crown, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
+  { icon: Feather, title: "Khatu Shyam Kirtan", desc: "Night-long kirtan & bhajans dedicated to Shyam Baba, filled with faith and divine energy." },
   { icon: Music, title: "Bhajan Sandhya", desc: "Live singers, harmonium, tabla & complete sound arrangement for an evening of devotion." },
   { icon: BookOpen, title: "Sundar Kand Path Katha", desc: "Sacred recitation of Hanuman Chalisa & Sundar Kand with experienced pandits and vedic rituals." },
   { icon: Calendar, title: "Private & Society Events", desc: "Home functions, society jagrans, colony events & corporate spiritual gatherings." },
@@ -69,7 +66,7 @@ function Index() {
       <Services />
       <Gallery />
       <Jhanki />
-      <Videos />
+
       <Compositions />
       <Reviews />
       <ContactSection />
@@ -103,33 +100,26 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="relative min-h-screen flex items-center justify-center pt-20">
+    <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-20">
       <img src={HERO_POSTER} alt="Shri Shyam Jagaran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "var(--gradient-overlay)" }} />
-      <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up">
-        <div className="flex items-center justify-center gap-2 md:gap-4 mb-4 text-gold">
-          <span className="font-devnagri text-lg md:text-2xl animate-flicker">॥ जय माता दी ॥</span>
-          <span className="font-devnagri text-2xl md:text-4xl animate-flicker">॥ जय श्री श्याम ॥</span>
-          <span className="font-devnagri text-lg md:text-2xl animate-flicker">॥ जय माता दी ॥</span>
-        </div>
-        <h1 className="font-display text-4xl md:text-7xl font-bold text-cream leading-tight">
-          Shri Shyam <span className="text-gradient-gold">Jagaran Party</span>
-        </h1>
-        <p className="mt-4 text-lg md:text-xl text-cream/90 font-light">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
-        <p className="mt-6 text-cream/85 text-base md:text-lg max-w-2xl mx-auto">
+      <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
+        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
+        <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
           Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Jagaran & Bhajan Sandhya —
           soulful voices, sacred nights, unforgettable Moments.
         </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer"
-             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-maroon-deep font-medium shadow-divine hover:scale-105 transition">
-            <MessageCircle className="w-5 h-5" /> WhatsApp Now
+             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-gold text-maroon-deep font-medium shadow-divine hover:scale-105 transition text-sm md:text-base">
+            <MessageCircle className="w-4 h-4 md:w-5 md:h-5" /> WhatsApp Now
           </a>
-          <a href="#booking" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cream/40 text-cream hover:bg-cream/10 transition">
+          <a href="#booking" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cream/50 bg-maroon-deep/40 backdrop-blur text-cream hover:bg-cream/10 transition text-sm md:text-base">
             Book Your Jagaran <Send className="w-4 h-4" />
           </a>
         </div>
       </div>
+
     </section>
   );
 }
@@ -252,7 +242,7 @@ function Gallery() {
         </div>
 
         {/* Photos */}
-        <div className="mb-16">
+        <div className="mb-16 hidden md:block">
           <div className="flex items-center gap-3 mb-6">
             <Camera className="w-6 h-6 text-saffron" />
             <h3 className="text-2xl font-display font-semibold">Darbar Photos</h3>
@@ -324,49 +314,8 @@ function Jhanki() {
   );
 }
 
-function Videos() {
-  const [current, setCurrent] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setCurrent((i) => (i + 1) % SHORTS_IDS.length), 21000);
-    return () => clearInterval(t);
-  }, []);
-  const id = SHORTS_IDS[current];
 
-  return (
-    <section className="py-24 px-6 bg-gradient-royal text-cream">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="uppercase tracking-[0.3em] text-gold text-xs mb-4">Watch & Listen</p>
-          <h2 className="text-3xl md:text-5xl font-bold">Live from Our Jagrans</h2>
-          <p className="mt-4 text-cream/80">Top Shorts from our channel — auto-changing every 21 seconds.</p>
-        </div>
-        <div className="rounded-2xl overflow-hidden shadow-divine aspect-[9/16] max-w-sm mx-auto border border-gold/30 bg-maroon-deep mb-8">
-          <iframe
-            key={id}
-            src={`https://www.youtube.com/embed/${id}?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1`}
-            title={`Short ${id}`}
-            className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-        <div className="flex justify-center gap-1.5 mb-8">
-          {SHORTS_IDS.map((_, i) => (
-            <span key={i} className={`h-1.5 rounded-full transition-all ${i === current ? "w-8 bg-gold" : "w-4 bg-cream/30"}`} />
-          ))}
-        </div>
-        <div className="text-center flex flex-wrap justify-center gap-4">
-          <a href={YOUTUBE} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-gold text-maroon-deep font-medium hover:scale-105 transition">
-            <Youtube className="w-5 h-5" /> Visit YouTube Channel
-          </a>
-          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cream/40 text-cream hover:bg-cream/10 transition">
-            <Instagram className="w-5 h-5" /> Instagram Reels
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
+
 
 // Composed songs player — switches every 60s and resumes where it left off
 declare global {
@@ -619,9 +568,11 @@ function Field({ label, name, type = "text", required, pattern, minLength, maxLe
 function Footer() {
   return (
     <footer className="text-cream py-14 px-6" style={{ background: "var(--maroon-deep)" }}>
+      <div className="max-w-6xl mx-auto flex justify-center mb-10">
+        <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="w-56 md:w-72 drop-shadow-2xl" />
+      </div>
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
         <div>
-          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="w-56 md:w-64 mb-4 drop-shadow-2xl" />
           <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shri Shyam Jagaran Party</h3>
           <p className="text-sm text-cream/70 leading-relaxed">
             Ghaziabad-based devotional group spreading faith through soulful Jagrans, Shyam Kirtan, Kirtan, Bhajan Sandhya, Sundar Kand Path Katha & Other Devotional Events across Delhi NCR and All Over India.
@@ -634,15 +585,16 @@ function Footer() {
         </div>
         <div>
           <h4 className="font-display text-lg mb-3">Follow</h4>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-nowrap gap-3">
             <a href={YOUTUBE} target="_blank" rel="noreferrer" aria-label="YouTube" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Youtube className="w-5 h-5" /></a>
+            <a href={FACEBOOK} target="_blank" rel="noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Facebook className="w-5 h-5" /></a>
             <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Instagram className="w-5 h-5" /></a>
             <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><MessageCircle className="w-5 h-5" /></a>
             <a href={GOOGLE_MAPS} target="_blank" rel="noreferrer" aria-label="Google Maps Location" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><MapPin className="w-5 h-5" /></a>
-            <a href={FACEBOOK} target="_blank" rel="noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full border border-cream/30 grid place-items-center hover:bg-cream/10 transition"><Facebook className="w-5 h-5" /></a>
           </div>
         </div>
       </div>
+
       <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-cream/10 text-center text-xs text-cream/50">
         © {new Date().getFullYear()} Shri Shyam Jagaran Party. All Rights Reserved. · जय श्री श्याम
       </div>
