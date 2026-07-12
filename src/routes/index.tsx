@@ -390,13 +390,16 @@ function Compositions() {
   }, []);
 
   return (
-    <div
-      aria-hidden="true"
-      style={{ position: "fixed", width: 1, height: 1, left: -9999, top: -9999, overflow: "hidden", opacity: 0, pointerEvents: "none" }}
-    >
-      <div ref={containerRef} />
-      <span>{displayIndex}</span>
-    </div>
+    <section id="compositions" className="py-20 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #fff 100%)" }}>
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="font-display text-3xl md:text-5xl font-bold text-gradient-royal mb-3">My Own Composed Songs</h2>
+        <p className="text-maroon-deep/70 mb-8">Original bhajans composed and sung by Shri Shankar Yadav ji.</p>
+        <div className="relative rounded-3xl overflow-hidden shadow-divine border-4 border-gold/40 aspect-video bg-black">
+          <div ref={containerRef} className="absolute inset-0 w-full h-full" />
+        </div>
+        <p className="mt-4 text-sm text-maroon-deep/60">Now Playing: Track {displayIndex + 1} of {COMPOSITIONS.length}</p>
+      </div>
+    </section>
   );
 }
 
