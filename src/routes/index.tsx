@@ -239,14 +239,6 @@ function Services() {
 }
 
 function Gallery() {
-  const photos = [gallery1, gallery2, gallery3];
-  return (
-    <section id="gallery" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Gallery</p>
-          <h2 className="text-3xl md:text-5xl font-bold">Moments from Our Darbar</h2>
-function Gallery() {
   const photos = DARBAR_PHOTOS;
   const pairs: string[][] = [];
   for (let i = 0; i < photos.length; i += 2) pairs.push(photos.slice(i, i + 2));
