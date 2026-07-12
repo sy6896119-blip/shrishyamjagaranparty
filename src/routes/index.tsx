@@ -246,21 +246,44 @@ function Gallery() {
         <div className="text-center mb-16">
           <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Gallery</p>
           <h2 className="text-3xl md:text-5xl font-bold">Moments from Our Darbar</h2>
+function Gallery() {
+  const photos = DARBAR_PHOTOS;
+  const pairs: string[][] = [];
+  for (let i = 0; i < photos.length; i += 2) pairs.push(photos.slice(i, i + 2));
+  const [pair, setPair] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setPair((p) => (p + 1) % pairs.length), 3000);
+    return () => clearInterval(t);
+  }, [pairs.length]);
+  const current = pairs[pair];
+
+  return (
+    <section id="gallery" className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Gallery</p>
+          <h2 className="text-3xl md:text-5xl font-bold">Moments from Our Darbar</h2>
           <p className="mt-3 text-muted-foreground text-sm">More photos on our <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="text-saffron underline">Instagram</a> & <a href={GOOGLE_MAPS} target="_blank" rel="noreferrer" className="text-saffron underline">Google page</a>.</p>
         </div>
 
-        {/* Photos */}
-        <div className="mb-16 hidden md:block">
+        {/* Photos - paired auto-slider (visible on mobile too) */}
+        <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Camera className="w-6 h-6 text-saffron" />
             <h3 className="text-2xl font-display font-semibold">Darbar Photos</h3>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {photos.map((src, i) => (
-              <div key={i} className={`relative overflow-hidden rounded-2xl shadow-soft group ${i === 0 ? "md:row-span-2 md:h-[560px]" : "h-[270px]"}`}>
-                <img src={src} alt={`Darbar photo ${i + 1}`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-maroon-deep/70 to-transparent opacity-0 group-hover:opacity-100 transition" />
+          <div key={pair} className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-float-up">
+            {current.map((src, i) => (
+              <div key={src} className="relative overflow-hidden rounded-2xl shadow-soft group aspect-[4/3]">
+                <img src={src} alt={`Darbar photo ${pair * 2 + i + 1}`} loading="lazy" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-maroon-deep/60 to-transparent opacity-0 group-hover:opacity-100 transition" />
               </div>
+            ))}
+          </div>
+          <div className="flex justify-center gap-2 mt-4">
+            {pairs.map((_, i) => (
+              <button key={i} onClick={() => setPair(i)} aria-label={`Show photo pair ${i + 1}`}
+                className={`h-2 rounded-full transition-all ${i === pair ? "bg-saffron w-8" : "bg-border w-2"}`} />
             ))}
           </div>
         </div>
