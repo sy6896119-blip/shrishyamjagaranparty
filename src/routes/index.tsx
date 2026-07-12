@@ -1,12 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef, type FormEvent } from "react";
 import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Mic2, Camera, Video, Crown, Feather } from "lucide-react";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
 import logoAsset from "@/assets/logo.png.asset.json";
 import heroPosterAsset from "@/assets/hero-poster.png.asset.json";
 import shankarAsset from "@/assets/shankar-yadav.jpeg.asset.json";
+import darbar1 from "@/assets/darbar-1.jpeg.asset.json";
+import darbar2 from "@/assets/darbar-2.jpeg.asset.json";
+import darbar3 from "@/assets/darbar-3.jpeg.asset.json";
+import darbar4 from "@/assets/darbar-4.jpeg.asset.json";
+import darbar5 from "@/assets/darbar-5.jpeg.asset.json";
+import darbar6 from "@/assets/darbar-6.jpeg.asset.json";
+import darbar7 from "@/assets/darbar-7.jpeg.asset.json";
+import darbar8 from "@/assets/darbar-8.jpeg.asset.json";
+import darbar9 from "@/assets/darbar-9.jpeg.asset.json";
+
+const DARBAR_PHOTOS = [darbar1.url, darbar2.url, darbar3.url, darbar4.url, darbar5.url, darbar6.url, darbar7.url, darbar8.url, darbar9.url];
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -28,7 +36,7 @@ const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
 
 // Own composed songs
-const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs"];
+const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "iDFuOJ28J-c"];
 
 // Sample darbar videos (from channel shorts) for gallery video half & jhanki
 const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
@@ -231,7 +239,16 @@ function Services() {
 }
 
 function Gallery() {
-  const photos = [gallery1, gallery2, gallery3];
+  const photos = DARBAR_PHOTOS;
+  const pairs: string[][] = [];
+  for (let i = 0; i < photos.length; i += 2) pairs.push(photos.slice(i, i + 2));
+  const [pair, setPair] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setPair((p) => (p + 1) % pairs.length), 3000);
+    return () => clearInterval(t);
+  }, [pairs.length]);
+  const current = pairs[pair];
+
   return (
     <section id="gallery" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -241,18 +258,24 @@ function Gallery() {
           <p className="mt-3 text-muted-foreground text-sm">More photos on our <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="text-saffron underline">Instagram</a> & <a href={GOOGLE_MAPS} target="_blank" rel="noreferrer" className="text-saffron underline">Google page</a>.</p>
         </div>
 
-        {/* Photos */}
-        <div className="mb-16 hidden md:block">
+        {/* Photos - paired auto-slider (visible on mobile too) */}
+        <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Camera className="w-6 h-6 text-saffron" />
             <h3 className="text-2xl font-display font-semibold">Darbar Photos</h3>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {photos.map((src, i) => (
-              <div key={i} className={`relative overflow-hidden rounded-2xl shadow-soft group ${i === 0 ? "md:row-span-2 md:h-[560px]" : "h-[270px]"}`}>
-                <img src={src} alt={`Darbar photo ${i + 1}`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-maroon-deep/70 to-transparent opacity-0 group-hover:opacity-100 transition" />
+          <div key={pair} className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-float-up">
+            {current.map((src, i) => (
+              <div key={src} className="relative overflow-hidden rounded-2xl shadow-soft group aspect-[4/3]">
+                <img src={src} alt={`Darbar photo ${pair * 2 + i + 1}`} loading="lazy" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-maroon-deep/60 to-transparent opacity-0 group-hover:opacity-100 transition" />
               </div>
+            ))}
+          </div>
+          <div className="flex justify-center gap-2 mt-4">
+            {pairs.map((_, i) => (
+              <button key={i} onClick={() => setPair(i)} aria-label={`Show photo pair ${i + 1}`}
+                className={`h-2 rounded-full transition-all ${i === pair ? "bg-saffron w-8" : "bg-border w-2"}`} />
             ))}
           </div>
         </div>
@@ -332,6 +355,20 @@ function Compositions() {
   const savedTimes = useRef<number[]>(COMPOSITIONS.map(() => 0));
   const [displayIndex, setDisplayIndex] = useState(0);
 
+  const jumpTo = (next: number) => {
+    if (!playerRef.current) return;
+    try {
+      const t = playerRef.current.getCurrentTime?.() ?? 0;
+      savedTimes.current[indexRef.current] = t;
+    } catch {}
+    indexRef.current = next;
+    setDisplayIndex(next);
+    const startAt = Math.floor(savedTimes.current[next] || 0);
+    try {
+      playerRef.current.loadVideoById({ videoId: COMPOSITIONS[next], startSeconds: startAt });
+    } catch {}
+  };
+
   useEffect(() => {
     let cancelled = false;
     let switchTimer: ReturnType<typeof setInterval> | null = null;
@@ -354,29 +391,16 @@ function Compositions() {
         }, 200);
       });
 
-    const switchTrack = () => {
-      if (!playerRef.current) return;
-      try {
-        const t = playerRef.current.getCurrentTime?.() ?? 0;
-        savedTimes.current[indexRef.current] = t;
-      } catch {}
-      const next = (indexRef.current + 1) % COMPOSITIONS.length;
-      indexRef.current = next;
-      setDisplayIndex(next);
-      const startAt = Math.floor(savedTimes.current[next] || 0);
-      try {
-        playerRef.current.loadVideoById({ videoId: COMPOSITIONS[next], startSeconds: startAt });
-      } catch {}
-    };
+    const autoSwitch = () => jumpTo((indexRef.current + 1) % COMPOSITIONS.length);
 
     loadApi().then(() => {
       if (cancelled || !containerRef.current) return;
       playerRef.current = new window.YT.Player(containerRef.current, {
         videoId: COMPOSITIONS[0],
-        playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1 },
+        playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1, iv_load_policy: 3 },
         events: {
           onReady: () => {
-            switchTimer = setInterval(switchTrack, 60000);
+            switchTimer = setInterval(autoSwitch, 60000);
           },
         },
       });
@@ -393,11 +417,26 @@ function Compositions() {
     <section id="compositions" className="py-20 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #fff 100%)" }}>
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="font-display text-3xl md:text-5xl font-bold text-gradient-royal mb-3">My Own Composed Songs</h2>
-        <p className="text-maroon-deep/70 mb-8">Original bhajans composed and sung by Shri Shankar Yadav ji.</p>
+        <p className="text-maroon-deep/70 mb-6">Original bhajans composed and sung by Shri Shankar Yadav ji.</p>
+        <div className="flex flex-wrap justify-center gap-3 mb-6">
+          {COMPOSITIONS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => jumpTo(i)}
+              className={`px-5 py-2 rounded-full font-medium text-sm md:text-base transition shadow-soft ${
+                displayIndex === i
+                  ? "bg-gradient-royal text-cream shadow-divine scale-105"
+                  : "bg-cream border border-gold/40 text-maroon-deep hover:bg-gold/10"
+              }`}
+            >
+              Bhajan {i + 1}
+            </button>
+          ))}
+        </div>
         <div className="relative rounded-3xl overflow-hidden shadow-divine border-4 border-gold/40 aspect-video bg-black">
           <div ref={containerRef} className="absolute inset-0 w-full h-full" />
         </div>
-        <p className="mt-4 text-sm text-maroon-deep/60">Now Playing: Track {displayIndex + 1} of {COMPOSITIONS.length}</p>
+        <p className="mt-4 text-sm text-maroon-deep/60">Now Playing: Bhajan {displayIndex + 1} of {COMPOSITIONS.length} · Auto-switches every 60s</p>
       </div>
     </section>
   );
