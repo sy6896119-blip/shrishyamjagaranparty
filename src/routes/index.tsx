@@ -1,12 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef, type FormEvent } from "react";
 import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Mic2, Camera, Video, Crown, Feather } from "lucide-react";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
 import logoAsset from "@/assets/logo.png.asset.json";
 import heroPosterAsset from "@/assets/hero-poster.png.asset.json";
 import shankarAsset from "@/assets/shankar-yadav.jpeg.asset.json";
+import darbar1 from "@/assets/darbar-1.jpeg.asset.json";
+import darbar2 from "@/assets/darbar-2.jpeg.asset.json";
+import darbar3 from "@/assets/darbar-3.jpeg.asset.json";
+import darbar4 from "@/assets/darbar-4.jpeg.asset.json";
+import darbar5 from "@/assets/darbar-5.jpeg.asset.json";
+import darbar6 from "@/assets/darbar-6.jpeg.asset.json";
+import darbar7 from "@/assets/darbar-7.jpeg.asset.json";
+import darbar8 from "@/assets/darbar-8.jpeg.asset.json";
+import darbar9 from "@/assets/darbar-9.jpeg.asset.json";
+
+const DARBAR_PHOTOS = [darbar1.url, darbar2.url, darbar3.url, darbar4.url, darbar5.url, darbar6.url, darbar7.url, darbar8.url, darbar9.url];
 
 export const Route = createFileRoute("/")({
   component: Index,
