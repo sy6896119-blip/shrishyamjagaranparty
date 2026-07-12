@@ -355,6 +355,20 @@ function Compositions() {
   const savedTimes = useRef<number[]>(COMPOSITIONS.map(() => 0));
   const [displayIndex, setDisplayIndex] = useState(0);
 
+  const jumpTo = (next: number) => {
+    if (!playerRef.current) return;
+    try {
+      const t = playerRef.current.getCurrentTime?.() ?? 0;
+      savedTimes.current[indexRef.current] = t;
+    } catch {}
+    indexRef.current = next;
+    setDisplayIndex(next);
+    const startAt = Math.floor(savedTimes.current[next] || 0);
+    try {
+      playerRef.current.loadVideoById({ videoId: COMPOSITIONS[next], startSeconds: startAt });
+    } catch {}
+  };
+
   useEffect(() => {
     let cancelled = false;
     let switchTimer: ReturnType<typeof setInterval> | null = null;
@@ -377,29 +391,16 @@ function Compositions() {
         }, 200);
       });
 
-    const switchTrack = () => {
-      if (!playerRef.current) return;
-      try {
-        const t = playerRef.current.getCurrentTime?.() ?? 0;
-        savedTimes.current[indexRef.current] = t;
-      } catch {}
-      const next = (indexRef.current + 1) % COMPOSITIONS.length;
-      indexRef.current = next;
-      setDisplayIndex(next);
-      const startAt = Math.floor(savedTimes.current[next] || 0);
-      try {
-        playerRef.current.loadVideoById({ videoId: COMPOSITIONS[next], startSeconds: startAt });
-      } catch {}
-    };
+    const autoSwitch = () => jumpTo((indexRef.current + 1) % COMPOSITIONS.length);
 
     loadApi().then(() => {
       if (cancelled || !containerRef.current) return;
       playerRef.current = new window.YT.Player(containerRef.current, {
         videoId: COMPOSITIONS[0],
-        playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1 },
+        playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1, iv_load_policy: 3 },
         events: {
           onReady: () => {
-            switchTimer = setInterval(switchTrack, 60000);
+            switchTimer = setInterval(autoSwitch, 60000);
           },
         },
       });
@@ -416,11 +417,26 @@ function Compositions() {
     <section id="compositions" className="py-20 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #fff 100%)" }}>
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="font-display text-3xl md:text-5xl font-bold text-gradient-royal mb-3">My Own Composed Songs</h2>
-        <p className="text-maroon-deep/70 mb-8">Original bhajans composed and sung by Shri Shankar Yadav ji.</p>
+        <p className="text-maroon-deep/70 mb-6">Original bhajans composed and sung by Shri Shankar Yadav ji.</p>
+        <div className="flex flex-wrap justify-center gap-3 mb-6">
+          {COMPOSITIONS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => jumpTo(i)}
+              className={`px-5 py-2 rounded-full font-medium text-sm md:text-base transition shadow-soft ${
+                displayIndex === i
+                  ? "bg-gradient-royal text-cream shadow-divine scale-105"
+                  : "bg-cream border border-gold/40 text-maroon-deep hover:bg-gold/10"
+              }`}
+            >
+              Bhajan {i + 1}
+            </button>
+          ))}
+        </div>
         <div className="relative rounded-3xl overflow-hidden shadow-divine border-4 border-gold/40 aspect-video bg-black">
           <div ref={containerRef} className="absolute inset-0 w-full h-full" />
         </div>
-        <p className="mt-4 text-sm text-maroon-deep/60">Now Playing: Track {displayIndex + 1} of {COMPOSITIONS.length}</p>
+        <p className="mt-4 text-sm text-maroon-deep/60">Now Playing: Bhajan {displayIndex + 1} of {COMPOSITIONS.length} · Auto-switches every 60s</p>
       </div>
     </section>
   );
