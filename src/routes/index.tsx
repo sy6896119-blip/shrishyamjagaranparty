@@ -28,7 +28,7 @@ const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
 
 // Own composed songs
-const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "iDFuOJ28J-c"];
+const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs"];
 
 // Sample darbar videos (from channel shorts) for gallery video half & jhanki
 const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
