@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect, useRef, type FormEvent } from "react";
-import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Mic2, Camera, Video, Crown, Feather } from "lucide-react";
+import { useState, useEffect, useRef, useCallback, type FormEvent } from "react";
+import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Camera, Video, Crown, Feather, ChevronLeft, ChevronRight } from "lucide-react";
 import logoAsset from "@/assets/logo.png.asset.json";
 import heroPosterAsset from "@/assets/hero-poster.png.asset.json";
 import shankarAsset from "@/assets/shankar-yadav.jpeg.asset.json";
@@ -13,8 +13,26 @@ import darbar6 from "@/assets/darbar-6.jpeg.asset.json";
 import darbar7 from "@/assets/darbar-7.jpeg.asset.json";
 import darbar8 from "@/assets/darbar-8.jpeg.asset.json";
 import darbar9 from "@/assets/darbar-9.jpeg.asset.json";
+import darbar10 from "@/assets/darbar-10.jpeg.asset.json";
+import darbar11 from "@/assets/darbar-11.jpeg.asset.json";
+import darbar12 from "@/assets/darbar-12.jpeg.asset.json";
+import darbar13 from "@/assets/darbar-13.jpeg.asset.json";
+import darbar14 from "@/assets/darbar-14.jpeg.asset.json";
+import darbar15 from "@/assets/darbar-15.jpeg.asset.json";
+import darbar16 from "@/assets/darbar-16.jpeg.asset.json";
+import darbar17 from "@/assets/darbar-17.jpeg.asset.json";
+import darbar18 from "@/assets/darbar-18.jpeg.asset.json";
+import darbar19 from "@/assets/darbar-19.jpeg.asset.json";
 
-const DARBAR_PHOTOS = [darbar1.url, darbar2.url, darbar3.url, darbar4.url, darbar5.url, darbar6.url, darbar7.url, darbar8.url, darbar9.url];
+const DARBAR_PHOTOS = [
+  darbar1.url, darbar2.url, darbar3.url, darbar4.url, darbar5.url,
+  darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar10.url,
+  darbar11.url, darbar12.url, darbar13.url, darbar14.url, darbar15.url,
+  darbar16.url, darbar17.url, darbar18.url, darbar19.url,
+];
+
+// Jhanki uses uploaded photos only (no YouTube) — richly decorated darbars
+const JHANKI_PHOTOS = [darbar10.url, darbar11.url, darbar13.url, darbar15.url, darbar16.url, darbar17.url, darbar18.url, darbar19.url];
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -35,12 +53,8 @@ const FACEBOOK = "https://www.facebook.com/share/17zJ3mMxrm/";
 const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
 
-// Own composed songs
 const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "iDFuOJ28J-c"];
-
-// Sample darbar videos (from channel shorts) for gallery video half & jhanki
 const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
-const JHANKI_VIDEOS = ["8JwQAzNIctQ", "8XTKVrJTEmU"];
 
 const services = [
   { icon: Crown, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
@@ -52,8 +66,8 @@ const services = [
 ];
 
 const reviews = [
-  { name: "Rakesh Sharma", place: "Kavi Nagar, Ghaziabad", rating: 5, text: "Bhagwan ki kripa se hamare ghar par bahut hi sunder jagran hua. Shankar ji ki mandali ne saari raat baandh diya. Sabhi mehmaan bhaav vibhor ho gaye." },
-  { name: "Meena Gupta", place: "Indirapuram", rating: 5, text: "Best Mata Ki Chowki experience. Sound, decoration and singing — everything was perfect and truly divine. Highly recommended." },
+  { name: "Rakesh Sharma", place: "Kavi Nagar, Ghaziabad", rating: 5, text: "Bhagwan ki kripa se hamare ghar par bahut hi sunder jagran hua. Shankar ji ki mandali ne saari raat baandh diya." },
+  { name: "Meena Gupta", place: "Indirapuram", rating: 5, text: "Best Mata Ki Chowki experience. Sound, decoration and singing — everything was perfect and truly divine." },
   { name: "Amit Yadav", place: "Vaishali, Ghaziabad", rating: 5, text: "Professional team, punctual and very devoted singers. Har bhajan dil ko chhoo gaya. Jai Shree Shyam!" },
   { name: "Pooja Verma", place: "Noida", rating: 5, text: "Amazing Khatu Shyam jagran arranged in our society. Everyone appreciated the arrangements and soulful voice." },
   { name: "Sunil Aggarwal", place: "Delhi", rating: 5, text: "Sundar Kand Path at our home was so peaceful. The whole atmosphere turned divine. Thank you Shankar ji." },
@@ -72,9 +86,9 @@ function Index() {
       <ShankarPhoto />
       <About />
       <Services />
-      <Gallery />
+      <DarbarPhotos />
       <Jhanki />
-
+      <DarbarVideos />
       <Compositions />
       <Reviews />
       <ContactSection />
@@ -88,11 +102,11 @@ function Index() {
 function Header() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-3">
-          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="h-14 md:h-16 w-auto object-contain drop-shadow-lg" />
+      <div className="max-w-7xl mx-auto px-3 md:px-6 h-16 md:h-20 flex items-center justify-between gap-2">
+        <a href="#top" className="flex items-center gap-2 shrink-0">
+          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="h-10 md:h-16 w-auto object-contain drop-shadow-lg" />
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm">
+        <nav className="flex items-center gap-3 sm:gap-5 md:gap-8 text-[11px] sm:text-sm">
           <a href="#services" className="hover:text-saffron transition">Services</a>
           <a href="#gallery" className="hover:text-saffron transition">Gallery</a>
           <a href="#reviews" className="hover:text-saffron transition">Reviews</a>
@@ -108,14 +122,13 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-20">
+    <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-16 md:pt-20">
       <img src={HERO_POSTER} alt="Shri Shyam Jagaran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(30,0,0,0.55) 80%, rgba(30,0,0,0.85) 100%)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
         <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
         <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
-          Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Jagaran & Bhajan Sandhya —
-          soulful voices, sacred nights, unforgettable Moments.
+          Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Jagaran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer"
@@ -127,7 +140,6 @@ function Hero() {
           </a>
         </div>
       </div>
-
     </section>
   );
 }
@@ -151,10 +163,10 @@ function Marquee() {
 
 function ScamWarning() {
   return (
-    <div className="bg-destructive/10 border-y-2 border-destructive/40 py-4 px-6">
+    <div className="bg-destructive/10 border-y-2 border-destructive/40 py-3 px-4">
       <div className="max-w-5xl mx-auto flex items-center justify-center gap-3 text-center">
         <AlertTriangle className="w-5 h-5 md:w-6 md:h-6 text-destructive shrink-0 animate-flicker" />
-        <p className="text-sm md:text-base font-semibold text-destructive">
+        <p className="text-xs md:text-base font-semibold text-destructive">
           ⚠️ Beware of Scams! Fake groups may copy our name & branding. Always verify by calling directly on{" "}
           <a href={`tel:${PHONE}`} className="underline">+91 79829 56590</a>. This is our ONLY official website.
         </p>
@@ -166,15 +178,13 @@ function ScamWarning() {
 
 function ShankarPhoto() {
   return (
-    <section className="py-16 px-6 bg-gradient-to-b from-secondary/40 to-background">
+    <section className="py-12 md:py-16 px-6 bg-gradient-to-b from-secondary/40 to-background">
       <div className="max-w-4xl mx-auto text-center">
-        <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Sanchalak</p>
-        <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
-          <span className="font-devnagri">श्री शंकर यादव जी</span>
-        </h2>
+        <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-3">Sanchalak</p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold mb-6"><span className="font-devnagri">श्री शंकर यादव जी</span></h2>
         <div className="relative inline-block">
           <div className="absolute -inset-4 rounded-full bg-gradient-gold blur-2xl opacity-40 animate-flicker" />
-          <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-gold shadow-divine bg-gradient-royal">
+          <div className="relative w-56 h-56 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-gold shadow-divine bg-gradient-royal">
             <img src={SHANKAR} alt="Shri Shankar Yadav ji" className="w-full h-full object-cover object-top" />
           </div>
         </div>
@@ -188,25 +198,25 @@ function ShankarPhoto() {
 
 function About() {
   return (
-    <section className="py-24 px-6 max-w-6xl mx-auto text-center">
+    <section className="py-16 md:py-20 px-6 max-w-6xl mx-auto text-center">
       <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">About Us</p>
       <h2 className="text-3xl md:text-5xl font-bold mb-6">A Devotional Legacy in Every Bhajan</h2>
-      <p className="text-muted-foreground text-lg leading-relaxed max-w-5xl mx-auto">
+      <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-5xl mx-auto">
         Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shri Shyam Jagaran Party has been
         organising soul-stirring jagrans & Kirtans for years across Delhi NCR — Ghaziabad, Noida, Delhi, Gurugram and beyond.
         From intimate home chowkis to grand society jagrans, our mandali brings professional singers,
         harmonium, tabla, sound system and complete darbar decoration to create an atmosphere of pure devotion.
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-10">
         {[
           { n: "500+", l: "Jagrans Organised" },
           { n: "300+", l: "Shyam Kirtan & Other Devotional Events" },
           { n: "13+", l: "Years of Seva" },
           { n: "100%", l: "Devotees Blessed" },
         ].map((s) => (
-          <div key={s.l} className="p-6 rounded-2xl bg-card shadow-soft border border-border">
+          <div key={s.l} className="p-5 md:p-6 rounded-2xl bg-card shadow-soft border border-border">
             <div className="text-3xl md:text-4xl font-display font-bold text-gradient-gold">{s.n}</div>
-            <div className="text-sm text-muted-foreground mt-2">{s.l}</div>
+            <div className="text-xs md:text-sm text-muted-foreground mt-2">{s.l}</div>
           </div>
         ))}
       </div>
@@ -216,20 +226,20 @@ function About() {
 
 function Services() {
   return (
-    <section id="services" className="py-24 px-6 bg-secondary/60">
+    <section id="services" className="py-16 md:py-20 px-4 md:px-6 bg-secondary/60">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Our Seva</p>
+        <div className="text-center mb-10 md:mb-12">
+          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-3">Our Seva</p>
           <h2 className="text-3xl md:text-5xl font-bold">Divine Services We Offer</h2>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
           {services.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group relative p-8 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition-all hover:-translate-y-1">
-              <div className="w-14 h-14 rounded-xl bg-gradient-gold grid place-items-center mb-5 shadow-soft">
-                <Icon className="w-7 h-7 text-maroon-deep" />
+            <div key={title} className="group relative p-4 md:p-8 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition-all hover:-translate-y-1">
+              <div className="w-9 h-9 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-gradient-gold grid place-items-center mb-3 md:mb-5 shadow-soft">
+                <Icon className="w-4 h-4 md:w-7 md:h-7 text-maroon-deep" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+              <h3 className="text-sm md:text-xl font-semibold mb-1 md:mb-2 leading-snug">{title}</h3>
+              <p className="text-[11px] md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
@@ -238,109 +248,108 @@ function Services() {
   );
 }
 
-function Gallery() {
-  const photos = DARBAR_PHOTOS;
-  const pairs: string[][] = [];
-  for (let i = 0; i < photos.length; i += 2) pairs.push(photos.slice(i, i + 2));
-  const [pair, setPair] = useState(0);
+// ============ Slider helpers ============
+
+function useAutoRotate(count: number, ms: number) {
+  const [i, setI] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setPair((p) => (p + 1) % pairs.length), 3000);
+    if (count <= 1) return;
+    const t = setInterval(() => setI((p) => (p + 1) % count), ms);
     return () => clearInterval(t);
-  }, [pairs.length]);
-  const current = pairs[pair];
+  }, [count, ms]);
+  return { i, setI, next: () => setI((p) => (p + 1) % count), prev: () => setI((p) => (p - 1 + count) % count) };
+}
+
+function SliderNav({ onPrev, onNext, dots, active, onDot }: { onPrev: () => void; onNext: () => void; dots: number; active: number; onDot: (n: number) => void }) {
+  return (
+    <div className="flex items-center justify-center gap-4 mt-5">
+      <button onClick={onPrev} aria-label="Previous" className="w-10 h-10 rounded-full bg-card border border-border grid place-items-center hover:bg-saffron/10 transition shadow-soft">
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+      <div className="flex gap-2">
+        {Array.from({ length: dots }).map((_, n) => (
+          <button key={n} onClick={() => onDot(n)} aria-label={`Slide ${n + 1}`}
+            className={`h-2 rounded-full transition-all ${n === active ? "bg-saffron w-8" : "bg-border w-2"}`} />
+        ))}
+      </div>
+      <button onClick={onNext} aria-label="Next" className="w-10 h-10 rounded-full bg-card border border-border grid place-items-center hover:bg-saffron/10 transition shadow-soft">
+        <ChevronRight className="w-5 h-5" />
+      </button>
+    </div>
+  );
+}
+
+// ============ Darbar Photos ============
+
+function DarbarPhotos() {
+  const pairs: string[][] = [];
+  for (let i = 0; i < DARBAR_PHOTOS.length; i += 2) pairs.push(DARBAR_PHOTOS.slice(i, i + 2));
+  const { i, setI, next, prev } = useAutoRotate(pairs.length, 3000);
+  const current = pairs[i];
 
   return (
-    <section id="gallery" className="py-24 px-6">
+    <section id="gallery" className="pt-10 pb-10 md:pt-14 md:pb-12 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Gallery</p>
-          <h2 className="text-3xl md:text-5xl font-bold">Moments from Our Darbar</h2>
-          <p className="mt-3 text-muted-foreground text-sm">More photos on our <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="text-saffron underline">Instagram</a> & <a href={GOOGLE_MAPS} target="_blank" rel="noreferrer" className="text-saffron underline">Google page</a>.</p>
+        <div className="text-center mb-6 md:mb-8">
+          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2">Gallery</p>
+          <h2 className="text-2xl md:text-5xl font-bold">Moments from Our Darbar</h2>
+          <p className="mt-2 text-muted-foreground text-xs md:text-sm">
+            More on our <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="text-saffron underline">Instagram</a> & <a href={GOOGLE_MAPS} target="_blank" rel="noreferrer" className="text-saffron underline">Google page</a>.
+          </p>
         </div>
 
-        {/* Photos - paired auto-slider (visible on mobile too) */}
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-6">
-            <Camera className="w-6 h-6 text-saffron" />
-            <h3 className="text-2xl font-display font-semibold">Darbar Photos</h3>
-          </div>
-          <div key={pair} className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-float-up">
-            {current.map((src, i) => (
-              <div key={src} className="relative overflow-hidden rounded-2xl shadow-soft group aspect-[4/3]">
-                <img src={src} alt={`Darbar photo ${pair * 2 + i + 1}`} loading="lazy" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-maroon-deep/60 to-transparent opacity-0 group-hover:opacity-100 transition" />
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center gap-2 mt-4">
-            {pairs.map((_, i) => (
-              <button key={i} onClick={() => setPair(i)} aria-label={`Show photo pair ${i + 1}`}
-                className={`h-2 rounded-full transition-all ${i === pair ? "bg-saffron w-8" : "bg-border w-2"}`} />
-            ))}
-          </div>
+        <div className="flex items-center gap-3 mb-4">
+          <Camera className="w-5 h-5 md:w-6 md:h-6 text-saffron" />
+          <h3 className="text-xl md:text-2xl font-display font-semibold">Darbar Photos</h3>
         </div>
-
-        {/* Videos */}
-        <div>
-          <div className="flex items-center gap-3 mb-6">
-            <Video className="w-6 h-6 text-saffron" />
-            <h3 className="text-2xl font-display font-semibold">Darbar Videos</h3>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-            {DARBAR_VIDEOS.map((id) => (
-              <div key={id} className="rounded-2xl overflow-hidden shadow-soft aspect-[9/16] bg-maroon-deep border border-border">
-                <iframe
-                  src={`https://www.youtube.com/embed/${id}?rel=0`}
-                  title={`Darbar video ${id}`}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            ))}
-          </div>
+        <div key={i} className="grid grid-cols-2 gap-3 md:gap-4 animate-float-up">
+          {current.map((src, idx) => (
+            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-soft aspect-[4/3]">
+              <img src={src} alt={`Darbar photo ${i * 2 + idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
+            </div>
+          ))}
         </div>
+        <SliderNav onPrev={prev} onNext={next} dots={pairs.length} active={i} onDot={setI} />
       </div>
     </section>
   );
 }
+
+// ============ Jhanki (photos only, 20s rotation) ============
 
 function Jhanki() {
+  const pairs: string[][] = [];
+  for (let n = 0; n < JHANKI_PHOTOS.length; n += 2) pairs.push(JHANKI_PHOTOS.slice(n, n + 2));
+  const { i, setI, next, prev } = useAutoRotate(pairs.length, 20000);
+  const current = pairs[i];
+
   return (
-    <section className="py-24 px-6 bg-secondary/40">
+    <section className="py-14 md:py-16 px-4 md:px-6 bg-secondary/40">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4 flex items-center justify-center gap-2">
+        <div className="text-center mb-6 md:mb-8">
+          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2 flex items-center justify-center gap-2">
             <Crown className="w-4 h-4" /> Divine Jhanki
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold">Sajji Hui Jhanki & Darbar Decor</h2>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            Glimpses of our beautifully decorated jhankis of Mata Rani, Shyam Baba & other devotional setups —
-            crafted with love and devotion for every event.
+          <h2 className="text-2xl md:text-5xl font-bold">Sajji Hui Jhanki & Darbar Decor</h2>
+          <p className="mt-2 text-muted-foreground text-xs md:text-sm max-w-2xl mx-auto">
+            Glimpses of our beautifully decorated jhankis of Mata Rani, Shyam Baba & other devotional setups.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-          {JHANKI_VIDEOS.map((id) => (
-            <div key={id} className="rounded-2xl overflow-hidden shadow-divine aspect-[9/16] bg-maroon-deep border border-gold/30">
-              <iframe
-                src={`https://www.youtube.com/embed/${id}?rel=0`}
-                title={`Jhanki video ${id}`}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+        <div key={i} className="grid grid-cols-2 gap-3 md:gap-4 animate-float-up">
+          {current.map((src, idx) => (
+            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 aspect-[4/3]">
+              <img src={src} alt={`Jhanki ${i * 2 + idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
             </div>
           ))}
         </div>
+        <SliderNav onPrev={prev} onNext={next} dots={pairs.length} active={i} onDot={setI} />
       </div>
     </section>
   );
 }
 
+// ============ Auto-play YouTube (plays when visible, pauses when not) ============
 
-
-
-// Composed songs player — switches every 60s and resumes where it left off
 declare global {
   interface Window {
     YT?: any;
@@ -348,14 +357,102 @@ declare global {
   }
 }
 
+function loadYTApi(): Promise<void> {
+  return new Promise((resolve) => {
+    if (typeof window === "undefined") return;
+    if (window.YT && window.YT.Player) return resolve();
+    if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+      const s = document.createElement("script");
+      s.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(s);
+    }
+    const prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => { prev?.(); resolve(); };
+    const check = setInterval(() => {
+      if (window.YT && window.YT.Player) { clearInterval(check); resolve(); }
+    }, 200);
+  });
+}
+
+function AutoPlayVideo({ videoId }: { videoId: string }) {
+  const holderRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<any>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    let observer: IntersectionObserver | null = null;
+    loadYTApi().then(() => {
+      if (cancelled || !holderRef.current) return;
+      playerRef.current = new window.YT.Player(holderRef.current, {
+        videoId,
+        playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1, cc_load_policy: 0, iv_load_policy: 3 },
+        events: {
+          onReady: () => {
+            if (!wrapperRef.current) return;
+            observer = new IntersectionObserver((entries) => {
+              for (const e of entries) {
+                if (!playerRef.current) return;
+                try {
+                  if (e.isIntersecting && e.intersectionRatio > 0.4) {
+                    playerRef.current.unMute?.();
+                    playerRef.current.playVideo?.();
+                  } else {
+                    playerRef.current.pauseVideo?.();
+                  }
+                } catch {}
+              }
+            }, { threshold: [0, 0.4, 0.75] });
+            observer.observe(wrapperRef.current);
+          },
+        },
+      });
+    });
+    return () => {
+      cancelled = true;
+      observer?.disconnect();
+      try { playerRef.current?.destroy?.(); } catch {}
+    };
+  }, [videoId]);
+
+  return (
+    <div ref={wrapperRef} className="rounded-xl md:rounded-2xl overflow-hidden shadow-soft aspect-[9/16] bg-maroon-deep border border-border">
+      <div ref={holderRef} className="w-full h-full" />
+    </div>
+  );
+}
+
+// ============ Darbar Videos (bottom) ============
+
+function DarbarVideos() {
+  const { i, setI, next, prev } = useAutoRotate(DARBAR_VIDEOS.length, 20000);
+  return (
+    <section className="py-14 md:py-16 px-4 md:px-6">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-6 justify-center">
+          <Video className="w-5 h-5 md:w-6 md:h-6 text-saffron" />
+          <h3 className="text-2xl md:text-3xl font-display font-semibold text-center">Darbar Videos</h3>
+        </div>
+        <div className="max-w-sm mx-auto" key={DARBAR_VIDEOS[i]}>
+          <AutoPlayVideo videoId={DARBAR_VIDEOS[i]} />
+        </div>
+        <SliderNav onPrev={prev} onNext={next} dots={DARBAR_VIDEOS.length} active={i} onDot={setI} />
+      </div>
+    </section>
+  );
+}
+
+// ============ Compositions ============
+
 function Compositions() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const holderRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
   const indexRef = useRef(0);
   const savedTimes = useRef<number[]>(COMPOSITIONS.map(() => 0));
   const [displayIndex, setDisplayIndex] = useState(0);
 
-  const jumpTo = (next: number) => {
+  const jumpTo = useCallback((next: number) => {
     if (!playerRef.current) return;
     try {
       const t = playerRef.current.getCurrentTime?.() ?? 0;
@@ -367,40 +464,37 @@ function Compositions() {
     try {
       playerRef.current.loadVideoById({ videoId: COMPOSITIONS[next], startSeconds: startAt });
     } catch {}
-  };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
     let switchTimer: ReturnType<typeof setInterval> | null = null;
+    let observer: IntersectionObserver | null = null;
 
-    const loadApi = () =>
-      new Promise<void>((resolve) => {
-        if (window.YT && window.YT.Player) return resolve();
-        const existing = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
-        if (!existing) {
-          const s = document.createElement("script");
-          s.src = "https://www.youtube.com/iframe_api";
-          document.body.appendChild(s);
-        }
-        window.onYouTubeIframeAPIReady = () => resolve();
-        const check = setInterval(() => {
-          if (window.YT && window.YT.Player) {
-            clearInterval(check);
-            resolve();
-          }
-        }, 200);
-      });
-
-    const autoSwitch = () => jumpTo((indexRef.current + 1) % COMPOSITIONS.length);
-
-    loadApi().then(() => {
-      if (cancelled || !containerRef.current) return;
-      playerRef.current = new window.YT.Player(containerRef.current, {
+    loadYTApi().then(() => {
+      if (cancelled || !holderRef.current) return;
+      playerRef.current = new window.YT.Player(holderRef.current, {
         videoId: COMPOSITIONS[0],
-        playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1, iv_load_policy: 3 },
+        playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1, cc_load_policy: 0, iv_load_policy: 3 },
         events: {
           onReady: () => {
-            switchTimer = setInterval(autoSwitch, 60000);
+            switchTimer = setInterval(() => jumpTo((indexRef.current + 1) % COMPOSITIONS.length), 60000);
+            if (wrapperRef.current) {
+              observer = new IntersectionObserver((entries) => {
+                for (const e of entries) {
+                  if (!playerRef.current) return;
+                  try {
+                    if (e.isIntersecting && e.intersectionRatio > 0.4) {
+                      playerRef.current.unMute?.();
+                      playerRef.current.playVideo?.();
+                    } else {
+                      playerRef.current.pauseVideo?.();
+                    }
+                  } catch {}
+                }
+              }, { threshold: [0, 0.4, 0.75] });
+              observer.observe(wrapperRef.current);
+            }
           },
         },
       });
@@ -409,86 +503,73 @@ function Compositions() {
     return () => {
       cancelled = true;
       if (switchTimer) clearInterval(switchTimer);
+      observer?.disconnect();
       try { playerRef.current?.destroy?.(); } catch {}
     };
-  }, []);
+  }, [jumpTo]);
 
   return (
-    <section id="compositions" className="py-20 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #fff 100%)" }}>
+    <section id="compositions" className="py-16 md:py-20 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #fff 100%)" }}>
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-gradient-royal mb-3">My Own Composed Songs</h2>
-        <p className="text-maroon-deep/70 mb-6">Original bhajans composed and sung by Shri Shankar Yadav ji.</p>
+        <h2 className="font-display text-2xl md:text-5xl font-bold text-gradient-royal mb-3">My Own Composed Songs</h2>
+        <p className="text-maroon-deep/70 mb-6 text-sm md:text-base">Original bhajans composed and sung by Shri Shankar Yadav ji.</p>
         <div className="flex flex-wrap justify-center gap-3 mb-6">
-          {COMPOSITIONS.map((_, i) => (
+          {COMPOSITIONS.map((_, n) => (
             <button
-              key={i}
-              onClick={() => jumpTo(i)}
+              key={n}
+              onClick={() => jumpTo(n)}
               className={`px-5 py-2 rounded-full font-medium text-sm md:text-base transition shadow-soft ${
-                displayIndex === i
+                displayIndex === n
                   ? "bg-gradient-royal text-cream shadow-divine scale-105"
                   : "bg-cream border border-gold/40 text-maroon-deep hover:bg-gold/10"
               }`}
             >
-              Bhajan {i + 1}
+              Bhajan {n + 1}
             </button>
           ))}
         </div>
-        <div className="relative rounded-3xl overflow-hidden shadow-divine border-4 border-gold/40 aspect-video bg-black">
-          <div ref={containerRef} className="absolute inset-0 w-full h-full" />
+        <div ref={wrapperRef} className="relative rounded-3xl overflow-hidden shadow-divine border-4 border-gold/40 aspect-video bg-black">
+          <div ref={holderRef} className="absolute inset-0 w-full h-full" />
         </div>
-        <p className="mt-4 text-sm text-maroon-deep/60">Now Playing: Bhajan {displayIndex + 1} of {COMPOSITIONS.length} · Auto-switches every 60s</p>
       </div>
     </section>
   );
 }
 
+// ============ Reviews (compact) ============
+
 function Reviews() {
-  const [index, setIndex] = useState(0);
   const perPage = 2;
   const pages = Math.ceil(reviews.length / perPage);
-
-  useEffect(() => {
-    const t = setInterval(() => setIndex((i) => (i + 1) % pages), 5000);
-    return () => clearInterval(t);
-  }, [pages]);
-
-  const visible = reviews.slice(index * perPage, index * perPage + perPage);
+  const { i, setI, next, prev } = useAutoRotate(pages, 5000);
+  const visible = reviews.slice(i * perPage, i * perPage + perPage);
 
   return (
-    <section id="reviews" className="py-24 px-6 bg-secondary/40">
+    <section id="reviews" className="py-12 md:py-14 px-4 md:px-6 bg-secondary/40">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Blessings from Devotees</p>
-          <h2 className="text-3xl md:text-5xl font-bold">What Our Devotees Say</h2>
+        <div className="text-center mb-6 md:mb-8">
+          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2">Blessings from Devotees</p>
+          <h2 className="text-2xl md:text-4xl font-bold">What Our Devotees Say</h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-6 transition-opacity duration-500" key={index}>
+        <div className="grid md:grid-cols-2 gap-4 transition-opacity duration-500" key={i}>
           {visible.map((r) => (
-            <div key={r.name} className="p-8 rounded-2xl bg-card border border-border shadow-soft animate-float-up">
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: r.rating }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-gold text-gold" />
+            <div key={r.name} className="p-5 md:p-6 rounded-2xl bg-card border border-border shadow-soft animate-float-up">
+              <div className="flex gap-1 mb-3">
+                {Array.from({ length: r.rating }).map((_, n) => (
+                  <Star key={n} className="w-4 h-4 fill-gold text-gold" />
                 ))}
               </div>
-              <p className="text-muted-foreground italic leading-relaxed">"{r.text}"</p>
-              <div className="mt-5 pt-5 border-t border-border">
-                <p className="font-semibold">{r.name}</p>
+              <p className="text-muted-foreground italic leading-relaxed text-sm md:text-base">"{r.text}"</p>
+              <div className="mt-4 pt-4 border-t border-border">
+                <p className="font-semibold text-sm">{r.name}</p>
                 <p className="text-xs text-muted-foreground">{r.place}</p>
               </div>
             </div>
           ))}
         </div>
-        <div className="flex justify-center gap-2 mt-8">
-          {Array.from({ length: pages }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setIndex(i)}
-              aria-label={`Show review page ${i + 1}`}
-              className={`w-2.5 h-2.5 rounded-full transition ${i === index ? "bg-saffron w-8" : "bg-border"}`}
-            />
-          ))}
-        </div>
-        <div className="text-center mt-10">
-          <a href={GOOGLE_REVIEWS} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-royal text-cream font-medium shadow-soft hover:scale-105 transition">
+        <SliderNav onPrev={prev} onNext={next} dots={pages} active={i} onDot={setI} />
+        <div className="text-center mt-6">
+          <a href={GOOGLE_REVIEWS} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-royal text-cream font-medium shadow-soft hover:scale-105 transition text-sm">
             <Star className="w-4 h-4 fill-gold text-gold" /> View More Reviews on Google <ExternalLink className="w-4 h-4" />
           </a>
         </div>
@@ -497,26 +578,28 @@ function Reviews() {
   );
 }
 
+// ============ Contact (compact) ============
+
 function ContactSection() {
   return (
-    <section id="contact" className="py-24 px-6 bg-secondary/60">
+    <section id="contact" className="py-12 md:py-14 px-4 md:px-6 bg-secondary/60">
       <div className="max-w-5xl mx-auto text-center">
-        <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Get in Touch</p>
-        <h2 className="text-3xl md:text-5xl font-bold mb-4">Bulao Mata Rani & Baba Shyam Ko Aapne Ghar</h2>
-        <p className="text-muted-foreground mb-12">We respond quickly — call or WhatsApp us anytime.</p>
-        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          <a href={`tel:${PHONE}`} className="group p-8 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition hover:-translate-y-1">
-            <Phone className="w-10 h-10 mx-auto text-saffron mb-4 group-hover:scale-110 transition" />
-            <h3 className="text-xl font-semibold mb-2">Call Directly</h3>
-            <p className="text-2xl font-display text-gradient-gold">+91 79829 56590</p>
-            <p className="text-xs text-muted-foreground mt-2">Available 24×7</p>
+        <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2">Get in Touch</p>
+        <h2 className="text-2xl md:text-4xl font-bold mb-2">Bulao Mata Rani & Baba Shyam Ko Aapne Ghar</h2>
+        <p className="text-muted-foreground mb-6 text-sm">We respond quickly — call or WhatsApp us anytime.</p>
+        <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-3xl mx-auto">
+          <a href={`tel:${PHONE}`} className="group p-5 md:p-6 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition hover:-translate-y-1">
+            <Phone className="w-8 h-8 md:w-10 md:h-10 mx-auto text-saffron mb-2 group-hover:scale-110 transition" />
+            <h3 className="text-base md:text-lg font-semibold mb-1">Call Directly</h3>
+            <p className="text-base md:text-xl font-display text-gradient-gold">+91 79829 56590</p>
+            <p className="text-[11px] text-muted-foreground mt-1">Available 24×7</p>
           </a>
           <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer"
-             className="group p-8 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition hover:-translate-y-1">
-            <MessageCircle className="w-10 h-10 mx-auto text-saffron mb-4 group-hover:scale-110 transition" />
-            <h3 className="text-xl font-semibold mb-2">WhatsApp Chat</h3>
-            <p className="text-2xl font-display text-gradient-gold">Message Us</p>
-            <p className="text-xs text-muted-foreground mt-2">Quick reply guaranteed</p>
+             className="group p-5 md:p-6 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition hover:-translate-y-1">
+            <MessageCircle className="w-8 h-8 md:w-10 md:h-10 mx-auto text-saffron mb-2 group-hover:scale-110 transition" />
+            <h3 className="text-base md:text-lg font-semibold mb-1">WhatsApp Chat</h3>
+            <p className="text-base md:text-xl font-display text-gradient-gold">Message Us</p>
+            <p className="text-[11px] text-muted-foreground mt-1">Quick reply guaranteed</p>
           </a>
         </div>
       </div>
@@ -539,14 +622,14 @@ function BookingForm() {
   };
 
   return (
-    <section id="booking" className="py-24 px-6">
+    <section id="booking" className="py-16 md:py-20 px-6">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">Book Now</p>
-          <h2 className="text-3xl md:text-5xl font-bold">Share Your Requirements</h2>
-          <p className="text-muted-foreground mt-3">Fill the form — we'll get back with a divine plan for your event.</p>
+        <div className="text-center mb-10">
+          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-3">Book Now</p>
+          <h2 className="text-2xl md:text-5xl font-bold">Share Your Requirements</h2>
+          <p className="text-muted-foreground mt-2 text-sm">Fill the form — we'll get back with a divine plan for your event.</p>
         </div>
-        <form onSubmit={onSubmit} className="p-8 md:p-10 rounded-3xl bg-card border border-border shadow-divine space-y-5">
+        <form onSubmit={onSubmit} className="p-6 md:p-10 rounded-3xl bg-card border border-border shadow-divine space-y-5">
           <div className="grid md:grid-cols-2 gap-5">
             <Field label="Your Name" name="name" required />
             <Field label="Phone Number" name="phone" type="tel" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
@@ -628,14 +711,23 @@ function Footer() {
 
 function FloatingContact() {
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-      <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer" aria-label="WhatsApp"
-        className="w-14 h-14 rounded-full bg-[#25D366] text-white grid place-items-center shadow-divine hover:scale-110 transition animate-flicker">
-        <MessageCircle className="w-6 h-6" />
+    <div className="fixed bottom-6 right-4 md:right-6 z-50 flex flex-col gap-3">
+      <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp"
+        className="group flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-[#25D366] text-white shadow-divine hover:scale-105 transition animate-flicker">
+        <span className="w-8 h-8 rounded-full bg-white/20 grid place-items-center">
+          {/* WhatsApp glyph */}
+          <svg viewBox="0 0 32 32" className="w-5 h-5 fill-white" aria-hidden="true">
+            <path d="M19.11 17.28c-.28-.14-1.66-.82-1.92-.91-.26-.09-.44-.14-.63.14-.19.28-.72.91-.88 1.1-.16.19-.32.21-.6.07-.28-.14-1.18-.43-2.25-1.39-.83-.74-1.39-1.66-1.55-1.94-.16-.28-.02-.43.12-.57.13-.13.28-.32.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.52-.86-2.08-.23-.54-.46-.47-.63-.48l-.54-.01c-.19 0-.49.07-.75.35-.26.28-1 1-1 2.43s1.02 2.82 1.17 3.02c.14.19 2.02 3.09 4.9 4.33.68.29 1.22.47 1.63.6.68.22 1.31.19 1.8.12.55-.08 1.66-.68 1.9-1.34.23-.66.23-1.22.16-1.34-.07-.12-.26-.19-.54-.33zM16 3C9.38 3 4 8.38 4 15c0 2.36.68 4.55 1.85 6.4L4 29l7.79-1.81A11.94 11.94 0 0 0 16 27c6.62 0 12-5.38 12-12S22.62 3 16 3zm0 21.8c-1.9 0-3.66-.55-5.14-1.49l-.37-.22-4.62 1.07 1.09-4.5-.24-.38A9.75 9.75 0 0 1 6.2 15c0-5.41 4.39-9.8 9.8-9.8s9.8 4.39 9.8 9.8-4.39 9.8-9.8 9.8z" />
+          </svg>
+        </span>
+        <span className="text-sm font-semibold">WhatsApp</span>
       </a>
-      <a href={`tel:${PHONE}`} aria-label="Call"
-        className="w-14 h-14 rounded-full bg-gradient-royal text-cream grid place-items-center shadow-divine hover:scale-110 transition">
-        <Phone className="w-6 h-6" />
+      <a href={`tel:${PHONE}`} aria-label="Call Me"
+        className="group flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-gradient-royal text-cream shadow-divine hover:scale-105 transition">
+        <span className="w-8 h-8 rounded-full bg-white/15 grid place-items-center">
+          <Phone className="w-4 h-4" />
+        </span>
+        <span className="text-sm font-semibold">Call Me</span>
       </a>
     </div>
   );
