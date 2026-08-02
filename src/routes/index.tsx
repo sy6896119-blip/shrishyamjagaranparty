@@ -23,16 +23,29 @@ import darbar16 from "@/assets/darbar-16.jpeg.asset.json";
 import darbar17 from "@/assets/darbar-17.jpeg.asset.json";
 import darbar18 from "@/assets/darbar-18.jpeg.asset.json";
 import darbar19 from "@/assets/darbar-19.jpeg.asset.json";
-
-const DARBAR_PHOTOS = [
-  darbar1.url, darbar2.url, darbar3.url, darbar4.url, darbar5.url,
-  darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar10.url,
-  darbar11.url, darbar12.url, darbar13.url, darbar14.url, darbar15.url,
-  darbar16.url, darbar17.url, darbar18.url, darbar19.url,
-];
+import darbar20 from "@/assets/darbar-20.jpeg.asset.json";
+import darbar21 from "@/assets/darbar-21.jpeg.asset.json";
+import darbar22 from "@/assets/darbar-22.jpeg.asset.json";
+import darbar23 from "@/assets/darbar-23.jpeg.asset.json";
+import darbar24 from "@/assets/darbar-24.jpeg.asset.json";
+import darbar25 from "@/assets/darbar-25.jpeg.asset.json";
+import darbar26 from "@/assets/darbar-26.jpeg.asset.json";
+import darbar27 from "@/assets/darbar-27.jpeg.asset.json";
+import darbar28 from "@/assets/darbar-28.jpeg.asset.json";
+import darbar29 from "@/assets/darbar-29.jpeg.asset.json";
 
 // Jhanki uses uploaded photos only (no YouTube) — richly decorated darbars
 const JHANKI_PHOTOS = [darbar10.url, darbar11.url, darbar13.url, darbar15.url, darbar16.url, darbar17.url, darbar18.url, darbar19.url];
+
+// Darbar photos — every image appears only once across the gallery (no overlap with Jhanki)
+const DARBAR_PHOTOS = [
+  darbar1.url, darbar2.url, darbar3.url, darbar4.url, darbar5.url,
+  darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar12.url,
+  darbar14.url, darbar20.url, darbar21.url, darbar22.url, darbar23.url,
+  darbar24.url, darbar25.url, darbar26.url, darbar27.url, darbar28.url,
+  darbar29.url,
+];
+
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -53,7 +66,7 @@ const FACEBOOK = "https://www.facebook.com/share/17zJ3mMxrm/";
 const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
 
-const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "iDFuOJ28J-c"];
+const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "YYDIhEeAdj0"];
 const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
 
 const services = [
@@ -102,16 +115,24 @@ function Index() {
 function Header() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
-      <div className="max-w-7xl mx-auto px-3 md:px-6 h-16 md:h-20 flex items-center justify-between gap-2">
+      <div className="max-w-7xl mx-auto px-3 md:px-6 h-20 md:h-28 flex items-center justify-between gap-2">
         <a href="#top" className="flex items-center gap-2 shrink-0">
-          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="h-10 md:h-16 w-auto object-contain drop-shadow-lg" />
+          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="h-14 md:h-24 w-auto object-contain drop-shadow-lg" />
         </a>
-        <nav className="flex items-center gap-3 sm:gap-5 md:gap-8 text-[11px] sm:text-sm">
-          <a href="#services" className="hover:text-saffron transition">Services</a>
-          <a href="#gallery" className="hover:text-saffron transition">Gallery</a>
-          <a href="#reviews" className="hover:text-saffron transition">Reviews</a>
-          <a href="#booking" className="hover:text-saffron transition">Book</a>
+        <nav className="flex items-center gap-2.5 sm:gap-5 md:gap-8 text-[11px] sm:text-sm">
+          {[
+            { href: "#services", label: "Services", Icon: Crown },
+            { href: "#gallery", label: "Gallery", Icon: Camera },
+            { href: "#reviews", label: "Reviews", Icon: Star },
+            { href: "#booking", label: "Book", Icon: Calendar },
+          ].map(({ href, label, Icon }) => (
+            <a key={href} href={href} className="flex flex-col sm:flex-row items-center gap-0.5 sm:gap-1.5 hover:text-saffron transition">
+              <Icon className="w-4 h-4 text-saffron" />
+              <span>{label}</span>
+            </a>
+          ))}
         </nav>
+
         <a href={`tel:${PHONE}`} className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-royal text-cream text-sm shadow-soft hover:opacity-90 transition">
           <Phone className="w-4 h-4" /> Call Now
         </a>
@@ -122,11 +143,12 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-16 md:pt-20">
+    <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-20 md:pt-28">
       <img src={HERO_POSTER} alt="Shri Shyam Jagaran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(30,0,0,0.55) 80%, rgba(30,0,0,0.85) 100%)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
-        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
+        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR &amp; All Over INDIA</p>
+
         <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
           Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Jagaran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
         </p>
@@ -182,12 +204,27 @@ function ShankarPhoto() {
       <div className="max-w-4xl mx-auto text-center">
         <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-3">Sanchalak</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold mb-6"><span className="font-devnagri">श्री शंकर यादव जी</span></h2>
-        <div className="relative inline-block">
-          <div className="absolute -inset-4 rounded-full bg-gradient-gold blur-2xl opacity-40 animate-flicker" />
-          <div className="relative w-56 h-56 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-gold shadow-divine bg-gradient-royal">
+        <div className="relative mx-auto w-72 h-72 md:w-[26rem] md:h-[26rem] grid place-items-center">
+          {/* soft outer glow */}
+          <div className="absolute inset-8 rounded-full bg-gradient-gold blur-2xl opacity-50 animate-flicker" />
+          {/* rotating dashed gold ring */}
+          <div
+            className="absolute inset-1 rounded-full border-[3px] border-dashed border-gold/70"
+            style={{ animation: "spin-slow 30s linear infinite" }}
+          />
+          {/* counter-rotating thin saffron ring */}
+          <div
+            className="absolute inset-5 rounded-full border-2 border-dotted border-saffron/60"
+            style={{ animation: "spin-slow 20s linear infinite reverse" }}
+          />
+          <div className="relative w-56 h-56 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gold shadow-divine bg-gradient-royal ring-4 ring-saffron/30 ring-offset-4 ring-offset-background">
             <img src={SHANKAR} alt="Shri Shankar Yadav ji" className="w-full h-full object-cover object-top" />
           </div>
+          <style>{`@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
         </div>
+
+
+
         <p className="mt-6 text-muted-foreground text-base md:text-lg max-w-2xl mx-auto font-devnagri">
           "श्रद्धा, विश्वास और लगन से भरपूर — बाबा श्याम और माता रानी की सेवा में समर्पित"
         </p>
@@ -288,28 +325,29 @@ function DarbarPhotos() {
   const current = pairs[i];
 
   return (
-    <section id="gallery" className="pt-10 pb-10 md:pt-14 md:pb-12 px-4 md:px-6">
+    <section id="gallery" className="pt-6 pb-6 md:pt-14 md:pb-12 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-6 md:mb-8">
-          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2">Gallery</p>
-          <h2 className="text-2xl md:text-5xl font-bold">Moments from Our Darbar</h2>
-          <p className="mt-2 text-muted-foreground text-xs md:text-sm">
+        <div className="text-center mb-3 md:mb-8">
+          <p className="uppercase tracking-[0.3em] text-saffron text-[10px] md:text-xs mb-1 md:mb-2">Gallery</p>
+          <h2 className="text-xl md:text-5xl font-bold">Moments from Our Darbar</h2>
+          <p className="mt-1 md:mt-2 text-muted-foreground text-[11px] md:text-sm">
             More on our <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="text-saffron underline">Instagram</a> & <a href={GOOGLE_MAPS} target="_blank" rel="noreferrer" className="text-saffron underline">Google page</a>.
           </p>
         </div>
 
-        <div className="flex items-center gap-3 mb-4">
-          <Camera className="w-5 h-5 md:w-6 md:h-6 text-saffron" />
-          <h3 className="text-xl md:text-2xl font-display font-semibold">Darbar Photos</h3>
+        <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-4">
+          <Camera className="w-4 h-4 md:w-6 md:h-6 text-saffron" />
+          <h3 className="text-base md:text-2xl font-display font-semibold">Darbar Photos</h3>
         </div>
-        <div key={i} className="grid grid-cols-2 gap-3 md:gap-4 animate-float-up">
+        <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 animate-float-up">
           {current.map((src, idx) => (
-            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-soft aspect-[4/3]">
+            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-soft h-[27vh] md:h-auto md:aspect-[4/3]">
               <img src={src} alt={`Darbar photo ${i * 2 + idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
             </div>
           ))}
         </div>
         <SliderNav onPrev={prev} onNext={next} dots={pairs.length} active={i} onDot={setI} />
+
       </div>
     </section>
   );
@@ -330,7 +368,7 @@ function Jhanki() {
           <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2 flex items-center justify-center gap-2">
             <Crown className="w-4 h-4" /> Divine Jhanki
           </p>
-          <h2 className="text-2xl md:text-5xl font-bold">Sajji Hui Jhanki & Darbar Decor</h2>
+          <h2 className="text-2xl md:text-5xl font-bold">Sajji Hui Jhanki</h2>
           <p className="mt-2 text-muted-foreground text-xs md:text-sm max-w-2xl mx-auto">
             Glimpses of our beautifully decorated jhankis of Mata Rani, Shyam Baba & other devotional setups.
           </p>
