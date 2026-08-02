@@ -117,14 +117,22 @@ function Header() {
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
       <div className="max-w-7xl mx-auto px-3 md:px-6 h-16 md:h-20 flex items-center justify-between gap-2">
         <a href="#top" className="flex items-center gap-2 shrink-0">
-          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="h-10 md:h-16 w-auto object-contain drop-shadow-lg" />
+          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="h-14 md:h-24 w-auto object-contain drop-shadow-lg" />
         </a>
-        <nav className="flex items-center gap-3 sm:gap-5 md:gap-8 text-[11px] sm:text-sm">
-          <a href="#services" className="hover:text-saffron transition">Services</a>
-          <a href="#gallery" className="hover:text-saffron transition">Gallery</a>
-          <a href="#reviews" className="hover:text-saffron transition">Reviews</a>
-          <a href="#booking" className="hover:text-saffron transition">Book</a>
+        <nav className="flex items-center gap-2.5 sm:gap-5 md:gap-8 text-[11px] sm:text-sm">
+          {[
+            { href: "#services", label: "Services", Icon: Crown },
+            { href: "#gallery", label: "Gallery", Icon: Camera },
+            { href: "#reviews", label: "Reviews", Icon: Star },
+            { href: "#booking", label: "Book", Icon: Calendar },
+          ].map(({ href, label, Icon }) => (
+            <a key={href} href={href} className="flex flex-col sm:flex-row items-center gap-0.5 sm:gap-1.5 hover:text-saffron transition">
+              <Icon className="w-4 h-4 text-saffron" />
+              <span>{label}</span>
+            </a>
+          ))}
         </nav>
+
         <a href={`tel:${PHONE}`} className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-royal text-cream text-sm shadow-soft hover:opacity-90 transition">
           <Phone className="w-4 h-4" /> Call Now
         </a>
