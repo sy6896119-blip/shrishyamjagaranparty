@@ -210,7 +210,7 @@ function ShankarPhoto() {
             className="absolute inset-0 rounded-full opacity-70"
             style={{
               background:
-                "conic-gradient(from 0deg, hsl(var(--gold) / 0.55) 0 4deg, transparent 4deg 15deg, hsl(var(--saffron) / 0.45) 15deg 19deg, transparent 19deg 30deg)",
+                "conic-gradient(from 0deg, color-mix(in oklab, var(--gold) 55%, transparent) 0 4deg, transparent 4deg 15deg, color-mix(in oklab, var(--saffron) 45%, transparent) 15deg 19deg, transparent 19deg 30deg)",
               maskImage: "radial-gradient(circle, transparent 44%, black 47%, black 78%, transparent 92%)",
               WebkitMaskImage: "radial-gradient(circle, transparent 44%, black 47%, black 78%, transparent 92%)",
               animation: "spin-slow 24s linear infinite",
