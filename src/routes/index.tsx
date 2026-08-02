@@ -210,7 +210,7 @@ function ShankarPhoto() {
             className="absolute inset-0 rounded-full"
             style={{
               background:
-                "conic-gradient(from 0deg, var(--saffron) 0 5deg, transparent 5deg 15deg, var(--maroon) 15deg 19deg, transparent 19deg 30deg)",
+                "repeating-conic-gradient(from 0deg, var(--saffron) 0 5deg, transparent 5deg 15deg, var(--gold) 15deg 19deg, transparent 19deg 30deg)",
               maskImage: "radial-gradient(circle, transparent 60%, black 68%, black 92%, transparent 100%)",
               WebkitMaskImage: "radial-gradient(circle, transparent 60%, black 68%, black 92%, transparent 100%)",
               animation: "spin-slow 26s linear infinite",
