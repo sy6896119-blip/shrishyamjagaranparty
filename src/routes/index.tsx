@@ -207,15 +207,17 @@ function ShankarPhoto() {
         <div className="relative inline-block p-10 md:p-16">
           {/* radiating divine rays */}
           <div
-            className="absolute -inset-2 rounded-full"
+            className="absolute -inset-3 rounded-full"
             style={{
               background:
-                "conic-gradient(from 0deg, color-mix(in oklab, var(--gold) 95%, transparent) 0 6deg, transparent 6deg 14deg, color-mix(in oklab, var(--saffron) 80%, transparent) 14deg 20deg, transparent 20deg 30deg)",
-              maskImage: "radial-gradient(circle, transparent 62%, black 70%, black 92%, transparent 100%)",
-              WebkitMaskImage: "radial-gradient(circle, transparent 62%, black 70%, black 92%, transparent 100%)",
+                "conic-gradient(from 0deg, var(--saffron) 0 5deg, transparent 5deg 15deg, var(--maroon) 15deg 19deg, transparent 19deg 30deg)",
+              maskImage: "radial-gradient(circle, transparent 60%, black 68%, black 90%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(circle, transparent 60%, black 68%, black 90%, transparent 100%)",
               animation: "spin-slow 26s linear infinite",
+              opacity: 0.85,
             }}
           />
+
 
           {/* glowing halo */}
           <div className="absolute inset-6 rounded-full bg-gradient-gold blur-3xl opacity-60 animate-flicker" />
