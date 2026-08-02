@@ -23,16 +23,29 @@ import darbar16 from "@/assets/darbar-16.jpeg.asset.json";
 import darbar17 from "@/assets/darbar-17.jpeg.asset.json";
 import darbar18 from "@/assets/darbar-18.jpeg.asset.json";
 import darbar19 from "@/assets/darbar-19.jpeg.asset.json";
-
-const DARBAR_PHOTOS = [
-  darbar1.url, darbar2.url, darbar3.url, darbar4.url, darbar5.url,
-  darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar10.url,
-  darbar11.url, darbar12.url, darbar13.url, darbar14.url, darbar15.url,
-  darbar16.url, darbar17.url, darbar18.url, darbar19.url,
-];
+import darbar20 from "@/assets/darbar-20.jpeg.asset.json";
+import darbar21 from "@/assets/darbar-21.jpeg.asset.json";
+import darbar22 from "@/assets/darbar-22.jpeg.asset.json";
+import darbar23 from "@/assets/darbar-23.jpeg.asset.json";
+import darbar24 from "@/assets/darbar-24.jpeg.asset.json";
+import darbar25 from "@/assets/darbar-25.jpeg.asset.json";
+import darbar26 from "@/assets/darbar-26.jpeg.asset.json";
+import darbar27 from "@/assets/darbar-27.jpeg.asset.json";
+import darbar28 from "@/assets/darbar-28.jpeg.asset.json";
+import darbar29 from "@/assets/darbar-29.jpeg.asset.json";
 
 // Jhanki uses uploaded photos only (no YouTube) — richly decorated darbars
 const JHANKI_PHOTOS = [darbar10.url, darbar11.url, darbar13.url, darbar15.url, darbar16.url, darbar17.url, darbar18.url, darbar19.url];
+
+// Darbar photos — every image appears only once across the gallery (no overlap with Jhanki)
+const DARBAR_PHOTOS = [
+  darbar1.url, darbar2.url, darbar3.url, darbar4.url, darbar5.url,
+  darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar12.url,
+  darbar14.url, darbar20.url, darbar21.url, darbar22.url, darbar23.url,
+  darbar24.url, darbar25.url, darbar26.url, darbar27.url, darbar28.url,
+  darbar29.url,
+];
+
 
 export const Route = createFileRoute("/")({
   component: Index,
