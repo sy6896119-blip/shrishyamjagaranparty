@@ -368,7 +368,7 @@ function Jhanki() {
           <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2 flex items-center justify-center gap-2">
             <Crown className="w-4 h-4" /> Divine Jhanki
           </p>
-          <h2 className="text-2xl md:text-5xl font-bold">Sajji Hui Jhanki & Darbar Decor</h2>
+          <h2 className="text-2xl md:text-5xl font-bold">Sajji Hui Jhanki</h2>
           <p className="mt-2 text-muted-foreground text-xs md:text-sm max-w-2xl mx-auto">
             Glimpses of our beautifully decorated jhankis of Mata Rani, Shyam Baba & other devotional setups.
           </p>
