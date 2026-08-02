@@ -325,28 +325,29 @@ function DarbarPhotos() {
   const current = pairs[i];
 
   return (
-    <section id="gallery" className="pt-10 pb-10 md:pt-14 md:pb-12 px-4 md:px-6">
+    <section id="gallery" className="pt-6 pb-6 md:pt-14 md:pb-12 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-6 md:mb-8">
-          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2">Gallery</p>
-          <h2 className="text-2xl md:text-5xl font-bold">Moments from Our Darbar</h2>
-          <p className="mt-2 text-muted-foreground text-xs md:text-sm">
+        <div className="text-center mb-3 md:mb-8">
+          <p className="uppercase tracking-[0.3em] text-saffron text-[10px] md:text-xs mb-1 md:mb-2">Gallery</p>
+          <h2 className="text-xl md:text-5xl font-bold">Moments from Our Darbar</h2>
+          <p className="mt-1 md:mt-2 text-muted-foreground text-[11px] md:text-sm">
             More on our <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="text-saffron underline">Instagram</a> & <a href={GOOGLE_MAPS} target="_blank" rel="noreferrer" className="text-saffron underline">Google page</a>.
           </p>
         </div>
 
-        <div className="flex items-center gap-3 mb-4">
-          <Camera className="w-5 h-5 md:w-6 md:h-6 text-saffron" />
-          <h3 className="text-xl md:text-2xl font-display font-semibold">Darbar Photos</h3>
+        <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-4">
+          <Camera className="w-4 h-4 md:w-6 md:h-6 text-saffron" />
+          <h3 className="text-base md:text-2xl font-display font-semibold">Darbar Photos</h3>
         </div>
-        <div key={i} className="grid grid-cols-2 gap-3 md:gap-4 animate-float-up">
+        <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 animate-float-up">
           {current.map((src, idx) => (
-            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-soft aspect-[4/3]">
+            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-soft h-[27vh] md:h-auto md:aspect-[4/3]">
               <img src={src} alt={`Darbar photo ${i * 2 + idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
             </div>
           ))}
         </div>
         <SliderNav onPrev={prev} onNext={next} dots={pairs.length} active={i} onDot={setI} />
+
       </div>
     </section>
   );
