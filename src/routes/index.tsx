@@ -204,21 +204,22 @@ function ShankarPhoto() {
       <div className="max-w-4xl mx-auto text-center">
         <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-3">Sanchalak</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold mb-6"><span className="font-devnagri">श्री शंकर यादव जी</span></h2>
-        <div className="relative inline-block p-6 md:p-10">
+        <div className="relative inline-block p-10 md:p-16">
           {/* radiating divine rays */}
           <div
-            className="absolute inset-0 rounded-full opacity-70"
+            className="absolute inset-0 rounded-full"
             style={{
               background:
-                "conic-gradient(from 0deg, color-mix(in oklab, var(--gold) 55%, transparent) 0 4deg, transparent 4deg 15deg, color-mix(in oklab, var(--saffron) 45%, transparent) 15deg 19deg, transparent 19deg 30deg)",
-              maskImage: "radial-gradient(circle, transparent 44%, black 47%, black 78%, transparent 92%)",
-              WebkitMaskImage: "radial-gradient(circle, transparent 44%, black 47%, black 78%, transparent 92%)",
-              animation: "spin-slow 24s linear infinite",
+                "conic-gradient(from 0deg, color-mix(in oklab, var(--gold) 95%, transparent) 0 6deg, transparent 6deg 14deg, color-mix(in oklab, var(--saffron) 80%, transparent) 14deg 20deg, transparent 20deg 30deg)",
+              maskImage: "radial-gradient(circle, transparent 38%, black 44%, black 82%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(circle, transparent 38%, black 44%, black 82%, transparent 100%)",
+              animation: "spin-slow 26s linear infinite",
             }}
           />
           {/* glowing halo */}
-          <div className="absolute inset-2 rounded-full bg-gradient-gold blur-3xl opacity-45 animate-flicker" />
-          <div className="absolute inset-4 rounded-full border border-gold/50" />
+          <div className="absolute inset-6 rounded-full bg-gradient-gold blur-3xl opacity-60 animate-flicker" />
+          <div className="absolute inset-7 md:inset-11 rounded-full border-2 border-gold/60" />
+
           <div className="relative w-56 h-56 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-gold shadow-divine bg-gradient-royal ring-4 ring-saffron/30 ring-offset-4 ring-offset-background">
             <img src={SHANKAR} alt="Shri Shankar Yadav ji" className="w-full h-full object-cover object-top" />
           </div>
