@@ -204,30 +204,27 @@ function ShankarPhoto() {
       <div className="max-w-4xl mx-auto text-center">
         <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-3">Sanchalak</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold mb-6"><span className="font-devnagri">श्री शंकर यादव जी</span></h2>
-        <div className="relative inline-block p-10 md:p-16">
+        <div className="relative mx-auto w-64 h-64 md:w-96 md:h-96 grid place-items-center">
           {/* radiating divine rays */}
           <div
-            className="absolute -inset-3 rounded-full"
+            className="absolute inset-0 rounded-full"
             style={{
               background:
                 "conic-gradient(from 0deg, var(--saffron) 0 5deg, transparent 5deg 15deg, var(--maroon) 15deg 19deg, transparent 19deg 30deg)",
-              maskImage: "radial-gradient(circle, transparent 60%, black 68%, black 90%, transparent 100%)",
-              WebkitMaskImage: "radial-gradient(circle, transparent 60%, black 68%, black 90%, transparent 100%)",
+              maskImage: "radial-gradient(circle, transparent 60%, black 68%, black 92%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(circle, transparent 60%, black 68%, black 92%, transparent 100%)",
               animation: "spin-slow 26s linear infinite",
-              opacity: 0.85,
+              opacity: 0.8,
             }}
           />
-
-
           {/* glowing halo */}
-          <div className="absolute inset-6 rounded-full bg-gradient-gold blur-3xl opacity-60 animate-flicker" />
-          <div className="absolute inset-7 md:inset-11 rounded-full border-2 border-gold/60" />
-
-          <div className="relative w-56 h-56 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-gold shadow-divine bg-gradient-royal ring-4 ring-saffron/30 ring-offset-4 ring-offset-background">
+          <div className="absolute inset-6 rounded-full bg-gradient-gold blur-2xl opacity-55 animate-flicker" />
+          <div className="relative w-56 h-56 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gold shadow-divine bg-gradient-royal ring-4 ring-saffron/30 ring-offset-4 ring-offset-background">
             <img src={SHANKAR} alt="Shri Shankar Yadav ji" className="w-full h-full object-cover object-top" />
           </div>
           <style>{`@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
         </div>
+
 
         <p className="mt-6 text-muted-foreground text-base md:text-lg max-w-2xl mx-auto font-devnagri">
           "श्रद्धा, विश्वास और लगन से भरपूर — बाबा श्याम और माता रानी की सेवा में समर्पित"
