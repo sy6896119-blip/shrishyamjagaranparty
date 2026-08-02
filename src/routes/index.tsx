@@ -143,11 +143,12 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-16 md:pt-20">
+    <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-20 md:pt-28">
       <img src={HERO_POSTER} alt="Shri Shyam Jagaran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(30,0,0,0.55) 80%, rgba(30,0,0,0.85) 100%)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
-        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR ALL over india</p>
+        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR &amp; All Over INDIA</p>
+
         <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
           Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Jagaran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
         </p>
