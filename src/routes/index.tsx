@@ -204,12 +204,27 @@ function ShankarPhoto() {
       <div className="max-w-4xl mx-auto text-center">
         <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-3">Sanchalak</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold mb-6"><span className="font-devnagri">श्री शंकर यादव जी</span></h2>
-        <div className="relative inline-block">
-          <div className="absolute -inset-4 rounded-full bg-gradient-gold blur-2xl opacity-40 animate-flicker" />
-          <div className="relative w-56 h-56 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-gold shadow-divine bg-gradient-royal">
+        <div className="relative inline-block p-6 md:p-10">
+          {/* radiating divine rays */}
+          <div
+            className="absolute inset-0 rounded-full opacity-70"
+            style={{
+              background:
+                "conic-gradient(from 0deg, hsl(var(--gold) / 0.55) 0 4deg, transparent 4deg 15deg, hsl(var(--saffron) / 0.45) 15deg 19deg, transparent 19deg 30deg)",
+              maskImage: "radial-gradient(circle, transparent 44%, black 47%, black 78%, transparent 92%)",
+              WebkitMaskImage: "radial-gradient(circle, transparent 44%, black 47%, black 78%, transparent 92%)",
+              animation: "spin-slow 24s linear infinite",
+            }}
+          />
+          {/* glowing halo */}
+          <div className="absolute inset-2 rounded-full bg-gradient-gold blur-3xl opacity-45 animate-flicker" />
+          <div className="absolute inset-4 rounded-full border border-gold/50" />
+          <div className="relative w-56 h-56 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-gold shadow-divine bg-gradient-royal ring-4 ring-saffron/30 ring-offset-4 ring-offset-background">
             <img src={SHANKAR} alt="Shri Shankar Yadav ji" className="w-full h-full object-cover object-top" />
           </div>
+          <style>{`@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
         </div>
+
         <p className="mt-6 text-muted-foreground text-base md:text-lg max-w-2xl mx-auto font-devnagri">
           "श्रद्धा, विश्वास और लगन से भरपूर — बाबा श्याम और माता रानी की सेवा में समर्पित"
         </p>
