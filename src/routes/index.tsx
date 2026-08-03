@@ -532,6 +532,7 @@ function AutoPlayVideo({ videoId }: { videoId: string }) {
         playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1, cc_load_policy: 0, iv_load_policy: 3 },
         events: {
           onReady: () => {
+            try { playerRef.current?.setVolume?.(60); } catch {}
             if (!wrapperRef.current) return;
             observer = new IntersectionObserver((entries) => {
               for (const e of entries) {
