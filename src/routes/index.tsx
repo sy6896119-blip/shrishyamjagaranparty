@@ -631,6 +631,7 @@ function Compositions() {
         playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1, cc_load_policy: 0, iv_load_policy: 3 },
         events: {
           onReady: () => {
+            try { playerRef.current?.setVolume?.(60); } catch {}
             switchTimer = setInterval(() => jumpTo((indexRef.current + 1) % COMPOSITIONS.length), 60000);
             if (wrapperRef.current) {
               observer = new IntersectionObserver((entries) => {
