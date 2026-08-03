@@ -602,7 +602,7 @@ function Compositions() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
   const indexRef = useRef(0);
-  const savedTimes = useRef<number[]>(COMPOSITIONS.map(() => 0));
+  const savedTimes = useRef<number[]>([...COMPOSITION_STARTS]);
   const [displayIndex, setDisplayIndex] = useState(0);
 
   const jumpTo = useCallback((next: number) => {
