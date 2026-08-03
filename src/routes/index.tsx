@@ -33,6 +33,7 @@ import darbar26 from "@/assets/darbar-26.jpeg.asset.json";
 import darbar27 from "@/assets/darbar-27.jpeg.asset.json";
 import darbar28 from "@/assets/darbar-28.jpeg.asset.json";
 import darbar29 from "@/assets/darbar-29.jpeg.asset.json";
+import darbar30 from "@/assets/darbar-30.jpeg.asset.json";
 
 // Jhanki uses uploaded photos only (no YouTube) — richly decorated darbars
 const JHANKI_PHOTOS = [darbar10.url, darbar11.url, darbar13.url, darbar15.url, darbar16.url, darbar17.url, darbar18.url, darbar19.url];
@@ -43,12 +44,52 @@ const DARBAR_PHOTOS = [
   darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar12.url,
   darbar14.url, darbar20.url, darbar21.url, darbar22.url, darbar23.url,
   darbar24.url, darbar25.url, darbar26.url, darbar27.url, darbar28.url,
-  darbar29.url,
+  darbar29.url, darbar30.url,
 ];
 
+const SITE_URL = "https://shrishyamjagranparty.lovable.app";
+const OG_IMAGE = `${SITE_URL}${heroPosterAsset.url}`;
+const PAGE_TITLE = "Shri Shyam Jagaran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Kirtan";
+const PAGE_DESC =
+  "Book Shri Shyam Jagaran Party Ghaziabad for Mata Ki Chowki & Jagaran, Khatu Shyam Kirtan, Bhajan Sandhya and Sundar Kand Path in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: PAGE_TITLE },
+      { name: "description", content: PAGE_DESC },
+      { name: "keywords", content: "shyam jagran party, mata ki chowki ghaziabad, khatu shyam kirtan, bhajan sandhya delhi ncr, jagran party noida" },
+      { property: "og:title", content: PAGE_TITLE },
+      { property: "og:description", content: PAGE_DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL + "/" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:site_name", content: "Shri Shyam Jagaran Party" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: PAGE_TITLE },
+      { name: "twitter:description", content: PAGE_DESC },
+      { name: "twitter:image", content: OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: SITE_URL + "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Shri Shyam Jagaran Party",
+          description: PAGE_DESC,
+          image: OG_IMAGE,
+          url: SITE_URL,
+          telephone: "+917982956590",
+          address: { "@type": "PostalAddress", addressLocality: "Ghaziabad", addressRegion: "Uttar Pradesh", addressCountry: "IN" },
+          areaServed: ["Ghaziabad", "Noida", "Delhi NCR", "India"],
+          aggregateRating: { "@type": "AggregateRating", ratingValue: "5", reviewCount: "8" },
+        }),
+      },
+    ],
+  }),
 });
 
 const LOGO = logoAsset.url;
