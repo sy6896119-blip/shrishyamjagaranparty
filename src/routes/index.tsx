@@ -108,6 +108,8 @@ const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
 
 const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "YYDIhEeAdj0"];
+// 3rd bhajan starts at 01:05 (skip the intro portion)
+const COMPOSITION_STARTS = [0, 0, 65];
 const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
 
 const services = [
