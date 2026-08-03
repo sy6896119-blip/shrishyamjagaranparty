@@ -478,9 +478,9 @@ function Jhanki() {
             Glimpses of our beautifully decorated jhankis of Mata Rani, Shyam Baba & other devotional setups.
           </p>
         </div>
-        <div key={i} className="grid grid-cols-2 gap-3 md:gap-4 animate-float-up">
+        <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 animate-float-up">
           {current.map((src, idx) => (
-            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 aspect-[4/3]">
+            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 h-[27vh] md:h-auto md:aspect-[4/3]">
               <img src={src} alt={`Jhanki ${i * 2 + idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
             </div>
           ))}
