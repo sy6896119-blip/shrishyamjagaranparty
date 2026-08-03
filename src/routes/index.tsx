@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef, useCallback, type FormEvent } from "react";
-import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Camera, Video, Crown, Feather, ChevronLeft, ChevronRight } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Camera, Video, Crown, Feather, ChevronLeft, ChevronRight, X } from "lucide-react";
 import logoAsset from "@/assets/logo.png.asset.json";
 import heroPosterAsset from "@/assets/hero-poster.png.asset.json";
 import shankarAsset from "@/assets/shankar-yadav.jpeg.asset.json";
@@ -33,6 +33,7 @@ import darbar26 from "@/assets/darbar-26.jpeg.asset.json";
 import darbar27 from "@/assets/darbar-27.jpeg.asset.json";
 import darbar28 from "@/assets/darbar-28.jpeg.asset.json";
 import darbar29 from "@/assets/darbar-29.jpeg.asset.json";
+import darbar30 from "@/assets/darbar-30.jpeg.asset.json";
 
 // Jhanki uses uploaded photos only (no YouTube) — richly decorated darbars
 const JHANKI_PHOTOS = [darbar10.url, darbar11.url, darbar13.url, darbar15.url, darbar16.url, darbar17.url, darbar18.url, darbar19.url];
@@ -43,12 +44,52 @@ const DARBAR_PHOTOS = [
   darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar12.url,
   darbar14.url, darbar20.url, darbar21.url, darbar22.url, darbar23.url,
   darbar24.url, darbar25.url, darbar26.url, darbar27.url, darbar28.url,
-  darbar29.url,
+  darbar29.url, darbar30.url,
 ];
 
+const SITE_URL = "https://shrishyamjagranparty.lovable.app";
+const OG_IMAGE = `${SITE_URL}${heroPosterAsset.url}`;
+const PAGE_TITLE = "Shri Shyam Jagaran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Kirtan";
+const PAGE_DESC =
+  "Book Shri Shyam Jagaran Party Ghaziabad for Mata Ki Chowki & Jagaran, Khatu Shyam Kirtan, Bhajan Sandhya and Sundar Kand Path in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: PAGE_TITLE },
+      { name: "description", content: PAGE_DESC },
+      { name: "keywords", content: "shyam jagran party, mata ki chowki ghaziabad, khatu shyam kirtan, bhajan sandhya delhi ncr, jagran party noida" },
+      { property: "og:title", content: PAGE_TITLE },
+      { property: "og:description", content: PAGE_DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL + "/" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:site_name", content: "Shri Shyam Jagaran Party" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: PAGE_TITLE },
+      { name: "twitter:description", content: PAGE_DESC },
+      { name: "twitter:image", content: OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: SITE_URL + "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Shri Shyam Jagaran Party",
+          description: PAGE_DESC,
+          image: OG_IMAGE,
+          url: SITE_URL,
+          telephone: "+917982956590",
+          address: { "@type": "PostalAddress", addressLocality: "Ghaziabad", addressRegion: "Uttar Pradesh", addressCountry: "IN" },
+          areaServed: ["Ghaziabad", "Noida", "Delhi NCR", "India"],
+          aggregateRating: { "@type": "AggregateRating", ratingValue: "5", reviewCount: "8" },
+        }),
+      },
+    ],
+  }),
 });
 
 const LOGO = logoAsset.url;
@@ -67,6 +108,8 @@ const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
 const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
 
 const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "YYDIhEeAdj0"];
+// 3rd bhajan starts at 01:05 (skip the intro portion)
+const COMPOSITION_STARTS = [0, 0, 65];
 const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
 
 const services = [
@@ -114,10 +157,10 @@ function Index() {
 
 function Header() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
+    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md md:backdrop-blur-none bg-background/80 md:bg-background border-b border-border/60">
       <div className="max-w-7xl mx-auto px-3 md:px-6 h-20 md:h-28 flex items-center justify-between gap-2">
-        <a href="#top" className="flex items-center gap-2 shrink-0">
-          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="h-14 md:h-24 w-auto object-contain drop-shadow-lg" />
+        <a href="#top" className="flex items-center h-full shrink-0 py-1">
+          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="h-full w-auto object-contain drop-shadow-lg" />
         </a>
         <nav className="flex items-center gap-2.5 sm:gap-5 md:gap-8 text-[11px] sm:text-sm">
           {[
@@ -316,6 +359,54 @@ function SliderNav({ onPrev, onNext, dots, active, onDot }: { onPrev: () => void
   );
 }
 
+// ============ Lightbox ============
+
+function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: string[]; index: number; onClose: () => void; onPrev: () => void; onNext: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") onPrev();
+      if (e.key === "ArrowRight") onNext();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose, onPrev, onNext]);
+
+  return (
+    <div className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center" onClick={onClose}>
+      <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 w-11 h-11 rounded-full bg-cream/15 text-cream grid place-items-center hover:bg-cream/25 transition">
+        <X className="w-6 h-6" />
+      </button>
+      <button
+        onClick={(e) => { e.stopPropagation(); onPrev(); }}
+        aria-label="Previous photo"
+        className="absolute left-2 md:left-6 w-11 h-11 md:w-14 md:h-14 rounded-full bg-cream/15 text-cream grid place-items-center hover:bg-cream/25 transition"
+      >
+        <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+      </button>
+      <img
+        src={photos[index]}
+        alt={`Darbar photo ${index + 1}`}
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-[85vh] max-w-[88vw] object-contain rounded-xl shadow-divine"
+      />
+      <button
+        onClick={(e) => { e.stopPropagation(); onNext(); }}
+        aria-label="Next photo"
+        className="absolute right-2 md:right-6 w-11 h-11 md:w-14 md:h-14 rounded-full bg-cream/15 text-cream grid place-items-center hover:bg-cream/25 transition"
+      >
+        <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+      </button>
+      <p className="absolute bottom-5 text-cream/80 text-xs md:text-sm">{index + 1} / {photos.length}</p>
+    </div>
+  );
+}
+
 // ============ Darbar Photos ============
 
 function DarbarPhotos() {
@@ -323,6 +414,7 @@ function DarbarPhotos() {
   for (let i = 0; i < DARBAR_PHOTOS.length; i += 2) pairs.push(DARBAR_PHOTOS.slice(i, i + 2));
   const { i, setI, next, prev } = useAutoRotate(pairs.length, 3000);
   const current = pairs[i];
+  const [box, setBox] = useState<number | null>(null);
 
   return (
     <section id="gallery" className="pt-6 pb-6 md:pt-14 md:pb-12 px-4 md:px-6">
@@ -341,14 +433,27 @@ function DarbarPhotos() {
         </div>
         <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 animate-float-up">
           {current.map((src, idx) => (
-            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-soft h-[27vh] md:h-auto md:aspect-[4/3]">
+            <button
+              key={src}
+              onClick={() => setBox(i * 2 + idx)}
+              className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-soft h-[27vh] md:h-auto md:aspect-[4/3] cursor-zoom-in"
+            >
               <img src={src} alt={`Darbar photo ${i * 2 + idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
-            </div>
+            </button>
           ))}
         </div>
         <SliderNav onPrev={prev} onNext={next} dots={pairs.length} active={i} onDot={setI} />
 
       </div>
+      {box !== null && (
+        <Lightbox
+          photos={DARBAR_PHOTOS}
+          index={box}
+          onClose={() => setBox(null)}
+          onPrev={() => setBox((b) => ((b ?? 0) - 1 + DARBAR_PHOTOS.length) % DARBAR_PHOTOS.length)}
+          onNext={() => setBox((b) => ((b ?? 0) + 1) % DARBAR_PHOTOS.length)}
+        />
+      )}
     </section>
   );
 }
@@ -373,9 +478,9 @@ function Jhanki() {
             Glimpses of our beautifully decorated jhankis of Mata Rani, Shyam Baba & other devotional setups.
           </p>
         </div>
-        <div key={i} className="grid grid-cols-2 gap-3 md:gap-4 animate-float-up">
+        <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 animate-float-up">
           {current.map((src, idx) => (
-            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 aspect-[4/3]">
+            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 h-[27vh] md:h-auto md:aspect-[4/3]">
               <img src={src} alt={`Jhanki ${i * 2 + idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
             </div>
           ))}
@@ -427,6 +532,7 @@ function AutoPlayVideo({ videoId }: { videoId: string }) {
         playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1, cc_load_policy: 0, iv_load_policy: 3 },
         events: {
           onReady: () => {
+            try { playerRef.current?.setVolume?.(60); } catch {}
             if (!wrapperRef.current) return;
             observer = new IntersectionObserver((entries) => {
               for (const e of entries) {
@@ -434,6 +540,7 @@ function AutoPlayVideo({ videoId }: { videoId: string }) {
                 try {
                   if (e.isIntersecting && e.intersectionRatio > 0.4) {
                     playerRef.current.unMute?.();
+                    
                     playerRef.current.playVideo?.();
                   } else {
                     playerRef.current.pauseVideo?.();
@@ -460,7 +567,7 @@ function AutoPlayVideo({ videoId }: { videoId: string }) {
   );
 }
 
-// ============ Darbar Videos (bottom) ============
+// ============ Darbar & Singers Videos (bottom) ============
 
 function DarbarVideos() {
   const { i, setI, next, prev } = useAutoRotate(DARBAR_VIDEOS.length, 20000);
@@ -469,12 +576,20 @@ function DarbarVideos() {
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center gap-3 mb-6 justify-center">
           <Video className="w-5 h-5 md:w-6 md:h-6 text-saffron" />
-          <h3 className="text-2xl md:text-3xl font-display font-semibold text-center">Darbar Videos</h3>
+          <h3 className="text-2xl md:text-3xl font-display font-semibold text-center">Darbar &amp; Singers Videos</h3>
         </div>
         <div className="max-w-sm mx-auto" key={DARBAR_VIDEOS[i]}>
           <AutoPlayVideo videoId={DARBAR_VIDEOS[i]} />
         </div>
         <SliderNav onPrev={prev} onNext={next} dots={DARBAR_VIDEOS.length} active={i} onDot={setI} />
+        <div className="mt-7 flex flex-wrap justify-center gap-3">
+          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-royal text-cream text-sm font-medium shadow-soft hover:scale-105 transition">
+            <Instagram className="w-4 h-4" /> Watch more on Instagram <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+          <a href={YOUTUBE} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-card border border-border text-sm font-medium shadow-soft hover:bg-saffron/10 transition">
+            <Youtube className="w-4 h-4 text-saffron" /> Watch more on YouTube <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -487,7 +602,7 @@ function Compositions() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
   const indexRef = useRef(0);
-  const savedTimes = useRef<number[]>(COMPOSITIONS.map(() => 0));
+  const savedTimes = useRef<number[]>([...COMPOSITION_STARTS]);
   const [displayIndex, setDisplayIndex] = useState(0);
 
   const jumpTo = useCallback((next: number) => {
@@ -498,7 +613,7 @@ function Compositions() {
     } catch {}
     indexRef.current = next;
     setDisplayIndex(next);
-    const startAt = Math.floor(savedTimes.current[next] || 0);
+    const startAt = Math.max(COMPOSITION_STARTS[next] ?? 0, Math.floor(savedTimes.current[next] || 0));
     try {
       playerRef.current.loadVideoById({ videoId: COMPOSITIONS[next], startSeconds: startAt });
     } catch {}
@@ -516,6 +631,7 @@ function Compositions() {
         playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1, cc_load_policy: 0, iv_load_policy: 3 },
         events: {
           onReady: () => {
+            try { playerRef.current?.setVolume?.(60); } catch {}
             switchTimer = setInterval(() => jumpTo((indexRef.current + 1) % COMPOSITIONS.length), 60000);
             if (wrapperRef.current) {
               observer = new IntersectionObserver((entries) => {
@@ -533,6 +649,14 @@ function Compositions() {
               }, { threshold: [0, 0.4, 0.75] });
               observer.observe(wrapperRef.current);
             }
+          },
+          onStateChange: () => {
+            // never play the 3rd bhajan before 01:05
+            try {
+              const min = COMPOSITION_STARTS[indexRef.current] ?? 0;
+              const t = playerRef.current?.getCurrentTime?.() ?? 0;
+              if (min > 0 && t < min - 1) playerRef.current?.seekTo?.(min, true);
+            } catch {}
           },
         },
       });
@@ -660,22 +784,22 @@ function BookingForm() {
   };
 
   return (
-    <section id="booking" className="py-16 md:py-20 px-6">
+    <section id="booking" className="py-6 md:py-20 px-4 md:px-6">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-10">
-          <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-3">Book Now</p>
-          <h2 className="text-2xl md:text-5xl font-bold">Share Your Requirements</h2>
-          <p className="text-muted-foreground mt-2 text-sm">Fill the form — we'll get back with a divine plan for your event.</p>
+        <div className="text-center mb-3 md:mb-10">
+          <p className="uppercase tracking-[0.3em] text-saffron text-[10px] md:text-xs mb-1 md:mb-3">Book Now</p>
+          <h2 className="text-xl md:text-5xl font-bold">Share Your Requirements</h2>
+          <p className="text-muted-foreground mt-1 md:mt-2 text-[11px] md:text-sm">Fill the form — we'll get back with a divine plan for your event.</p>
         </div>
-        <form onSubmit={onSubmit} className="p-6 md:p-10 rounded-3xl bg-card border border-border shadow-divine space-y-5">
-          <div className="grid md:grid-cols-2 gap-5">
+        <form onSubmit={onSubmit} className="p-3.5 md:p-10 rounded-2xl md:rounded-3xl bg-card border border-border shadow-divine space-y-2.5 md:space-y-5">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-2.5 md:gap-5">
             <Field label="Your Name" name="name" required />
             <Field label="Phone Number" name="phone" type="tel" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-2.5 md:gap-5">
             <div>
-              <label className="text-sm font-medium mb-2 block">Event Type</label>
-              <select name="event" required defaultValue="Khatu Shyam Jagran" className="w-full px-4 py-3 rounded-lg bg-background border border-input focus:border-ring outline-none">
+              <label className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">Event Type</label>
+              <select name="event" required defaultValue="Khatu Shyam Jagran" className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none text-xs md:text-base">
                 <option>Khatu Shyam Jagran</option>
                 <option>Mata Ki Chowki</option>
                 <option>Bhajan Sandhya</option>
@@ -687,13 +811,13 @@ function BookingForm() {
           </div>
           <Field label="City / Location" name="city" required />
           <div>
-            <label className="text-sm font-medium mb-2 block">Requirements / Message</label>
-            <textarea name="message" rows={4} maxLength={1000} className="w-full px-4 py-3 rounded-lg bg-background border border-input focus:border-ring outline-none resize-none" placeholder="Tell us about your event, expected guests, any special requirements..." />
+            <label className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">Requirements / Message</label>
+            <textarea name="message" rows={2} maxLength={1000} className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none resize-none text-xs md:text-base md:min-h-28" placeholder="Tell us about your event, guests, special requirements..." />
           </div>
-          <button type="submit" className="w-full py-4 rounded-full bg-gradient-royal text-cream font-medium shadow-divine hover:opacity-95 transition inline-flex items-center justify-center gap-2">
+          <button type="submit" className="w-full py-2.5 md:py-4 rounded-full bg-gradient-royal text-cream font-medium shadow-divine hover:opacity-95 transition inline-flex items-center justify-center gap-2 text-sm md:text-base">
             <Send className="w-4 h-4" /> Send Enquiry via WhatsApp
           </button>
-          {sent && <p className="text-center text-sm text-saffron">Opening WhatsApp… Jai Shree Shyam! 🙏</p>}
+          {sent && <p className="text-center text-xs md:text-sm text-saffron">Opening WhatsApp… Jai Shree Shyam! 🙏</p>}
         </form>
       </div>
     </section>
@@ -703,9 +827,9 @@ function BookingForm() {
 function Field({ label, name, type = "text", required, pattern, minLength, maxLength }: { label: string; name: string; type?: string; required?: boolean; pattern?: string; minLength?: number; maxLength?: number }) {
   return (
     <div>
-      <label className="text-sm font-medium mb-2 block">{label}{required && <span className="text-saffron ml-1">*</span>}</label>
+      <label className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">{label}{required && <span className="text-saffron ml-1">*</span>}</label>
       <input name={name} type={type} required={required} pattern={pattern} minLength={minLength} maxLength={maxLength}
-        className="w-full px-4 py-3 rounded-lg bg-background border border-input focus:border-ring outline-none" />
+        className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none text-xs md:text-base" />
     </div>
   );
 }
