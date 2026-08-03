@@ -540,7 +540,7 @@ function AutoPlayVideo({ videoId }: { videoId: string }) {
                 try {
                   if (e.isIntersecting && e.intersectionRatio > 0.4) {
                     playerRef.current.unMute?.();
-                    playerRef.current.setVolume?.(60);
+                    
                     playerRef.current.playVideo?.();
                   } else {
                     playerRef.current.pauseVideo?.();
