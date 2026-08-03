@@ -613,7 +613,7 @@ function Compositions() {
     } catch {}
     indexRef.current = next;
     setDisplayIndex(next);
-    const startAt = Math.floor(savedTimes.current[next] || 0);
+    const startAt = Math.max(COMPOSITION_STARTS[next] ?? 0, Math.floor(savedTimes.current[next] || 0));
     try {
       playerRef.current.loadVideoById({ videoId: COMPOSITIONS[next], startSeconds: startAt });
     } catch {}
