@@ -359,6 +359,54 @@ function SliderNav({ onPrev, onNext, dots, active, onDot }: { onPrev: () => void
   );
 }
 
+// ============ Lightbox ============
+
+function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: string[]; index: number; onClose: () => void; onPrev: () => void; onNext: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") onPrev();
+      if (e.key === "ArrowRight") onNext();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose, onPrev, onNext]);
+
+  return (
+    <div className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center" onClick={onClose}>
+      <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 w-11 h-11 rounded-full bg-cream/15 text-cream grid place-items-center hover:bg-cream/25 transition">
+        <X className="w-6 h-6" />
+      </button>
+      <button
+        onClick={(e) => { e.stopPropagation(); onPrev(); }}
+        aria-label="Previous photo"
+        className="absolute left-2 md:left-6 w-11 h-11 md:w-14 md:h-14 rounded-full bg-cream/15 text-cream grid place-items-center hover:bg-cream/25 transition"
+      >
+        <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+      </button>
+      <img
+        src={photos[index]}
+        alt={`Darbar photo ${index + 1}`}
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-[85vh] max-w-[88vw] object-contain rounded-xl shadow-divine"
+      />
+      <button
+        onClick={(e) => { e.stopPropagation(); onNext(); }}
+        aria-label="Next photo"
+        className="absolute right-2 md:right-6 w-11 h-11 md:w-14 md:h-14 rounded-full bg-cream/15 text-cream grid place-items-center hover:bg-cream/25 transition"
+      >
+        <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+      </button>
+      <p className="absolute bottom-5 text-cream/80 text-xs md:text-sm">{index + 1} / {photos.length}</p>
+    </div>
+  );
+}
+
 // ============ Darbar Photos ============
 
 function DarbarPhotos() {
@@ -366,6 +414,7 @@ function DarbarPhotos() {
   for (let i = 0; i < DARBAR_PHOTOS.length; i += 2) pairs.push(DARBAR_PHOTOS.slice(i, i + 2));
   const { i, setI, next, prev } = useAutoRotate(pairs.length, 3000);
   const current = pairs[i];
+  const [box, setBox] = useState<number | null>(null);
 
   return (
     <section id="gallery" className="pt-6 pb-6 md:pt-14 md:pb-12 px-4 md:px-6">
@@ -384,14 +433,27 @@ function DarbarPhotos() {
         </div>
         <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 animate-float-up">
           {current.map((src, idx) => (
-            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-soft h-[27vh] md:h-auto md:aspect-[4/3]">
+            <button
+              key={src}
+              onClick={() => setBox(i * 2 + idx)}
+              className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-soft h-[27vh] md:h-auto md:aspect-[4/3] cursor-zoom-in"
+            >
               <img src={src} alt={`Darbar photo ${i * 2 + idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
-            </div>
+            </button>
           ))}
         </div>
         <SliderNav onPrev={prev} onNext={next} dots={pairs.length} active={i} onDot={setI} />
 
       </div>
+      {box !== null && (
+        <Lightbox
+          photos={DARBAR_PHOTOS}
+          index={box}
+          onClose={() => setBox(null)}
+          onPrev={() => setBox((b) => ((b ?? 0) - 1 + DARBAR_PHOTOS.length) % DARBAR_PHOTOS.length)}
+          onNext={() => setBox((b) => ((b ?? 0) + 1) % DARBAR_PHOTOS.length)}
+        />
+      )}
     </section>
   );
 }
