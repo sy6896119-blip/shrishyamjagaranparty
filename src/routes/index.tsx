@@ -650,6 +650,14 @@ function Compositions() {
               observer.observe(wrapperRef.current);
             }
           },
+          onStateChange: () => {
+            // never play the 3rd bhajan before 01:05
+            try {
+              const min = COMPOSITION_STARTS[indexRef.current] ?? 0;
+              const t = playerRef.current?.getCurrentTime?.() ?? 0;
+              if (min > 0 && t < min - 1) playerRef.current?.seekTo?.(min, true);
+            } catch {}
+          },
         },
       });
     });
