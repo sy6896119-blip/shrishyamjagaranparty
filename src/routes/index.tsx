@@ -158,9 +158,9 @@ function Index() {
 function Header() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md md:backdrop-blur-none bg-background/80 md:bg-background border-b border-border/60">
-      <div className="max-w-7xl mx-auto px-3 md:px-6 h-24 md:h-36 flex items-center justify-between gap-2">
+      <div className="max-w-7xl mx-auto px-3 md:px-6 h-32 md:h-36 flex items-center justify-between gap-2">
         <a href="#top" className="flex items-center h-full shrink-0">
-          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="h-[115%] md:h-[120%] w-auto object-contain drop-shadow-lg" />
+          <img src={LOGO} alt="Shri Shyam Jagran Party logo" className="h-[150%] md:h-[120%] w-auto object-contain drop-shadow-lg" />
         </a>
         <nav className="flex items-center gap-2.5 sm:gap-5 md:gap-8 text-[11px] sm:text-sm">
           {[
