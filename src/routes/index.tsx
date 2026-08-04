@@ -186,7 +186,7 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-20 md:pt-28">
+    <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-24 md:pt-36">
       <img src={HERO_POSTER} alt="Shri Shyam Jagaran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(30,0,0,0.55) 80%, rgba(30,0,0,0.85) 100%)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
