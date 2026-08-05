@@ -884,6 +884,129 @@ function Field({ label, name, type = "text", required, pattern, minLength, maxLe
   );
 }
 
+// ============ FAQs ============
+
+const FAQS: { q: string; a: React.ReactNode }[] = [
+  {
+    q: "Which services do you provide?",
+    a: "We provide Mata Ki Chowki, Mata Jagran, Khatu Shyam Sankirtan, Bhajan Sandhya, Sundarkand Path, Krishna Bhajan Sandhya, Balaji Jagran and other devotional events across Ghaziabad, Noida, Delhi NCR, nearby cities and all over India.",
+  },
+  {
+    q: "How can I book Shri Shyam Jagran Party?",
+    a: (
+      <>
+        You can book us by:
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>
+            Calling us on{" "}
+            <a href={`tel:${PHONE}`} className="text-saffron font-medium underline">+91 79829 56590</a> or tapping the call icon on this page
+          </li>
+          <li>
+            Sending a{" "}
+            <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer" className="text-saffron font-medium underline">WhatsApp message</a>{" "}
+            by clicking the WhatsApp icon
+          </li>
+          <li>
+            Filling out the <a href="#booking" className="text-saffron font-medium underline">booking form</a> on our website
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    q: "How much does a Jagran or Mata Ki Chowki cost?",
+    a: "The cost depends on the event type, location, duration, number of singers, musicians and stage setup. Contact us for a free customized quotation.",
+  },
+  {
+    q: "Do you provide sound system and stage decoration?",
+    a: "Yes. We provide professional sound systems, stage decoration, lighting, LED screens (if required) and complete event management.",
+  },
+  {
+    q: "How early should I book?",
+    a: "We recommend booking 1–180 days in advance, especially during Navratri, Saawan and other festive seasons, to secure your preferred date.",
+  },
+  {
+    q: "Can you perform outside Ghaziabad?",
+    a: "Yes. We perform across Delhi NCR and can also travel to other cities and states based on availability.",
+  },
+  {
+    q: "What types of devotional programs do you perform?",
+    a: (
+      <ul className="list-disc pl-5 space-y-1">
+        {["Mata Jagran", "Mata Ki Chowki", "Khatu Shyam Sankirtan", "Bhajan Sandhya", "Sundarkand Path", "Krishna Bhajan Sandhya", "Balaji Jagran", "Special Festival Programs"].map((x) => (
+          <li key={x}>{x}</li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    q: "How long does a Jagran program last?",
+    a: "The duration depends on your requirements. Most Jagran programs last 4–8 hours, while all-night Jagran programs can continue until morning.",
+  },
+  {
+    q: "Why choose Shri Shyam Jagran Party?",
+    a: (
+      <ul className="list-disc pl-5 space-y-1">
+        {["Experienced devotional singers", "Professional musicians", "High-quality sound system", "Beautiful stage decoration", "Punctual and reliable service", "Serving families across Ghaziabad, Noida & Delhi NCR", "Dedicated to creating a truly devotional atmosphere"].map((x) => (
+          <li key={x}>{x}</li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    q: "Can we customize the bhajan list?",
+    a: "Yes. We can include your preferred bhajans and devotional requests to make the event more personal and memorable.",
+  },
+  {
+    q: "Do you provide services for small home events?",
+    a: "Absolutely. We organize both small home Mata Ki Chowki and large-scale Jagran events with the same devotion and professionalism.",
+  },
+  {
+    q: "Is Shri Shyam Jagran Party available 24×7 for booking?",
+    a: "Yes. Our team is available 24×7 to answer your questions and help you book your Jagran, Chowki or Bhajan Sandhya.",
+  },
+  {
+    q: "Why do thousands of families choose Shri Shyam Jagran Party?",
+    a: (
+      <ul className="list-disc pl-5 space-y-1">
+        {["Pure devotional atmosphere", "Experienced singers", "Crystal-clear sound", "Beautiful stage decoration", "Timely service", "Complete event management"].map((x) => (
+          <li key={x}>{x}</li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    q: "Which areas do you serve?",
+    a: "Our Jagran Party serves Ghaziabad, Noida, Greater Noida, Delhi, Indirapuram, Vaishali, Crossings Republik and the entire Delhi NCR. We also travel to nearby cities on request.",
+  },
+];
+
+function FAQ() {
+  return (
+    <section id="faqs" className="py-12 md:py-20 px-4 md:px-6 bg-secondary/40">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-6 md:mb-10">
+          <p className="uppercase tracking-[0.3em] text-saffron text-[10px] md:text-xs mb-1 md:mb-3">Good to Know</p>
+          <h2 className="text-xl md:text-4xl font-bold">Frequently Asked Questions (FAQs)</h2>
+        </div>
+        <div className="space-y-2.5 md:space-y-3">
+          {FAQS.map((f, n) => (
+            <details key={f.q} className="group rounded-2xl bg-card border border-border shadow-soft overflow-hidden">
+              <summary className="cursor-pointer list-none px-4 md:px-6 py-3.5 md:py-4 flex items-start gap-3 font-medium text-sm md:text-base">
+                <span className="text-saffron font-display">{n + 1}.</span>
+                <span className="flex-1">{f.q}</span>
+                <ChevronRight className="w-4 h-4 mt-0.5 shrink-0 text-saffron transition-transform group-open:rotate-90" />
+              </summary>
+              <div className="px-4 md:px-6 pb-4 md:pb-5 pt-0 text-xs md:text-sm text-muted-foreground leading-relaxed">{f.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 function Footer() {
   return (
     <footer className="text-cream py-14 px-6" style={{ background: "var(--maroon-deep)" }}>
