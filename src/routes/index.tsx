@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect, useRef, useCallback, type FormEvent } from "react";
+import { useState, useEffect, useRef, useCallback, type FormEvent, type ReactNode } from "react";
 import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Camera, Video, Crown, Feather, ChevronLeft, ChevronRight, X } from "lucide-react";
 import logoAsset from "@/assets/logo.png.asset.json";
 import heroPosterAsset from "@/assets/hero-poster.png.asset.json";
@@ -34,24 +34,45 @@ import darbar27 from "@/assets/darbar-27.jpeg.asset.json";
 import darbar28 from "@/assets/darbar-28.jpeg.asset.json";
 import darbar29 from "@/assets/darbar-29.jpeg.asset.json";
 import darbar30 from "@/assets/darbar-30.jpeg.asset.json";
+import jhanki1 from "@/assets/jhanki-1.jpeg.asset.json";
+import jhanki2 from "@/assets/jhanki-2.jpeg.asset.json";
+import jhanki3 from "@/assets/jhanki-3.jpeg.asset.json";
+import jhanki4 from "@/assets/jhanki-4.jpeg.asset.json";
+import jhanki5 from "@/assets/jhanki-5.jpeg.asset.json";
+import jhanki6 from "@/assets/jhanki-6.jpeg.asset.json";
+import jhanki7 from "@/assets/jhanki-7.jpeg.asset.json";
+import jhanki8 from "@/assets/jhanki-8.jpeg.asset.json";
 
-// Jhanki uses uploaded photos only (no YouTube) — richly decorated darbars
-const JHANKI_PHOTOS = [darbar10.url, darbar11.url, darbar13.url, darbar15.url, darbar16.url, darbar17.url, darbar18.url, darbar19.url];
+// Jhanki photos — only these uploaded jhanki images
+const JHANKI_PHOTOS = [jhanki1.url, jhanki2.url, jhanki3.url, jhanki4.url, jhanki5.url, jhanki6.url, jhanki7.url, jhanki8.url];
 
-// Darbar photos — every image appears only once across the gallery (no overlap with Jhanki)
+// Jhanki reels — Instagram reel shortcodes, played one after another
+const JHANKI_REELS = [
+  "Cyj-9cNPamf",
+  "Cyl74iKBqtz",
+  "C7DjZAgLigY",
+  "C6plJXJvh95",
+  "C0O0Kuhr0lh",
+  "C3eJrQCPLEX",
+  "Cyf4zr6PmnV",
+];
+
+// Darbar photos
 const DARBAR_PHOTOS = [
   darbar1.url, darbar2.url, darbar3.url, darbar4.url, darbar5.url,
-  darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar12.url,
-  darbar14.url, darbar20.url, darbar21.url, darbar22.url, darbar23.url,
+  darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar10.url,
+  darbar11.url, darbar12.url, darbar13.url, darbar14.url, darbar15.url,
+  darbar16.url, darbar17.url, darbar18.url, darbar19.url,
+  darbar20.url, darbar21.url, darbar22.url, darbar23.url,
   darbar24.url, darbar25.url, darbar26.url, darbar27.url, darbar28.url,
   darbar29.url, darbar30.url,
 ];
 
 const SITE_URL = "https://shrishyamjagranparty.lovable.app";
 const OG_IMAGE = `${SITE_URL}${heroPosterAsset.url}`;
-const PAGE_TITLE = "Shri Shyam Jagaran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Kirtan";
+const PAGE_TITLE = "Shri Shyam Jagran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Kirtan";
 const PAGE_DESC =
-  "Book Shri Shyam Jagaran Party Ghaziabad for Mata Ki Chowki & Jagaran, Khatu Shyam Kirtan, Bhajan Sandhya and Sundar Kand Path in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
+  "Book Shri Shyam Jagran Party Ghaziabad for Mata Ki Chowki & Jagran, Khatu Shyam Kirtan, Bhajan Sandhya and Sundar Kand Katha in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -65,7 +86,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL + "/" },
       { property: "og:image", content: OG_IMAGE },
-      { property: "og:site_name", content: "Shri Shyam Jagaran Party" },
+      { property: "og:site_name", content: "Shri Shyam Jagran Party" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: PAGE_TITLE },
       { name: "twitter:description", content: PAGE_DESC },
@@ -78,7 +99,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          name: "Shri Shyam Jagaran Party",
+          name: "Shri Shyam Jagran Party",
           description: PAGE_DESC,
           image: OG_IMAGE,
           url: SITE_URL,
@@ -104,8 +125,8 @@ const WHATSAPP_TEXT = encodeURIComponent(
 const YOUTUBE = "https://www.youtube.com/@ShriShyamJagranPartyGzb";
 const INSTAGRAM = "https://www.instagram.com/shankar98yadav/";
 const FACEBOOK = "https://www.facebook.com/share/17zJ3mMxrm/";
-const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
-const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
+const GOOGLE_MAPS = "https://share.google/OHhD1R2UorQv7N4tA";
+const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagran+party+ghaziabad";
 
 const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "YYDIhEeAdj0"];
 // 3rd bhajan starts at 01:05 (skip the intro portion)
@@ -113,10 +134,10 @@ const COMPOSITION_STARTS = [0, 0, 65];
 const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
 
 const services = [
-  { icon: Crown, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
+  { icon: Crown, title: "Mata ki Chowki & Jagran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
   { icon: Feather, title: "Khatu Shyam Kirtan", desc: "Night-long kirtan & bhajans dedicated to Shyam Baba, filled with faith and divine energy." },
   { icon: Music, title: "Bhajan Sandhya", desc: "Live singers, harmonium, tabla & complete sound arrangement for an evening of devotion." },
-  { icon: BookOpen, title: "Sundar Kand Path Katha", desc: "Sacred recitation of Hanuman Chalisa & Sundar Kand with experienced pandits and vedic rituals." },
+  { icon: BookOpen, title: "Sundar Kand Katha", desc: "Sacred recitation of Hanuman Chalisa & Sundar Kand with experienced pandits and vedic rituals." },
   { icon: Calendar, title: "Private & Society Events", desc: "Home functions, society jagrans, colony events & corporate spiritual gatherings." },
   { icon: Star, title: "Other Devotional Events", desc: "Kirtan, bhajan, jagran, satsang & any special devotional programme tailored to your needs." },
 ];
@@ -128,7 +149,7 @@ const reviews = [
   { name: "Pooja Verma", place: "Noida", rating: 5, text: "Amazing Khatu Shyam jagran arranged in our society. Everyone appreciated the arrangements and soulful voice." },
   { name: "Sunil Aggarwal", place: "Delhi", rating: 5, text: "Sundar Kand Path at our home was so peaceful. The whole atmosphere turned divine. Thank you Shankar ji." },
   { name: "Neha Singh", place: "Gurugram", rating: 5, text: "Booked them for Bhajan Sandhya — the singers are extremely talented and humble. Truly blessed evening." },
-  { name: "Ravi Chauhan", place: "Vasundhara", rating: 5, text: "Khatu Shyam jagaran was memorable for our entire family. Baba ki kripa aur mandali ki mehnat dono dikhti hai." },
+  { name: "Ravi Chauhan", place: "Vasundhara", rating: 5, text: "Khatu Shyam jagran was memorable for our entire family. Baba ki kripa aur mandali ki mehnat dono dikhti hai." },
   { name: "Anjali Mehta", place: "Faridabad", rating: 5, text: "Complete darbar setup, punctual team and heart touching bhajans. Definitely booking again next year." },
 ];
 
@@ -149,6 +170,7 @@ function Index() {
       <Reviews />
       <ContactSection />
       <BookingForm />
+      <FAQ />
       <Footer />
       <FloatingContact />
     </div>
@@ -187,13 +209,13 @@ function Header() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-24 md:pt-36">
-      <img src={HERO_POSTER} alt="Shri Shyam Jagaran Party banner" className="absolute inset-0 w-full h-full object-cover" />
+      <img src={HERO_POSTER} alt="Shri Shyam Jagran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(30,0,0,0.55) 80%, rgba(30,0,0,0.85) 100%)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
-        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR &amp; All Over INDIA</p>
+        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR's Trusted Jagran Party &amp; All Over INDIA</p>
 
         <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
-          Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Jagaran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
+          Devotional Khatu Shyam Jagran, Mata Ki Chowki & Jagran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer"
@@ -201,7 +223,7 @@ function Hero() {
             <MessageCircle className="w-4 h-4 md:w-5 md:h-5" /> WhatsApp Now
           </a>
           <a href="#booking" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cream/50 bg-maroon-deep/40 backdrop-blur text-cream hover:bg-cream/10 transition text-sm md:text-base">
-            Book Your Jagaran <Send className="w-4 h-4" />
+            Book Your Jagran <Send className="w-4 h-4" />
           </a>
         </div>
       </div>
@@ -282,17 +304,18 @@ function About() {
       <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">About Us</p>
       <h2 className="text-3xl md:text-5xl font-bold mb-6">A Devotional Legacy in Every Bhajan</h2>
       <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-5xl mx-auto">
-        Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shri Shyam Jagaran Party has been
+        Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shri Shyam Jagran Party has been
         organising soul-stirring jagrans & Kirtans for years across Delhi NCR — Ghaziabad, Noida, Delhi, Gurugram and beyond.
         From intimate home chowkis to grand society jagrans, our mandali brings professional singers,
         harmonium, tabla, sound system and complete darbar decoration to create an atmosphere of pure devotion.
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-10">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 mt-10">
         {[
           { n: "500+", l: "Jagrans Organised" },
           { n: "300+", l: "Shyam Kirtan & Other Devotional Events" },
-          { n: "13+", l: "Years of Seva" },
-          { n: "100%", l: "Devotees Blessed" },
+          { n: "13+", l: "Years of experience" },
+          { n: "1000+", l: "Happy family" },
+          { n: "4.9★", l: "Google rating" },
         ].map((s) => (
           <div key={s.l} className="p-5 md:p-6 rounded-2xl bg-card shadow-soft border border-border">
             <div className="text-3xl md:text-4xl font-display font-bold text-gradient-gold">{s.n}</div>
@@ -458,13 +481,11 @@ function DarbarPhotos() {
   );
 }
 
-// ============ Jhanki (photos only, 20s rotation) ============
+// ============ Divine Jhanki — box 1: photos, box 2: reels ============
 
 function Jhanki() {
-  const pairs: string[][] = [];
-  for (let n = 0; n < JHANKI_PHOTOS.length; n += 2) pairs.push(JHANKI_PHOTOS.slice(n, n + 2));
-  const { i, setI, next, prev } = useAutoRotate(pairs.length, 20000);
-  const current = pairs[i];
+  const photo = useAutoRotate(JHANKI_PHOTOS.length, 3000);
+  const reel = useAutoRotate(JHANKI_REELS.length, 45000);
 
   return (
     <section className="py-14 md:py-16 px-4 md:px-6 bg-secondary/40">
@@ -473,19 +494,48 @@ function Jhanki() {
           <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2 flex items-center justify-center gap-2">
             <Crown className="w-4 h-4" /> Divine Jhanki
           </p>
-          <h2 className="text-2xl md:text-5xl font-bold">Sajji Hui Jhanki</h2>
+          <h2 className="text-2xl md:text-5xl font-bold">Jhanki</h2>
           <p className="mt-2 text-muted-foreground text-xs md:text-sm max-w-2xl mx-auto">
             Glimpses of our beautifully decorated jhankis of Mata Rani, Shyam Baba & other devotional setups.
           </p>
         </div>
-        <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 animate-float-up">
-          {current.map((src, idx) => (
-            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 h-[27vh] md:h-auto md:aspect-[4/3]">
-              <img src={src} alt={`Jhanki ${i * 2 + idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
+
+        <div className="grid grid-cols-1 gap-8 md:gap-10 max-w-3xl mx-auto">
+          {/* Box 1 — Jhanki photos */}
+          <div>
+            <div key={photo.i} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 h-[38vh] md:h-[60vh] animate-float-up bg-maroon-deep">
+              <img src={JHANKI_PHOTOS[photo.i]} alt={`Jhanki photo ${photo.i + 1}`} loading="lazy" className="w-full h-full object-contain" />
             </div>
-          ))}
+            <SliderNav onPrev={photo.prev} onNext={photo.next} dots={JHANKI_PHOTOS.length} active={photo.i} onDot={photo.setI} />
+          </div>
+
+          {/* Box 2 — Jhanki reels */}
+          <div>
+            <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 bg-maroon-deep mx-auto w-full max-w-sm" style={{ aspectRatio: "9 / 16" }}>
+              <iframe
+                key={JHANKI_REELS[reel.i]}
+                src={`https://www.instagram.com/reel/${JHANKI_REELS[reel.i]}/embed/`}
+                title={`Jhanki reel ${reel.i + 1}`}
+                loading="lazy"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                scrolling="no"
+                className="absolute inset-0 w-full h-full border-0"
+              />
+            </div>
+            <SliderNav onPrev={reel.prev} onNext={reel.next} dots={JHANKI_REELS.length} active={reel.i} onDot={reel.setI} />
+            <div className="mt-4 flex justify-center gap-3">
+              <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="More jhanki on Instagram"
+                className="w-10 h-10 rounded-full bg-gradient-royal text-cream grid place-items-center shadow-soft hover:scale-110 transition">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href={YOUTUBE} target="_blank" rel="noreferrer" aria-label="More jhanki on YouTube"
+                className="w-10 h-10 rounded-full bg-card border border-border grid place-items-center shadow-soft hover:bg-saffron/10 transition">
+                <Youtube className="w-5 h-5 text-saffron" />
+              </a>
+            </div>
+          </div>
         </div>
-        <SliderNav onPrev={prev} onNext={next} dots={pairs.length} active={i} onDot={setI} />
       </div>
     </section>
   );
@@ -747,7 +797,7 @@ function ContactSection() {
     <section id="contact" className="py-12 md:py-14 px-4 md:px-6 bg-secondary/60">
       <div className="max-w-5xl mx-auto text-center">
         <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2">Get in Touch</p>
-        <h2 className="text-2xl md:text-4xl font-bold mb-2">Bulao Mata Rani & Baba Shyam Ko Aapne Ghar</h2>
+        <h2 className="text-2xl md:text-4xl font-bold mb-2">Bulaye Mata Rani & Baba Shyam Ko Aapne Ghar</h2>
         <p className="text-muted-foreground mb-6 text-sm">We respond quickly — call or WhatsApp us anytime.</p>
         <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-3xl mx-auto">
           <a href={`tel:${PHONE}`} className="group p-5 md:p-6 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition hover:-translate-y-1">
@@ -834,6 +884,129 @@ function Field({ label, name, type = "text", required, pattern, minLength, maxLe
   );
 }
 
+// ============ FAQs ============
+
+const FAQS: { q: string; a: ReactNode }[] = [
+  {
+    q: "Which services do you provide?",
+    a: "We provide Mata Ki Chowki, Mata Jagran, Khatu Shyam Sankirtan, Bhajan Sandhya, Sundarkand Path, Krishna Bhajan Sandhya, Balaji Jagran and other devotional events across Ghaziabad, Noida, Delhi NCR, nearby cities and all over India.",
+  },
+  {
+    q: "How can I book Shri Shyam Jagran Party?",
+    a: (
+      <>
+        You can book us by:
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>
+            Calling us on{" "}
+            <a href={`tel:${PHONE}`} className="text-saffron font-medium underline">+91 79829 56590</a> or tapping the call icon on this page
+          </li>
+          <li>
+            Sending a{" "}
+            <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer" className="text-saffron font-medium underline">WhatsApp message</a>{" "}
+            by clicking the WhatsApp icon
+          </li>
+          <li>
+            Filling out the <a href="#booking" className="text-saffron font-medium underline">booking form</a> on our website
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    q: "How much does a Jagran or Mata Ki Chowki cost?",
+    a: "The cost depends on the event type, location, duration, number of singers, musicians and stage setup. Contact us for a free customized quotation.",
+  },
+  {
+    q: "Do you provide sound system and stage decoration?",
+    a: "Yes. We provide professional sound systems, stage decoration, lighting, LED screens (if required) and complete event management.",
+  },
+  {
+    q: "How early should I book?",
+    a: "We recommend booking 1–180 days in advance, especially during Navratri, Saawan and other festive seasons, to secure your preferred date.",
+  },
+  {
+    q: "Can you perform outside Ghaziabad?",
+    a: "Yes. We perform across Delhi NCR and can also travel to other cities and states based on availability.",
+  },
+  {
+    q: "What types of devotional programs do you perform?",
+    a: (
+      <ul className="list-disc pl-5 space-y-1">
+        {["Mata Jagran", "Mata Ki Chowki", "Khatu Shyam Sankirtan", "Bhajan Sandhya", "Sundarkand Path", "Krishna Bhajan Sandhya", "Balaji Jagran", "Special Festival Programs"].map((x) => (
+          <li key={x}>{x}</li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    q: "How long does a Jagran program last?",
+    a: "The duration depends on your requirements. Most Jagran programs last 4–8 hours, while all-night Jagran programs can continue until morning.",
+  },
+  {
+    q: "Why choose Shri Shyam Jagran Party?",
+    a: (
+      <ul className="list-disc pl-5 space-y-1">
+        {["Experienced devotional singers", "Professional musicians", "High-quality sound system", "Beautiful stage decoration", "Punctual and reliable service", "Serving families across Ghaziabad, Noida & Delhi NCR", "Dedicated to creating a truly devotional atmosphere"].map((x) => (
+          <li key={x}>{x}</li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    q: "Can we customize the bhajan list?",
+    a: "Yes. We can include your preferred bhajans and devotional requests to make the event more personal and memorable.",
+  },
+  {
+    q: "Do you provide services for small home events?",
+    a: "Absolutely. We organize both small home Mata Ki Chowki and large-scale Jagran events with the same devotion and professionalism.",
+  },
+  {
+    q: "Is Shri Shyam Jagran Party available 24×7 for booking?",
+    a: "Yes. Our team is available 24×7 to answer your questions and help you book your Jagran, Chowki or Bhajan Sandhya.",
+  },
+  {
+    q: "Why do thousands of families choose Shri Shyam Jagran Party?",
+    a: (
+      <ul className="list-disc pl-5 space-y-1">
+        {["Pure devotional atmosphere", "Experienced singers", "Crystal-clear sound", "Beautiful stage decoration", "Timely service", "Complete event management"].map((x) => (
+          <li key={x}>{x}</li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    q: "Which areas do you serve?",
+    a: "Our Jagran Party serves Ghaziabad, Noida, Greater Noida, Delhi, Indirapuram, Vaishali, Crossings Republik and the entire Delhi NCR. We also travel to nearby cities on request.",
+  },
+];
+
+function FAQ() {
+  return (
+    <section id="faqs" className="py-12 md:py-20 px-4 md:px-6 bg-secondary/40">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-6 md:mb-10">
+          <p className="uppercase tracking-[0.3em] text-saffron text-[10px] md:text-xs mb-1 md:mb-3">Good to Know</p>
+          <h2 className="text-xl md:text-4xl font-bold">Frequently Asked Questions (FAQs)</h2>
+        </div>
+        <div className="space-y-2.5 md:space-y-3">
+          {FAQS.map((f, n) => (
+            <details key={f.q} className="group rounded-2xl bg-card border border-border shadow-soft overflow-hidden">
+              <summary className="cursor-pointer list-none px-4 md:px-6 py-3.5 md:py-4 flex items-start gap-3 font-medium text-sm md:text-base">
+                <span className="text-saffron font-display">{n + 1}.</span>
+                <span className="flex-1">{f.q}</span>
+                <ChevronRight className="w-4 h-4 mt-0.5 shrink-0 text-saffron transition-transform group-open:rotate-90" />
+              </summary>
+              <div className="px-4 md:px-6 pb-4 md:pb-5 pt-0 text-xs md:text-sm text-muted-foreground leading-relaxed">{f.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 function Footer() {
   return (
     <footer className="text-cream py-14 px-6" style={{ background: "var(--maroon-deep)" }}>
@@ -842,9 +1015,9 @@ function Footer() {
       </div>
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
         <div>
-          <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shri Shyam Jagaran Party</h3>
+          <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shri Shyam Jagran Party</h3>
           <p className="text-sm text-cream/70 leading-relaxed">
-            Ghaziabad-based devotional group spreading faith through soulful Jagrans, Shyam Kirtan, Kirtan, Bhajan Sandhya, Sundar Kand Path Katha & Other Devotional Events across Delhi NCR and All Over India.
+            Ghaziabad-based devotional group spreading faith through soulful Jagrans, Shyam Kirtan, Kirtan, Bhajan Sandhya, Sundar Kand Katha & Other Devotional Events across Delhi NCR and All Over India.
           </p>
         </div>
         <div>
@@ -865,7 +1038,7 @@ function Footer() {
       </div>
 
       <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-cream/10 text-center text-xs text-cream/50">
-        © {new Date().getFullYear()} Shri Shyam Jagaran Party. All Rights Reserved. · जय श्री श्याम
+        © {new Date().getFullYear()} Shri Shyam Jagran Party. All Rights Reserved. · जय श्री श्याम
       </div>
     </footer>
   );
@@ -885,7 +1058,7 @@ function FloatingContact() {
         <span className="text-sm font-semibold">WhatsApp</span>
       </a>
       <a href={`tel:${PHONE}`} aria-label="Call Me"
-        className="group flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-gradient-royal text-cream shadow-divine hover:scale-105 transition">
+        className="group flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-gradient-gold text-maroon-deep font-semibold shadow-divine ring-2 ring-gold/50 hover:scale-105 transition">
         <span className="w-8 h-8 rounded-full bg-white/15 grid place-items-center">
           <Phone className="w-4 h-4" />
         </span>
