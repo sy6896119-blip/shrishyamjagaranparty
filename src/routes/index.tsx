@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect, useRef, useCallback, type FormEvent } from "react";
+import { useState, useEffect, useRef, useCallback, type FormEvent, type ReactNode } from "react";
 import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Camera, Video, Crown, Feather, ChevronLeft, ChevronRight, X } from "lucide-react";
 import logoAsset from "@/assets/logo.png.asset.json";
 import heroPosterAsset from "@/assets/hero-poster.png.asset.json";
@@ -886,7 +886,7 @@ function Field({ label, name, type = "text", required, pattern, minLength, maxLe
 
 // ============ FAQs ============
 
-const FAQS: { q: string; a: React.ReactNode }[] = [
+const FAQS: { q: string; a: ReactNode }[] = [
   {
     q: "Which services do you provide?",
     a: "We provide Mata Ki Chowki, Mata Jagran, Khatu Shyam Sankirtan, Bhajan Sandhya, Sundarkand Path, Krishna Bhajan Sandhya, Balaji Jagran and other devotional events across Ghaziabad, Noida, Delhi NCR, nearby cities and all over India.",
