@@ -796,7 +796,7 @@ function ContactSection() {
     <section id="contact" className="py-12 md:py-14 px-4 md:px-6 bg-secondary/60">
       <div className="max-w-5xl mx-auto text-center">
         <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2">Get in Touch</p>
-        <h2 className="text-2xl md:text-4xl font-bold mb-2">Bulao Mata Rani & Baba Shyam Ko Aapne Ghar</h2>
+        <h2 className="text-2xl md:text-4xl font-bold mb-2">Bulaye Mata Rani & Baba Shyam Ko Aapne Ghar</h2>
         <p className="text-muted-foreground mb-6 text-sm">We respond quickly — call or WhatsApp us anytime.</p>
         <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-3xl mx-auto">
           <a href={`tel:${PHONE}`} className="group p-5 md:p-6 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition hover:-translate-y-1">
