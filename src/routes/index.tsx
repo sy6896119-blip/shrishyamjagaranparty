@@ -170,6 +170,7 @@ function Index() {
       <Reviews />
       <ContactSection />
       <BookingForm />
+      <FAQ />
       <Footer />
       <FloatingContact />
     </div>
