@@ -308,12 +308,13 @@ function About() {
         From intimate home chowkis to grand society jagrans, our mandali brings professional singers,
         harmonium, tabla, sound system and complete darbar decoration to create an atmosphere of pure devotion.
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-10">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 mt-10">
         {[
           { n: "500+", l: "Jagrans Organised" },
           { n: "300+", l: "Shyam Kirtan & Other Devotional Events" },
-          { n: "13+", l: "Years of Seva" },
-          { n: "100%", l: "Devotees Blessed" },
+          { n: "13+", l: "Years of experience" },
+          { n: "1000+", l: "Happy family" },
+          { n: "4.9★", l: "Google rating" },
         ].map((s) => (
           <div key={s.l} className="p-5 md:p-6 rounded-2xl bg-card shadow-soft border border-border">
             <div className="text-3xl md:text-4xl font-display font-bold text-gradient-gold">{s.n}</div>
