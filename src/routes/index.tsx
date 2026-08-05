@@ -934,7 +934,7 @@ function FloatingContact() {
         <span className="text-sm font-semibold">WhatsApp</span>
       </a>
       <a href={`tel:${PHONE}`} aria-label="Call Me"
-        className="group flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-gradient-royal text-cream shadow-divine hover:scale-105 transition">
+        className="group flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-gradient-gold text-maroon-deep font-semibold shadow-divine ring-2 ring-gold/50 hover:scale-105 transition">
         <span className="w-8 h-8 rounded-full bg-white/15 grid place-items-center">
           <Phone className="w-4 h-4" />
         </span>
