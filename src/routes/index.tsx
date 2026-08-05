@@ -480,13 +480,11 @@ function DarbarPhotos() {
   );
 }
 
-// ============ Jhanki (photos only, 20s rotation) ============
+// ============ Divine Jhanki — box 1: photos, box 2: reels ============
 
 function Jhanki() {
-  const pairs: string[][] = [];
-  for (let n = 0; n < JHANKI_PHOTOS.length; n += 2) pairs.push(JHANKI_PHOTOS.slice(n, n + 2));
-  const { i, setI, next, prev } = useAutoRotate(pairs.length, 20000);
-  const current = pairs[i];
+  const photo = useAutoRotate(JHANKI_PHOTOS.length, 3000);
+  const reel = useAutoRotate(JHANKI_REELS.length, 45000);
 
   return (
     <section className="py-14 md:py-16 px-4 md:px-6 bg-secondary/40">
@@ -495,19 +493,48 @@ function Jhanki() {
           <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2 flex items-center justify-center gap-2">
             <Crown className="w-4 h-4" /> Divine Jhanki
           </p>
-          <h2 className="text-2xl md:text-5xl font-bold">Sajji Hui Jhanki</h2>
+          <h2 className="text-2xl md:text-5xl font-bold">Jhanki</h2>
           <p className="mt-2 text-muted-foreground text-xs md:text-sm max-w-2xl mx-auto">
             Glimpses of our beautifully decorated jhankis of Mata Rani, Shyam Baba & other devotional setups.
           </p>
         </div>
-        <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 animate-float-up">
-          {current.map((src, idx) => (
-            <div key={src} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 h-[27vh] md:h-auto md:aspect-[4/3]">
-              <img src={src} alt={`Jhanki ${i * 2 + idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
+
+        <div className="grid grid-cols-1 gap-8 md:gap-10 max-w-3xl mx-auto">
+          {/* Box 1 — Jhanki photos */}
+          <div>
+            <div key={photo.i} className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 h-[38vh] md:h-[60vh] animate-float-up bg-maroon-deep">
+              <img src={JHANKI_PHOTOS[photo.i]} alt={`Jhanki photo ${photo.i + 1}`} loading="lazy" className="w-full h-full object-contain" />
             </div>
-          ))}
+            <SliderNav onPrev={photo.prev} onNext={photo.next} dots={JHANKI_PHOTOS.length} active={photo.i} onDot={photo.setI} />
+          </div>
+
+          {/* Box 2 — Jhanki reels */}
+          <div>
+            <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 bg-maroon-deep mx-auto w-full max-w-sm" style={{ aspectRatio: "9 / 16" }}>
+              <iframe
+                key={JHANKI_REELS[reel.i]}
+                src={`https://www.instagram.com/reel/${JHANKI_REELS[reel.i]}/embed/`}
+                title={`Jhanki reel ${reel.i + 1}`}
+                loading="lazy"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                scrolling="no"
+                className="absolute inset-0 w-full h-full border-0"
+              />
+            </div>
+            <SliderNav onPrev={reel.prev} onNext={reel.next} dots={JHANKI_REELS.length} active={reel.i} onDot={reel.setI} />
+            <div className="mt-4 flex justify-center gap-3">
+              <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="More jhanki on Instagram"
+                className="w-10 h-10 rounded-full bg-gradient-royal text-cream grid place-items-center shadow-soft hover:scale-110 transition">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href={YOUTUBE} target="_blank" rel="noreferrer" aria-label="More jhanki on YouTube"
+                className="w-10 h-10 rounded-full bg-card border border-border grid place-items-center shadow-soft hover:bg-saffron/10 transition">
+                <Youtube className="w-5 h-5 text-saffron" />
+              </a>
+            </div>
+          </div>
         </div>
-        <SliderNav onPrev={prev} onNext={next} dots={pairs.length} active={i} onDot={setI} />
       </div>
     </section>
   );
