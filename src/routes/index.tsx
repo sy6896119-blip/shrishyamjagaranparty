@@ -34,24 +34,45 @@ import darbar27 from "@/assets/darbar-27.jpeg.asset.json";
 import darbar28 from "@/assets/darbar-28.jpeg.asset.json";
 import darbar29 from "@/assets/darbar-29.jpeg.asset.json";
 import darbar30 from "@/assets/darbar-30.jpeg.asset.json";
+import jhanki1 from "@/assets/jhanki-1.jpeg.asset.json";
+import jhanki2 from "@/assets/jhanki-2.jpeg.asset.json";
+import jhanki3 from "@/assets/jhanki-3.jpeg.asset.json";
+import jhanki4 from "@/assets/jhanki-4.jpeg.asset.json";
+import jhanki5 from "@/assets/jhanki-5.jpeg.asset.json";
+import jhanki6 from "@/assets/jhanki-6.jpeg.asset.json";
+import jhanki7 from "@/assets/jhanki-7.jpeg.asset.json";
+import jhanki8 from "@/assets/jhanki-8.jpeg.asset.json";
 
-// Jhanki uses uploaded photos only (no YouTube) — richly decorated darbars
-const JHANKI_PHOTOS = [darbar10.url, darbar11.url, darbar13.url, darbar15.url, darbar16.url, darbar17.url, darbar18.url, darbar19.url];
+// Jhanki photos — only these uploaded jhanki images
+const JHANKI_PHOTOS = [jhanki1.url, jhanki2.url, jhanki3.url, jhanki4.url, jhanki5.url, jhanki6.url, jhanki7.url, jhanki8.url];
 
-// Darbar photos — every image appears only once across the gallery (no overlap with Jhanki)
+// Jhanki reels — Instagram reel shortcodes, played one after another
+const JHANKI_REELS = [
+  "Cyj-9cNPamf",
+  "Cyl74iKBqtz",
+  "C7DjZAgLigY",
+  "C6plJXJvh95",
+  "C0O0Kuhr0lh",
+  "C3eJrQCPLEX",
+  "Cyf4zr6PmnV",
+];
+
+// Darbar photos
 const DARBAR_PHOTOS = [
   darbar1.url, darbar2.url, darbar3.url, darbar4.url, darbar5.url,
-  darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar12.url,
-  darbar14.url, darbar20.url, darbar21.url, darbar22.url, darbar23.url,
+  darbar6.url, darbar7.url, darbar8.url, darbar9.url, darbar10.url,
+  darbar11.url, darbar12.url, darbar13.url, darbar14.url, darbar15.url,
+  darbar16.url, darbar17.url, darbar18.url, darbar19.url,
+  darbar20.url, darbar21.url, darbar22.url, darbar23.url,
   darbar24.url, darbar25.url, darbar26.url, darbar27.url, darbar28.url,
   darbar29.url, darbar30.url,
 ];
 
 const SITE_URL = "https://shrishyamjagranparty.lovable.app";
 const OG_IMAGE = `${SITE_URL}${heroPosterAsset.url}`;
-const PAGE_TITLE = "Shri Shyam Jagaran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Kirtan";
+const PAGE_TITLE = "Shri Shyam Jagran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Kirtan";
 const PAGE_DESC =
-  "Book Shri Shyam Jagaran Party Ghaziabad for Mata Ki Chowki & Jagaran, Khatu Shyam Kirtan, Bhajan Sandhya and Sundar Kand Path in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
+  "Book Shri Shyam Jagran Party Ghaziabad for Mata Ki Chowki & Jagran, Khatu Shyam Kirtan, Bhajan Sandhya and Sundar Kand Katha in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
 
 export const Route = createFileRoute("/")({
   component: Index,
