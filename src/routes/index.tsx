@@ -86,7 +86,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL + "/" },
       { property: "og:image", content: OG_IMAGE },
-      { property: "og:site_name", content: "Shri Shyam Jagaran Party" },
+      { property: "og:site_name", content: "Shri Shyam Jagran Party" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: PAGE_TITLE },
       { name: "twitter:description", content: PAGE_DESC },
@@ -99,7 +99,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          name: "Shri Shyam Jagaran Party",
+          name: "Shri Shyam Jagran Party",
           description: PAGE_DESC,
           image: OG_IMAGE,
           url: SITE_URL,
@@ -125,8 +125,8 @@ const WHATSAPP_TEXT = encodeURIComponent(
 const YOUTUBE = "https://www.youtube.com/@ShriShyamJagranPartyGzb";
 const INSTAGRAM = "https://www.instagram.com/shankar98yadav/";
 const FACEBOOK = "https://www.facebook.com/share/17zJ3mMxrm/";
-const GOOGLE_MAPS = "https://www.google.com/search?q=shree+shyam+jagaran+party";
-const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagaran+party+ghaziabad";
+const GOOGLE_MAPS = "https://share.google/OHhD1R2UorQv7N4tA";
+const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagran+party+ghaziabad";
 
 const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "YYDIhEeAdj0"];
 // 3rd bhajan starts at 01:05 (skip the intro portion)
@@ -134,10 +134,10 @@ const COMPOSITION_STARTS = [0, 0, 65];
 const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
 
 const services = [
-  { icon: Crown, title: "Mata ki Chowki & Jagaran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
+  { icon: Crown, title: "Mata ki Chowki & Jagran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
   { icon: Feather, title: "Khatu Shyam Kirtan", desc: "Night-long kirtan & bhajans dedicated to Shyam Baba, filled with faith and divine energy." },
   { icon: Music, title: "Bhajan Sandhya", desc: "Live singers, harmonium, tabla & complete sound arrangement for an evening of devotion." },
-  { icon: BookOpen, title: "Sundar Kand Path Katha", desc: "Sacred recitation of Hanuman Chalisa & Sundar Kand with experienced pandits and vedic rituals." },
+  { icon: BookOpen, title: "Sundar Kand Katha", desc: "Sacred recitation of Hanuman Chalisa & Sundar Kand with experienced pandits and vedic rituals." },
   { icon: Calendar, title: "Private & Society Events", desc: "Home functions, society jagrans, colony events & corporate spiritual gatherings." },
   { icon: Star, title: "Other Devotional Events", desc: "Kirtan, bhajan, jagran, satsang & any special devotional programme tailored to your needs." },
 ];
@@ -149,7 +149,7 @@ const reviews = [
   { name: "Pooja Verma", place: "Noida", rating: 5, text: "Amazing Khatu Shyam jagran arranged in our society. Everyone appreciated the arrangements and soulful voice." },
   { name: "Sunil Aggarwal", place: "Delhi", rating: 5, text: "Sundar Kand Path at our home was so peaceful. The whole atmosphere turned divine. Thank you Shankar ji." },
   { name: "Neha Singh", place: "Gurugram", rating: 5, text: "Booked them for Bhajan Sandhya — the singers are extremely talented and humble. Truly blessed evening." },
-  { name: "Ravi Chauhan", place: "Vasundhara", rating: 5, text: "Khatu Shyam jagaran was memorable for our entire family. Baba ki kripa aur mandali ki mehnat dono dikhti hai." },
+  { name: "Ravi Chauhan", place: "Vasundhara", rating: 5, text: "Khatu Shyam jagran was memorable for our entire family. Baba ki kripa aur mandali ki mehnat dono dikhti hai." },
   { name: "Anjali Mehta", place: "Faridabad", rating: 5, text: "Complete darbar setup, punctual team and heart touching bhajans. Definitely booking again next year." },
 ];
 
@@ -208,13 +208,13 @@ function Header() {
 function Hero() {
   return (
     <section id="top" className="relative min-h-screen flex flex-col items-center justify-end pt-24 md:pt-36">
-      <img src={HERO_POSTER} alt="Shri Shyam Jagaran Party banner" className="absolute inset-0 w-full h-full object-cover" />
+      <img src={HERO_POSTER} alt="Shri Shyam Jagran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(30,0,0,0.55) 80%, rgba(30,0,0,0.85) 100%)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
         <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR &amp; All Over INDIA</p>
 
         <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
-          Devotional Khatu Shyam Jagaran, Mata Ki Chowki & Jagaran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
+          Devotional Khatu Shyam Jagran, Mata Ki Chowki & Jagran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer"
@@ -222,7 +222,7 @@ function Hero() {
             <MessageCircle className="w-4 h-4 md:w-5 md:h-5" /> WhatsApp Now
           </a>
           <a href="#booking" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cream/50 bg-maroon-deep/40 backdrop-blur text-cream hover:bg-cream/10 transition text-sm md:text-base">
-            Book Your Jagaran <Send className="w-4 h-4" />
+            Book Your Jagran <Send className="w-4 h-4" />
           </a>
         </div>
       </div>
@@ -303,7 +303,7 @@ function About() {
       <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-4">About Us</p>
       <h2 className="text-3xl md:text-5xl font-bold mb-6">A Devotional Legacy in Every Bhajan</h2>
       <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-5xl mx-auto">
-        Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shri Shyam Jagaran Party has been
+        Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shri Shyam Jagran Party has been
         organising soul-stirring jagrans & Kirtans for years across Delhi NCR — Ghaziabad, Noida, Delhi, Gurugram and beyond.
         From intimate home chowkis to grand society jagrans, our mandali brings professional singers,
         harmonium, tabla, sound system and complete darbar decoration to create an atmosphere of pure devotion.
@@ -863,9 +863,9 @@ function Footer() {
       </div>
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
         <div>
-          <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shri Shyam Jagaran Party</h3>
+          <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shri Shyam Jagran Party</h3>
           <p className="text-sm text-cream/70 leading-relaxed">
-            Ghaziabad-based devotional group spreading faith through soulful Jagrans, Shyam Kirtan, Kirtan, Bhajan Sandhya, Sundar Kand Path Katha & Other Devotional Events across Delhi NCR and All Over India.
+            Ghaziabad-based devotional group spreading faith through soulful Jagrans, Shyam Kirtan, Kirtan, Bhajan Sandhya, Sundar Kand Katha & Other Devotional Events across Delhi NCR and All Over India.
           </p>
         </div>
         <div>
@@ -886,7 +886,7 @@ function Footer() {
       </div>
 
       <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-cream/10 text-center text-xs text-cream/50">
-        © {new Date().getFullYear()} Shri Shyam Jagaran Party. All Rights Reserved. · जय श्री श्याम
+        © {new Date().getFullYear()} Shri Shyam Jagran Party. All Rights Reserved. · जय श्री श्याम
       </div>
     </footer>
   );
