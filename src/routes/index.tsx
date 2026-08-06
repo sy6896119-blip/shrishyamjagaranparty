@@ -72,7 +72,7 @@ const SITE_URL = "https://shrishyamjagranparty.lovable.app";
 const OG_IMAGE = `${SITE_URL}${heroPosterAsset.url}`;
 const PAGE_TITLE = "Shri Shyam Jagran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Sankirtan";
 const PAGE_DESC =
-  "Book Shri Shyam Jagran Party Ghaziabad for Mata Ki Chowki & Jagran, Khatu Shyam Sankirtan, Bhajan Sandhya and Sundar Kand Katha in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
+  "Book Shri Shyam Jagran Party Ghaziabad for Mata Ki Chowki & Jagran, Khatu Shyam Sankirtan, Bhajan Sandhya and Sundar Kand Path in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -120,7 +120,7 @@ const SHANKAR = shankarAsset.url;
 const PHONE = "+917982956590";
 const WHATSAPP = "917982956590";
 const WHATSAPP_TEXT = encodeURIComponent(
-  `*"Jai Mata Di"*\n\nI came across your website.\nI want to enquiry for organizing a devotional Programm`
+  `*"Jai Mata Di"*\n\nI came across your website.\n\nI want to enquiry for organizing a devotional Programm`
 );
 const YOUTUBE = "https://www.youtube.com/@ShriShyamJagranPartyGzb";
 const INSTAGRAM = "https://www.instagram.com/shankar98yadav/";
@@ -136,7 +136,7 @@ const services = [
   { icon: Crown, title: "Mata ki Chowki & Jagran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
   { icon: Feather, title: "Khatu Shyam Sankirtan", desc: "Night-long kirtan & bhajans dedicated to Shyam Baba, filled with faith and divine energy." },
   { icon: Music, title: "Bhajan Sandhya", desc: "Live singers, harmonium, tabla & complete sound arrangement for an evening of devotion." },
-  { icon: BookOpen, title: "Sundar Kand Katha", desc: "Sacred recitation of Hanuman Chalisa & Sundar Kand with experienced pandits and vedic rituals." },
+  { icon: BookOpen, title: "Sundar Kand Path", desc: "Sacred recitation of Hanuman Chalisa & Sundar Kand with experienced pandits and vedic rituals." },
   { icon: Calendar, title: "Private & Society Events", desc: "Home functions, society jagrans, colony events & corporate spiritual gatherings." },
   { icon: Star, title: "Other Devotional Events", desc: "Kirtan, bhajan, jagran, satsang & any special devotional programme tailored to your needs." },
 ];
@@ -681,8 +681,8 @@ function Compositions() {
   return (
     <section id="compositions" className="py-16 md:py-20 px-6" style={{ background: "linear-gradient(180deg, var(--cream) 0%, #fff 100%)" }}>
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="font-display text-2xl md:text-5xl font-bold text-gradient-royal mb-3">My Own Composed Songs</h2>
-        <p className="text-maroon-deep/70 mb-6 text-sm md:text-base">Original bhajans composed and sung by Shri Shankar Yadav ji.</p>
+        <h2 className="font-display text-2xl md:text-5xl font-bold text-gradient-royal mb-3">Performances by Our Party</h2>
+        <p className="text-maroon-deep/70 mb-6 text-sm md:text-base">Bhajans Performed By Shankar Yadav ji and team</p>
         <div className="flex flex-wrap justify-center gap-3 mb-6">
           {COMPOSITIONS.map((_, n) => (
             <button
