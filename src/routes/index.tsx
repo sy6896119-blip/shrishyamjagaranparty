@@ -70,9 +70,9 @@ const DARBAR_PHOTOS = [
 
 const SITE_URL = "https://shrishyamjagranparty.lovable.app";
 const OG_IMAGE = `${SITE_URL}${heroPosterAsset.url}`;
-const PAGE_TITLE = "Shri Shyam Jagran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Kirtan";
+const PAGE_TITLE = "Shri Shyam Jagran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Sankirtan";
 const PAGE_DESC =
-  "Book Shri Shyam Jagran Party Ghaziabad for Mata Ki Chowki & Jagran, Khatu Shyam Kirtan, Bhajan Sandhya and Sundar Kand Katha in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
+  "Book Shri Shyam Jagran Party Ghaziabad for Mata Ki Chowki & Jagran, Khatu Shyam Sankirtan, Bhajan Sandhya and Sundar Kand Katha in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -131,11 +131,10 @@ const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagran+party
 const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "YYDIhEeAdj0"];
 // 3rd bhajan starts at 01:05 (skip the intro portion)
 const COMPOSITION_STARTS = [0, 0, 65];
-const DARBAR_VIDEOS = ["4EdyS_wfuaE", "62sBhsIIoK0"];
 
 const services = [
   { icon: Crown, title: "Mata ki Chowki & Jagran", desc: "Soulful jagran & chowki in honour of Mata Rani with full darbar decor and devotional singers." },
-  { icon: Feather, title: "Khatu Shyam Kirtan", desc: "Night-long kirtan & bhajans dedicated to Shyam Baba, filled with faith and divine energy." },
+  { icon: Feather, title: "Khatu Shyam Sankirtan", desc: "Night-long kirtan & bhajans dedicated to Shyam Baba, filled with faith and divine energy." },
   { icon: Music, title: "Bhajan Sandhya", desc: "Live singers, harmonium, tabla & complete sound arrangement for an evening of devotion." },
   { icon: BookOpen, title: "Sundar Kand Katha", desc: "Sacred recitation of Hanuman Chalisa & Sundar Kand with experienced pandits and vedic rituals." },
   { icon: Calendar, title: "Private & Society Events", desc: "Home functions, society jagrans, colony events & corporate spiritual gatherings." },
@@ -146,10 +145,10 @@ const reviews = [
   { name: "Rakesh Sharma", place: "Kavi Nagar, Ghaziabad", rating: 5, text: "Bhagwan ki kripa se hamare ghar par bahut hi sunder jagran hua. Shankar ji ki mandali ne saari raat baandh diya." },
   { name: "Meena Gupta", place: "Indirapuram", rating: 5, text: "Best Mata Ki Chowki experience. Sound, decoration and singing — everything was perfect and truly divine." },
   { name: "Amit Yadav", place: "Vaishali, Ghaziabad", rating: 5, text: "Professional team, punctual and very devoted singers. Har bhajan dil ko chhoo gaya. Jai Shree Shyam!" },
-  { name: "Pooja Verma", place: "Noida", rating: 5, text: "Amazing Khatu Shyam jagran arranged in our society. Everyone appreciated the arrangements and soulful voice." },
+  { name: "Pooja Verma", place: "Noida", rating: 5, text: "Amazing Khatu Shyam Sankirtan arranged in our society. Everyone appreciated the arrangements and soulful voice." },
   { name: "Sunil Aggarwal", place: "Delhi", rating: 5, text: "Sundar Kand Path at our home was so peaceful. The whole atmosphere turned divine. Thank you Shankar ji." },
   { name: "Neha Singh", place: "Gurugram", rating: 5, text: "Booked them for Bhajan Sandhya — the singers are extremely talented and humble. Truly blessed evening." },
-  { name: "Ravi Chauhan", place: "Vasundhara", rating: 5, text: "Khatu Shyam jagran was memorable for our entire family. Baba ki kripa aur mandali ki mehnat dono dikhti hai." },
+  { name: "Ravi Chauhan", place: "Vasundhara", rating: 5, text: "Khatu Shyam Sankirtan was memorable for our entire family. Baba ki kripa aur mandali ki mehnat dono dikhti hai." },
   { name: "Anjali Mehta", place: "Faridabad", rating: 5, text: "Complete darbar setup, punctual team and heart touching bhajans. Definitely booking again next year." },
 ];
 
@@ -165,13 +164,13 @@ function Index() {
       <Services />
       <DarbarPhotos />
       <Jhanki />
-      <DarbarVideos />
       <Compositions />
       <Reviews />
       <ContactSection />
       <BookingForm />
       <FAQ />
       <Footer />
+      <div className="h-16 md:h-0" />
       <FloatingContact />
     </div>
   );
@@ -215,7 +214,7 @@ function Hero() {
         <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR's Trusted Jagran Party &amp; All Over INDIA</p>
 
         <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
-          Devotional Khatu Shyam Jagran, Mata Ki Chowki & Jagran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
+          Devotional Khatu Shyam Sankirtan, Mata Ki Chowki & Jagran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer"
@@ -567,84 +566,6 @@ function loadYTApi(): Promise<void> {
   });
 }
 
-function AutoPlayVideo({ videoId }: { videoId: string }) {
-  const holderRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<any>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    let observer: IntersectionObserver | null = null;
-    loadYTApi().then(() => {
-      if (cancelled || !holderRef.current) return;
-      playerRef.current = new window.YT.Player(holderRef.current, {
-        videoId,
-        playerVars: { autoplay: 0, rel: 0, modestbranding: 1, playsinline: 1, cc_load_policy: 0, iv_load_policy: 3 },
-        events: {
-          onReady: () => {
-            try { playerRef.current?.setVolume?.(60); } catch {}
-            if (!wrapperRef.current) return;
-            observer = new IntersectionObserver((entries) => {
-              for (const e of entries) {
-                if (!playerRef.current) return;
-                try {
-                  if (e.isIntersecting && e.intersectionRatio > 0.4) {
-                    playerRef.current.unMute?.();
-                    
-                    playerRef.current.playVideo?.();
-                  } else {
-                    playerRef.current.pauseVideo?.();
-                  }
-                } catch {}
-              }
-            }, { threshold: [0, 0.4, 0.75] });
-            observer.observe(wrapperRef.current);
-          },
-        },
-      });
-    });
-    return () => {
-      cancelled = true;
-      observer?.disconnect();
-      try { playerRef.current?.destroy?.(); } catch {}
-    };
-  }, [videoId]);
-
-  return (
-    <div ref={wrapperRef} className="rounded-xl md:rounded-2xl overflow-hidden shadow-soft aspect-[9/16] bg-maroon-deep border border-border">
-      <div ref={holderRef} className="w-full h-full" />
-    </div>
-  );
-}
-
-// ============ Darbar & Singers Videos (bottom) ============
-
-function DarbarVideos() {
-  const { i, setI, next, prev } = useAutoRotate(DARBAR_VIDEOS.length, 20000);
-  return (
-    <section className="py-14 md:py-16 px-4 md:px-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-3 mb-6 justify-center">
-          <Video className="w-5 h-5 md:w-6 md:h-6 text-saffron" />
-          <h3 className="text-2xl md:text-3xl font-display font-semibold text-center">Darbar &amp; Singers Videos</h3>
-        </div>
-        <div className="max-w-sm mx-auto" key={DARBAR_VIDEOS[i]}>
-          <AutoPlayVideo videoId={DARBAR_VIDEOS[i]} />
-        </div>
-        <SliderNav onPrev={prev} onNext={next} dots={DARBAR_VIDEOS.length} active={i} onDot={setI} />
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-royal text-cream text-sm font-medium shadow-soft hover:scale-105 transition">
-            <Instagram className="w-4 h-4" /> Watch more on Instagram <ExternalLink className="w-3.5 h-3.5" />
-          </a>
-          <a href={YOUTUBE} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-card border border-border text-sm font-medium shadow-soft hover:bg-saffron/10 transition">
-            <Youtube className="w-4 h-4 text-saffron" /> Watch more on YouTube <ExternalLink className="w-3.5 h-3.5" />
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ============ Compositions ============
 
 function Compositions() {
@@ -797,7 +718,7 @@ function ContactSection() {
     <section id="contact" className="py-12 md:py-14 px-4 md:px-6 bg-secondary/60">
       <div className="max-w-5xl mx-auto text-center">
         <p className="uppercase tracking-[0.3em] text-saffron text-xs mb-2">Get in Touch</p>
-        <h2 className="text-2xl md:text-4xl font-bold mb-2">Bulaye Mata Rani & Baba Shyam Ko Aapne Ghar</h2>
+        <h2 className="text-2xl md:text-4xl font-bold mb-2">Bulaye Mata Rani & Baba Shyam Ko Apne Ghar</h2>
         <p className="text-muted-foreground mb-6 text-sm">We respond quickly — call or WhatsApp us anytime.</p>
         <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-3xl mx-auto">
           <a href={`tel:${PHONE}`} className="group p-5 md:p-6 rounded-2xl bg-card border border-border shadow-soft hover:shadow-divine transition hover:-translate-y-1">
@@ -849,9 +770,11 @@ function BookingForm() {
           <div className="grid grid-cols-2 md:grid-cols-2 gap-2.5 md:gap-5">
             <div>
               <label className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">Event Type</label>
-              <select name="event" required defaultValue="Khatu Shyam Jagran" className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none text-xs md:text-base">
-                <option>Khatu Shyam Jagran</option>
+              <select name="event" required defaultValue="Mata Ka Jagran" className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none text-xs md:text-base">
+                <option>Mata Ka Jagran</option>
                 <option>Mata Ki Chowki</option>
+                <option>Sundarkaand Path</option>
+                <option>Khatu Shyam Sankirtan</option>
                 <option>Bhajan Sandhya</option>
                 <option>Kirtan</option>
                 <option>Other</option>
@@ -1017,7 +940,7 @@ function Footer() {
         <div>
           <h3 className="font-display text-xl font-semibold mb-3 text-gradient-gold">Shri Shyam Jagran Party</h3>
           <p className="text-sm text-cream/70 leading-relaxed">
-            Ghaziabad-based devotional group spreading faith through soulful Jagrans, Shyam Kirtan, Kirtan, Bhajan Sandhya, Sundar Kand Katha & Other Devotional Events across Delhi NCR and All Over India.
+            Ghaziabad-based devotional group spreading faith through soulful Jagrans, Shyam Kirtan, Kirtan, Bhajan Sandhya, Sundar Kand Path & Other Devotional Events across Ghaziabad , Noida , Delhi NCR and All Over India.
           </p>
         </div>
         <div>
@@ -1046,9 +969,9 @@ function Footer() {
 
 function FloatingContact() {
   return (
-    <div className="fixed bottom-6 right-4 md:right-6 z-50 flex flex-col gap-3">
+    <div className="fixed bottom-0 inset-x-0 md:inset-x-auto md:bottom-6 md:right-6 z-40 flex flex-row md:flex-col gap-2 md:gap-3 p-2 md:p-0 bg-background/95 md:bg-transparent backdrop-blur md:backdrop-blur-none border-t border-border/60 md:border-0">
       <a href={`https://wa.me/${WHATSAPP}?text=${WHATSAPP_TEXT}`} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp"
-        className="group flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-[#25D366] text-white shadow-divine hover:scale-105 transition animate-flicker">
+        className="group flex-1 md:flex-none justify-center md:justify-start flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-[#25D366] text-white shadow-divine hover:scale-105 transition animate-flicker">
         <span className="w-8 h-8 rounded-full bg-white/20 grid place-items-center">
           {/* WhatsApp glyph */}
           <svg viewBox="0 0 32 32" className="w-5 h-5 fill-white" aria-hidden="true">
@@ -1058,7 +981,7 @@ function FloatingContact() {
         <span className="text-sm font-semibold">WhatsApp</span>
       </a>
       <a href={`tel:${PHONE}`} aria-label="Call Me"
-        className="group flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-gradient-gold text-maroon-deep font-semibold shadow-divine ring-2 ring-gold/50 hover:scale-105 transition">
+        className="group flex-1 md:flex-none justify-center md:justify-start flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-gradient-gold text-maroon-deep font-semibold shadow-divine ring-2 ring-gold/50 hover:scale-105 transition">
         <span className="w-8 h-8 rounded-full bg-white/15 grid place-items-center">
           <Phone className="w-4 h-4" />
         </span>
