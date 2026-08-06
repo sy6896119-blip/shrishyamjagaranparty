@@ -510,18 +510,8 @@ function Jhanki() {
 
           {/* Box 2 — Jhanki reels */}
           <div>
-            <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 bg-maroon-deep mx-auto w-full max-w-sm" style={{ aspectRatio: "9 / 16" }}>
-              <iframe
-                key={JHANKI_REELS[reel.i]}
-                src={`https://www.instagram.com/reel/${JHANKI_REELS[reel.i]}/embed/`}
-                title={`Jhanki reel ${reel.i + 1}`}
-                loading="lazy"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen
-                scrolling="no"
-                className="absolute inset-0 w-full h-full border-0"
-              />
-            </div>
+            <ReelPlayer shortcode={JHANKI_REELS[reel.i]} index={reel.i} />
+
             <SliderNav onPrev={reel.prev} onNext={reel.next} dots={JHANKI_REELS.length} active={reel.i} onDot={reel.setI} />
             <div className="mt-4 flex justify-center gap-3">
               <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="More jhanki on Instagram"
