@@ -482,6 +482,53 @@ function DarbarPhotos() {
 
 // ============ Divine Jhanki — box 1: photos, box 2: reels ============
 
+// Plays one reel at a time, only while it is on screen. The embed chrome
+// (username bar, like / comment / share row) is cropped out so only the video shows.
+function ReelPlayer({ shortcode, index }: { shortcode: string; index: number }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) setInView(e.isIntersecting && e.intersectionRatio > 0.5);
+      },
+      { threshold: [0, 0.5, 0.9] },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={wrapRef}
+      className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-divine border border-gold/30 bg-maroon-deep mx-auto w-full max-w-sm"
+      style={{ aspectRatio: "9 / 16" }}
+    >
+      {inView ? (
+        <iframe
+          key={shortcode}
+          src={`https://www.instagram.com/reel/${shortcode}/embed/`}
+          title={`Jhanki reel ${index + 1}`}
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowFullScreen
+          scrolling="no"
+          className="absolute border-0"
+          style={{ top: -54, left: -1, width: "calc(100% + 2px)", height: "calc(100% + 220px)" }}
+        />
+      ) : (
+        <div className="absolute inset-0 grid place-items-center text-cream/60 text-xs">
+          <Video className="w-8 h-8" />
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+
 function Jhanki() {
   const photo = useAutoRotate(JHANKI_PHOTOS.length, 3000);
   const reel = useAutoRotate(JHANKI_REELS.length, 45000);
