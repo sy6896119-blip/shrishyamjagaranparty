@@ -152,9 +152,32 @@ const reviews = [
   { name: "Anjali Mehta", place: "Faridabad", rating: 5, text: "Complete darbar setup, punctual team and heart touching bhajans. Definitely booking again next year." },
 ];
 
+function useExternalLinkFix() {
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as HTMLElement | null)?.closest?.("a[target='_blank']") as HTMLAnchorElement | null;
+      if (!a || !a.href) return;
+      if (!/^https?:|^mailto:|^tel:/.test(a.href)) return;
+      e.preventDefault();
+      const win = window.open(a.href, "_blank", "noopener,noreferrer");
+      if (!win) {
+        try {
+          (window.top ?? window).location.href = a.href;
+        } catch {
+          window.location.href = a.href;
+        }
+      }
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+}
+
 function Index() {
+  useExternalLinkFix();
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+
       <Header />
       <Hero />
       <Marquee />
