@@ -126,7 +126,7 @@ const YOUTUBE = "https://www.youtube.com/@ShriShyamJagranPartyGzb";
 const INSTAGRAM = "https://www.instagram.com/shankar98yadav/";
 const FACEBOOK = "https://www.facebook.com/share/17zJ3mMxrm/";
 const GOOGLE_MAPS = "https://share.google/OHhD1R2UorQv7N4tA";
-const GOOGLE_REVIEWS = "https://www.google.com/search?q=shree+shyam+jagran+party+ghaziabad";
+const GOOGLE_REVIEWS = "https://www.google.com/search?sca_esv=5cd892c2b13a5520&cs=1&output=search&kgmid=/g/11svmp1hqc&q=Shri+Shyam+jagran+Party+Ghaziabad+(Reg.)%7C%7C+Mata+ki+Chowki+%26+Jagran+organizers+in+Ghaziabad+Noida%7C%7C&shem=epsd1,ltae,rimspwouoe&shndl=30&source=sh/x/loc/act/m1/2&kgs=8f53e40b103e4cfe#ebo=0";
 
 const COMPOSITIONS = ["K8BWWyKj978", "STjpkSjzYbs", "YYDIhEeAdj0"];
 // 3rd bhajan starts at 01:05 (skip the intro portion)
