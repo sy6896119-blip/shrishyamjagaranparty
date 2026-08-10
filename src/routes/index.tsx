@@ -70,9 +70,10 @@ const DARBAR_PHOTOS = [
 
 const SITE_URL = "https://shrishyamjagranparty.lovable.app";
 const OG_IMAGE = `${SITE_URL}${heroPosterAsset.url}`;
-const PAGE_TITLE = "Shri Shyam Jagran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Sankirtan";
+const PAGE_TITLE = "Shri Shyam Jagran Party Ghaziabad | Mata Ki Chowki";
 const PAGE_DESC =
-  "Book Shri Shyam Jagran Party Ghaziabad for Mata Ki Chowki & Jagran, Khatu Shyam Sankirtan, Bhajan Sandhya and Sundar Kand Path in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
+  "Book Shri Shyam Jagran Party Ghaziabad for Mata Ki Chowki, Khatu Shyam Sankirtan, Bhajan Sandhya & Sundar Kand Path. Call +91 79829 56590.";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -234,7 +235,11 @@ function Hero() {
       <img src={HERO_POSTER} alt="Shri Shyam Jagran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(30,0,0,0.55) 80%, rgba(30,0,0,0.85) 100%)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
-        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR's &amp; All Over INDIA Trusted Jagran Party</p>
+        <h1 className="font-display text-2xl md:text-4xl font-bold text-gradient-gold drop-shadow-lg">
+          Shri Shyam Jagran Party — Mata Ki Chowki &amp; Khatu Shyam Sankirtan Organisers
+        </h1>
+        <p className="mt-3 text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR's &amp; All Over INDIA Trusted Jagran Party</p>
+
 
         <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
           Devotional Khatu Shyam Sankirtan, Mata Ki Chowki & Jagran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
