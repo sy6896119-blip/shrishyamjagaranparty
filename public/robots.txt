@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shrishyamjagranparty.lovable.app/sitemap.xml
