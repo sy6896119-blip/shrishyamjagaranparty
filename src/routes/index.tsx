@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef, useCallback, type FormEvent, type ReactNode } from "react";
 import { Phone, MessageCircle, MapPin, Youtube, Instagram, Facebook, Star, Music, Send, Calendar, BookOpen, AlertTriangle, ExternalLink, Camera, Video, Crown, Feather, ChevronLeft, ChevronRight, X } from "lucide-react";
 import logoAsset from "@/assets/logo.png.asset.json";
-import heroPosterAsset from "@/assets/hero-poster.png.asset.json";
+import heroPosterAsset from "@/assets/hero-banner-2.png.asset.json";
 import shankarAsset from "@/assets/shankar-yadav.jpeg.asset.json";
 import darbar1 from "@/assets/darbar-1.jpeg.asset.json";
 import darbar2 from "@/assets/darbar-2.jpeg.asset.json";
@@ -234,7 +234,7 @@ function Hero() {
       <img src={HERO_POSTER} alt="Shri Shyam Jagran Party banner" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(30,0,0,0.55) 80%, rgba(30,0,0,0.85) 100%)" }} />
       <div className="relative z-10 text-center px-6 max-w-4xl animate-float-up mt-auto pb-10">
-        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR's Trusted Jagran Party &amp; All Over INDIA</p>
+        <p className="text-sm md:text-xl text-cream font-medium tracking-wide drop-shadow-lg">GHAZIABAD, NOIDA, DELHI, NCR's &amp; All Over INDIA Trusted Jagran Party</p>
 
         <p className="mt-3 text-cream/95 text-sm md:text-lg max-w-2xl mx-auto drop-shadow-lg">
           Devotional Khatu Shyam Sankirtan, Mata Ki Chowki & Jagran & Bhajan Sandhya — soulful voices, sacred nights, unforgettable Moments.
@@ -327,7 +327,7 @@ function About() {
       <h2 className="text-3xl md:text-5xl font-bold mb-6">A Devotional Legacy in Every Bhajan</h2>
       <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-5xl mx-auto">
         Based in Ghaziabad and led by <strong className="text-foreground">Shri Shankar Yadav ji</strong>, Shri Shyam Jagran Party has been
-        organising soul-stirring jagrans & Kirtans for years across Delhi NCR — Ghaziabad, Noida, Delhi, Gurugram and beyond.
+        organising soul-stirring jagrans & Kirtans for years across GHAZIABAD, NOIDA, DELHI -NCR's & All Over INDIA.
         From intimate home chowkis to grand society jagrans, our mandali brings professional singers,
         harmonium, tabla, sound system and complete darbar decoration to create an atmosphere of pure devotion.
       </p>
