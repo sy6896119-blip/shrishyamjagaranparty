@@ -70,9 +70,10 @@ const DARBAR_PHOTOS = [
 
 const SITE_URL = "https://shrishyamjagranparty.lovable.app";
 const OG_IMAGE = `${SITE_URL}${heroPosterAsset.url}`;
-const PAGE_TITLE = "Shri Shyam Jagran Party Ghaziabad | Mata Ki Chowki & Khatu Shyam Sankirtan";
+const PAGE_TITLE = "Shri Shyam Jagran Party Ghaziabad | Mata Ki Chowki";
 const PAGE_DESC =
-  "Book Shri Shyam Jagran Party Ghaziabad for Mata Ki Chowki & Jagran, Khatu Shyam Sankirtan, Bhajan Sandhya and Sundar Kand Path in Ghaziabad, Noida, Delhi NCR & all over India. Call +91 79829 56590.";
+  "Book Shri Shyam Jagran Party Ghaziabad for Mata Ki Chowki, Khatu Shyam Sankirtan, Bhajan Sandhya & Sundar Kand Path. Call +91 79829 56590.";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
