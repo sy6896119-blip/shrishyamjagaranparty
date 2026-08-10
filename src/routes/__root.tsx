@@ -81,6 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Shri Shyam Jagran Party Ghaziabad — Khatu Shyam Sankirtan, Mata Ki Chowki, Bhajan Sandhya across Delhi NCR and all over India." },
 
       { name: "author", content: "Shri Shyam Jagran Party" },
+      { name: "google-site-verification", content: "gqKJKIz8z--G_KmVfR2FsoWJlBgfop-qm_C4dgzfX2Q" },
       { property: "og:title", content: "Shri Shyam Jagran Party Ghaziabad" },
       { property: "og:description", content: "Divine Khatu Shyam Jagran, Mata Ki Chowki & Bhajan Sandhya across Delhi NCR and all over India." },
       { property: "og:type", content: "website" },
