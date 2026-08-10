@@ -77,8 +77,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Shri Shyam Jagran Party Ghaziabad — Khatu Shyam Kirtan & Mata Ki Chowki" },
-      { name: "description", content: "Book Shri Shyam Jagran Party Ghaziabad for soulful Khatu Shyam Jagran, Mata Ki Chowki, Bhajan Sandhya and Kirtan across Delhi NCR and all over India. Professional singers, full sound & decor." },
+      { title: "Shri Shyam Jagran Party Ghaziabad — Jagran & Kirtan" },
+      { name: "description", content: "Shri Shyam Jagran Party Ghaziabad — Khatu Shyam Sankirtan, Mata Ki Chowki, Bhajan Sandhya across Delhi NCR and all over India." },
+
       { name: "author", content: "Shri Shyam Jagran Party" },
       { property: "og:title", content: "Shri Shyam Jagran Party Ghaziabad" },
       { property: "og:description", content: "Divine Khatu Shyam Jagran, Mata Ki Chowki & Bhajan Sandhya across Delhi NCR and all over India." },
