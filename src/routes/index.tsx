@@ -864,11 +864,13 @@ function BookingForm() {
 }
 
 function Field({ label, name, type = "text", required, pattern, minLength, maxLength }: { label: string; name: string; type?: string; required?: boolean; pattern?: string; minLength?: number; maxLength?: number }) {
+  const id = `field-${name}`;
   return (
     <div>
-      <label className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">{label}{required && <span className="text-saffron ml-1">*</span>}</label>
-      <input name={name} type={type} required={required} pattern={pattern} minLength={minLength} maxLength={maxLength}
+      <label htmlFor={id} className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">{label}{required && <span className="text-saffron ml-1">*</span>}</label>
+      <input id={id} name={name} type={type} required={required} pattern={pattern} minLength={minLength} maxLength={maxLength}
         className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none text-xs md:text-base" />
+
     </div>
   );
 }
