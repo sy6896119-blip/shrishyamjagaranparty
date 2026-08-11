@@ -834,8 +834,9 @@ function BookingForm() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 gap-2.5 md:gap-5">
             <div>
-              <label className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">Event Type</label>
-              <select name="event" required defaultValue="Mata Ka Jagran" className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none text-xs md:text-base">
+              <label htmlFor="event-type" className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">Event Type</label>
+              <select id="event-type" name="event" required defaultValue="Mata Ka Jagran" className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none text-xs md:text-base">
+
                 <option>Mata Ka Jagran</option>
                 <option>Mata Ki Chowki</option>
                 <option>Sundarkaand Path</option>
@@ -849,8 +850,9 @@ function BookingForm() {
           </div>
           <Field label="City / Location" name="city" required />
           <div>
-            <label className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">Requirements / Message</label>
-            <textarea name="message" rows={2} maxLength={1000} className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none resize-none text-xs md:text-base md:min-h-28" placeholder="Tell us about your event, guests, special requirements..." />
+            <label htmlFor="field-message" className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">Requirements / Message</label>
+            <textarea id="field-message" name="message" rows={2} maxLength={1000} className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none resize-none text-xs md:text-base md:min-h-28" placeholder="Tell us about your event, guests, special requirements..." />
+
           </div>
           <button type="submit" className="w-full py-2.5 md:py-4 rounded-full bg-gradient-royal text-cream font-medium shadow-divine hover:opacity-95 transition inline-flex items-center justify-center gap-2 text-sm md:text-base">
             <Send className="w-4 h-4" /> Send Enquiry via WhatsApp
@@ -863,11 +865,13 @@ function BookingForm() {
 }
 
 function Field({ label, name, type = "text", required, pattern, minLength, maxLength }: { label: string; name: string; type?: string; required?: boolean; pattern?: string; minLength?: number; maxLength?: number }) {
+  const id = `field-${name}`;
   return (
     <div>
-      <label className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">{label}{required && <span className="text-saffron ml-1">*</span>}</label>
-      <input name={name} type={type} required={required} pattern={pattern} minLength={minLength} maxLength={maxLength}
+      <label htmlFor={id} className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">{label}{required && <span className="text-saffron ml-1">*</span>}</label>
+      <input id={id} name={name} type={type} required={required} pattern={pattern} minLength={minLength} maxLength={maxLength}
         className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none text-xs md:text-base" />
+
     </div>
   );
 }
