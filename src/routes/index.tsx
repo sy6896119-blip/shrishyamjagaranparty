@@ -834,8 +834,9 @@ function BookingForm() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 gap-2.5 md:gap-5">
             <div>
-              <label className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">Event Type</label>
-              <select name="event" required defaultValue="Mata Ka Jagran" className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none text-xs md:text-base">
+              <label htmlFor="event-type" className="text-[11px] md:text-sm font-medium mb-1 md:mb-2 block">Event Type</label>
+              <select id="event-type" name="event" required defaultValue="Mata Ka Jagran" className="w-full px-2.5 md:px-4 py-2 md:py-3 rounded-lg bg-background border border-input focus:border-ring outline-none text-xs md:text-base">
+
                 <option>Mata Ka Jagran</option>
                 <option>Mata Ki Chowki</option>
                 <option>Sundarkaand Path</option>
