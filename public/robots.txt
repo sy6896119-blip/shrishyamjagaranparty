@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shrishyamjagranparty.lovable.app/sitemap.xml
+Sitemap: https://shrishyamjagaranparty.lovable.app/sitemap.xml
